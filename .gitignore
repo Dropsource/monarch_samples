@@ -45,5 +45,4 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Monarch related
-.monarch/
+.monarch/flutter_assets/
