@@ -60,12 +60,9 @@ class BlocCounterView extends StatelessWidget {
 }
 
 class CounterCubit extends Cubit<int> {
-  /// {@macro counter_cubit}
   CounterCubit({int initialState = 0}) : super(initialState);
 
-  /// Add 1 to the current state.
   void increment() => emit(state + 1);
 
-  /// Subtract 1 from the current state.
   void decrement() => emit(state - 1);
 }

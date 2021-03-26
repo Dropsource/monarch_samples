@@ -1,12 +1,10 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:monarch_samples/bloc/bloc_counter/bloc_counter_screen.dart';
 
-import 'useful_mocks.dart';
-
-// ignore: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names
 Widget bloc_counter_from_zero() =>
-    mockBlocProvider(CounterCubit(), child: BlocCounterView());
+    BlocProvider.value(value: CounterCubit(), child: BlocCounterView());
 
-// ignore: non_constant_identifier_names
-Widget bloc_counter_with_initial_nonzero_value() =>
-    mockBlocProvider(CounterCubit(initialState: 100), child: BlocCounterView());
+Widget bloc_counter_with_initial_nonzero_value() => BlocProvider.value(
+    value: CounterCubit(initialState: 100), child: BlocCounterView());
