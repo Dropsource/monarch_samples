@@ -6,8 +6,8 @@ import 'package:flutter/widgets.dart'
     show BuildContext, Locale, Localizations, LocalizationsDelegate;
 import 'package:monarch_annotations/monarch_annotations.dart';
 
-final Locale _english = Locale('en', 'US');
-final Locale _spanish = Locale('es', 'ES');
+const _english = Locale('en', 'US');
+const _spanish = Locale('es', 'ES');
 
 @MonarchLocalizations([MonarchLocale('en', 'US'), MonarchLocale('es', 'ES')])
 final SampleLocalizationsDelegate localizationDelegate =
@@ -20,12 +20,12 @@ final SampleLocalizationsDelegate localizationDelegate =
 class SampleLocalizationsDelegate
     extends LocalizationsDelegate<SampleLocalizations> {
   final TranslationsBundleLoader bundleLoader;
-  final Locale defaultLocale;
+  final Locale/*!*/ defaultLocale;
   final List<Locale> supportedLocales;
 
   const SampleLocalizationsDelegate(
     this.bundleLoader, {
-    this.supportedLocales = const [Locale('en', 'US')],
+    this.supportedLocales = const [_english, _spanish],
     this.defaultLocale,
   });
 
@@ -55,7 +55,6 @@ class SampleLocalizations {
 
   SampleLocalizations(this.locale);
 
-  /// Used to translate a [key] in the current dictionary.
   String text(String key) {
     return _localizedValues[key] ?? '_$key';
   }
@@ -80,11 +79,11 @@ abstract class TranslationsBundleLoader {
 
 class FileTranslationsBundleLoader extends TranslationsBundleLoader {
   final String path;
-  final AssetBundle bundle; // Defaults to rootBundle if none provided
+  final AssetBundle bundle;
   FileTranslationsBundleLoader(this.path, {this.bundle}) : super();
 
   @override
-  Future<Map<String, dynamic>> loadTranslationsDictionary(Locale locale) async {
+  Future<Map<String, dynamic>/*!*/> loadTranslationsDictionary(Locale locale) async {
     String jsonContent = await (bundle ?? rootBundle)
         .loadString('$path/i18n_${locale.languageCode}.json');
     return json.decode(jsonContent);

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'animated_tap.dart';
 
 class ContentListScreen extends StatelessWidget {
-  final List<Category> categories;
-  final String title;
+  final List<Category>/*!*/ categories;
+  final String/*!*/ title;
 
   const ContentListScreen({Key key, this.categories, this.title})
       : super(key: key);
@@ -30,7 +30,7 @@ class ContentListScreen extends StatelessWidget {
             child: CategoryItem(
               label: categories[index].label,
               key: Key('category-card-$index'),
-              onClick: () => categories[index]?.onClick(),
+              onClick: () => categories[index].onClick?.call(),
             )),
         itemCount: categories.length,
       ),
@@ -39,7 +39,7 @@ class ContentListScreen extends StatelessWidget {
 }
 
 class Category {
-  final String label;
+  final String/*!*/ label;
   final VoidCallback onClick;
 
   Category({this.label, this.onClick});
@@ -55,7 +55,7 @@ class NoContentWidget extends StatelessWidget {
 }
 
 class CategoryItem extends AnimatedTap {
-  final String label;
+  final String/*!*/ label;
   final VoidCallback onClick;
 
   CategoryItem({
@@ -65,11 +65,11 @@ class CategoryItem extends AnimatedTap {
   }) : super(
             key: key,
             child: CategoryCard(label: label),
-            onPressed: (_) => onClick());
+            onPressed: (_) => onClick?.call());
 }
 
 class CategoryCard extends StatelessWidget {
-  final String label;
+  final String/*!*/ label;
 
   const CategoryCard({Key key, this.label}) : super(key: key);
 

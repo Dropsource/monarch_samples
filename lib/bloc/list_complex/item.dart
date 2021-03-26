@@ -7,8 +7,8 @@ class Item extends Equatable {
     this.isDeleting = false,
   });
 
-  final String id;
-  final String value;
+  final String/*!*/ id;
+  final String/*!*/ value;
   final bool isDeleting;
 
   Item copyWith({String id, String value, bool isDeleting}) {

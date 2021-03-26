@@ -4,16 +4,16 @@ import 'package:flutter/services.dart';
 class AnimatedTap extends StatefulWidget {
   AnimatedTap({
     Key key,
-    @required this.child,
-    @required this.onPressed,
+    this.child,
+    this.onPressed,
     this.start = 0.0,
     this.end = 0.04,
     this.duration = const Duration(milliseconds: 70),
     this.giveHapticFeedback = true,
     this.behavior = HitTestBehavior.opaque,
   }) : super(key: key);
-  final Widget child;
-  final Function(BuildContext) onPressed;
+  final Widget/*!*/ child;
+  final Function(BuildContext)/*!*/ onPressed;
   final double start, end;
   final Duration duration;
   final bool giveHapticFeedback;

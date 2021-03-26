@@ -9,7 +9,7 @@ class ListCubit extends Cubit<ListState> {
       {this.repository, ListState defaultState = const ListState.loading()})
       : super(defaultState);
 
-  final Repository repository;
+  final Repository/*!*/ repository;
 
   Future<void> fetchList() async {
     try {

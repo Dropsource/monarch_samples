@@ -39,7 +39,7 @@ class ListComplexScreen extends StatelessWidget {
 class _ListView extends StatelessWidget {
   const _ListView({Key key, this.items}) : super(key: key);
 
-  final List<Item> items;
+  final List<Item>/*!*/ items;
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +66,8 @@ class _ItemTile extends StatelessWidget {
     this.onDeletePressed,
   }) : super(key: key);
 
-  final Item item;
-  final ValueSetter<String> onDeletePressed;
+  final Item/*!*/ item;
+  final ValueSetter<String>/*!*/ onDeletePressed;
 
   @override
   Widget build(BuildContext context) {

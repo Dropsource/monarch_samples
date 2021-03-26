@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 class ShoppingCart extends ChangeNotifier {
   final List<Product> _products;
 
-  ShoppingCart({List<Product> products}) : _products = products;
+  ShoppingCart({List<Product>/*!*/ products}) : _products = products;
 
   factory ShoppingCart.empty() {
     return ShoppingCart(products: []);
@@ -33,8 +33,8 @@ class ShoppingCart extends ChangeNotifier {
 }
 
 class Product {
-  final String name;
-  final double price;
+  final String/*!*/ name;
+  final double/*!*/ price;
 
   Product({this.name, this.price});
 

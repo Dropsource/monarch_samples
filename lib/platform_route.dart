@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 
 Route<T> platformRoute<T>(
   BuildContext context, {
-  WidgetBuilder builder,
-  RouteSettings settings,
+  WidgetBuilder/*!*/ builder,
+  RouteSettings/*!*/ settings,
   bool fullscreenDialog = false,
 }) {
   if (Theme.of(context).platform == TargetPlatform.iOS) {
