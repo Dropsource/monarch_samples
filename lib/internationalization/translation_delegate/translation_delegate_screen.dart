@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:monarch_samples/localization.dart';
+import 'package:monarch_samples/provider/read_from_provider_screen.dart';
 
-import '../../localization.dart';
 import '../../platform_utils.dart';
-import '../../provider/read_from_provider_screen.dart';
 
 class TranslationDelegateExampleScreen extends StatelessWidget {
   static String tag = 'translation-delegate-example-screen';
