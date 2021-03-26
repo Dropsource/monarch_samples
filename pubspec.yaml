@@ -84,3 +84,34 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/google_fonts/OpenSans-Light.ttf
+          weight: 300
+          style: normal
+        - asset: assets/google_fonts/OpenSans-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/google_fonts/OpenSans-Regular.ttf
+          weight: 400
+          style: normal
+        - asset: assets/google_fonts/OpenSans-RegularItalic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/google_fonts/OpenSans-SemiBold.ttf
+          weight: 500
+          style: normal
+        - asset: assets/google_fonts/OpenSans-SemiBoldItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/google_fonts/OpenSans-Bold.ttf
+          weight: 600
+        - asset: assets/google_fonts/OpenSans-BoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/google_fonts/OpenSans-ExtraBold.ttf
+          weight: 700
+        - asset: assets/google_fonts/OpenSans-ExtraBoldItalic.ttf
+          weight: 700
+          style: italic

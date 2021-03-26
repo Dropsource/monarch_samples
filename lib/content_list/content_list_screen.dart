@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../default_theme.dart';
 import '../widgets.dart';
 
 class ContentListScreen extends StatelessWidget {
@@ -76,8 +75,19 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
-      decoration: shadowDecoration,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+        color: theme.cardColor,
+        boxShadow: [
+          BoxShadow(
+            color: theme.shadowColor,
+            blurRadius: 6,
+            offset: Offset(0, 5),
+          ),
+        ],
+      ),
       margin: const EdgeInsets.symmetric(vertical: 5),
       padding: const EdgeInsets.all(15),
       child: Text(label),
