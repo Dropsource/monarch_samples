@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets.dart';
+import 'animated_tap.dart';
 
 class ContentListScreen extends StatelessWidget {
   final List<Category> categories;

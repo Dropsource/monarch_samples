@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:monarch_samples/bloc/list_complex/list_complex_screen.dart';
 import 'package:monarch_samples/content_list/content_list_screen.dart';
 
-import '../platform_utils.dart';
+import '../platform_route.dart';
 import 'bloc_counter/bloc_counter_screen.dart';
 
 class BlocExampleListScreen extends StatelessWidget {

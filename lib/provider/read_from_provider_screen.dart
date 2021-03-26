@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:monarch_samples/provider/current_date_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../platform_utils.dart';
+import '../provider/current_date_provider.dart';
+import '../platform_route.dart';
 
 class ReadFromProviderScreen extends StatelessWidget {
   static String tag = 'read-from-provider-screen';

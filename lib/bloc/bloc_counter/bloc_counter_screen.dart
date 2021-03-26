@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../platform_utils.dart';
+import '../../platform_route.dart';
 
 class BlocCounterScreen extends StatelessWidget {
   @override

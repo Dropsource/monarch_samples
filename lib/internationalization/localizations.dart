@@ -10,37 +10,20 @@ final Locale _english = Locale('en', 'US');
 final Locale _spanish = Locale('es', 'ES');
 
 @MonarchLocalizations([MonarchLocale('en', 'US'), MonarchLocale('es', 'ES')])
-final TranslationsDelegate localizationDelegate = TranslationsDelegate(
+final SampleLocalizationsDelegate localizationDelegate =
+    SampleLocalizationsDelegate(
   FileTranslationsBundleLoader('locale'),
   supportedLocales: [_english, _spanish],
   defaultLocale: _english,
 );
 
-class FileTranslationsBundleLoader extends TranslationsBundleLoader {
-  final String path;
-  final AssetBundle bundle; // Defaults to rootBundle if none provided
-  FileTranslationsBundleLoader(this.path, {this.bundle}) : super();
-
-  @override
-  Future<Map<String, dynamic>> loadTranslationsDictionary(Locale locale) async {
-    String jsonContent = await (bundle ?? rootBundle)
-        .loadString('$path/i18n_${locale.languageCode}.json');
-    return json.decode(jsonContent);
-  }
-}
-
-abstract class TranslationsBundleLoader {
-  TranslationsBundleLoader();
-
-  Future<Map<String, dynamic>> loadTranslationsDictionary(Locale locale);
-}
-
-class TranslationsDelegate extends LocalizationsDelegate<Translations> {
+class SampleLocalizationsDelegate
+    extends LocalizationsDelegate<SampleLocalizations> {
   final TranslationsBundleLoader bundleLoader;
   final Locale defaultLocale;
   final List<Locale> supportedLocales;
 
-  const TranslationsDelegate(
+  const SampleLocalizationsDelegate(
     this.bundleLoader, {
     this.supportedLocales = const [Locale('en', 'US')],
     this.defaultLocale,
@@ -54,37 +37,56 @@ class TranslationsDelegate extends LocalizationsDelegate<Translations> {
       supportedLanguages.contains(locale.languageCode);
 
   @override
-  Future<Translations> load(Locale locale) =>
-      Translations.load(locale, bundleLoader);
+  Future<SampleLocalizations> load(Locale locale) =>
+      SampleLocalizations.load(locale, bundleLoader);
 
   @override
-  bool shouldReload(TranslationsDelegate old) => false;
+  bool shouldReload(SampleLocalizationsDelegate old) => false;
 }
 
-class Translations {
+class SampleLocalizations {
   Locale locale;
 
   static Map<String, dynamic> _localizedValues = <String, dynamic>{};
 
-  static Translations of(BuildContext context) {
-    return Localizations.of<Translations>(context, Translations);
+  static SampleLocalizations of(BuildContext context) {
+    return Localizations.of<SampleLocalizations>(context, SampleLocalizations);
   }
 
-  Translations(this.locale);
+  SampleLocalizations(this.locale);
 
   /// Used to translate a [key] in the current dictionary.
   String text(String key) {
     return _localizedValues[key] ?? '_$key';
   }
 
-  static Future<Translations> load(
+  static Future<SampleLocalizations> load(
     Locale locale,
     TranslationsBundleLoader loader,
   ) async {
-    Translations translations = Translations(locale);
+    SampleLocalizations translations = SampleLocalizations(locale);
     _localizedValues = await loader.loadTranslationsDictionary(locale);
     return translations;
   }
 
   String get currentLanguage => locale.languageCode;
+}
+
+abstract class TranslationsBundleLoader {
+  TranslationsBundleLoader();
+
+  Future<Map<String, dynamic>> loadTranslationsDictionary(Locale locale);
+}
+
+class FileTranslationsBundleLoader extends TranslationsBundleLoader {
+  final String path;
+  final AssetBundle bundle; // Defaults to rootBundle if none provided
+  FileTranslationsBundleLoader(this.path, {this.bundle}) : super();
+
+  @override
+  Future<Map<String, dynamic>> loadTranslationsDictionary(Locale locale) async {
+    String jsonContent = await (bundle ?? rootBundle)
+        .loadString('$path/i18n_${locale.languageCode}.json');
+    return json.decode(jsonContent);
+  }
 }
