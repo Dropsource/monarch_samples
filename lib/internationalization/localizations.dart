@@ -20,13 +20,13 @@ final SampleLocalizationsDelegate localizationDelegate =
 class SampleLocalizationsDelegate
     extends LocalizationsDelegate<SampleLocalizations> {
   final TranslationsBundleLoader bundleLoader;
-  final Locale/*!*/ defaultLocale;
+  final Locale defaultLocale;
   final List<Locale> supportedLocales;
 
   const SampleLocalizationsDelegate(
     this.bundleLoader, {
     this.supportedLocales = const [_english, _spanish],
-    this.defaultLocale,
+    required this.defaultLocale,
   });
 
   List<String> get supportedLanguages =>
@@ -49,7 +49,7 @@ class SampleLocalizations {
 
   static Map<String, dynamic> _localizedValues = <String, dynamic>{};
 
-  static SampleLocalizations of(BuildContext context) {
+  static SampleLocalizations? of(BuildContext context) {
     return Localizations.of<SampleLocalizations>(context, SampleLocalizations);
   }
 
@@ -79,11 +79,11 @@ abstract class TranslationsBundleLoader {
 
 class FileTranslationsBundleLoader extends TranslationsBundleLoader {
   final String path;
-  final AssetBundle bundle;
+  final AssetBundle? bundle;
   FileTranslationsBundleLoader(this.path, {this.bundle}) : super();
 
   @override
-  Future<Map<String, dynamic>/*!*/> loadTranslationsDictionary(Locale locale) async {
+  Future<Map<String, dynamic>> loadTranslationsDictionary(Locale locale) async {
     String jsonContent = await (bundle ?? rootBundle)
         .loadString('$path/i18n_${locale.languageCode}.json');
     return json.decode(jsonContent);

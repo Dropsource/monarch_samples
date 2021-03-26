@@ -7,7 +7,7 @@ class LocalizedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final localizations = SampleLocalizations.of(context);
+    final localizations = SampleLocalizations.of(context)!;
     return Scaffold(
         appBar: AppBar(
           title: Text(localizations.text('sample.title')),
