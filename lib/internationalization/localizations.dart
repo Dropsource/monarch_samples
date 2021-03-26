@@ -63,7 +63,7 @@ class SampleLocalizations {
     Locale locale,
     TranslationsBundleLoader loader,
   ) async {
-    SampleLocalizations translations = SampleLocalizations(locale);
+    var translations = SampleLocalizations(locale);
     _localizedValues = await loader.loadTranslationsDictionary(locale);
     return translations;
   }
@@ -84,7 +84,7 @@ class FileTranslationsBundleLoader extends TranslationsBundleLoader {
 
   @override
   Future<Map<String, dynamic>> loadTranslationsDictionary(Locale locale) async {
-    String jsonContent = await (bundle ?? rootBundle)
+    var jsonContent = await (bundle ?? rootBundle)
         .loadString('$path/i18n_${locale.languageCode}.json');
     return json.decode(jsonContent);
   }

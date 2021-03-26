@@ -90,8 +90,8 @@ class CategoryCard extends StatelessWidget {
       ),
       margin: const EdgeInsets.symmetric(vertical: 5),
       padding: const EdgeInsets.all(15),
-      child: Text(label),
       clipBehavior: Clip.hardEdge,
+      child: Text(label),
     );
   }
 }
