@@ -18,11 +18,6 @@ class InterrnationalizationListScreen extends StatelessWidget {
               Navigator.of(context)
                   .push(TranslationDelegateExampleScreen.route(context));
             }),
-        // Category(
-        //     label: 'Bloc Complex List',
-        //     onClick: () {
-        //       Navigator.of(context).push(ListComplexScreen.route(context));
-        //     }),
       ],
     );
   }

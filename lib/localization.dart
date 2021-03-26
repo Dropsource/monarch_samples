@@ -23,7 +23,6 @@ class FileTranslationsBundleLoader extends TranslationsBundleLoader {
 
   @override
   Future<Map<String, dynamic>> loadTranslationsDictionary(Locale locale) async {
-    // var bundle = DefaultAssetBundle.of(context);
     String jsonContent = await (bundle ?? rootBundle)
         .loadString('$path/i18n_${locale.languageCode}.json');
     return json.decode(jsonContent);
