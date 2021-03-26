@@ -6,7 +6,7 @@ Sample for using Monarch
 
 Please make sure monarch is properly installed by typing in your terminal:
 
-   monarch --version
+    monarch --version
    
 If not, please follow instructions: https://monarchapp.io/docs/install/
 
