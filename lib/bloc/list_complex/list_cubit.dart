@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:monarch_samples/bloc/list_complex/repository.dart';
 import 'package:pedantic/pedantic.dart';
 
 import 'list_state.dart';
+import 'repository.dart';
 
 class ListCubit extends Cubit<ListState> {
   ListCubit(

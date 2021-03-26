@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:monarch_samples/content_list/content_list_screen.dart';
-import 'package:monarch_samples/internationalization/trasnlation_delegate/translation_delegate_screen.dart';
 
-import '../default_theme.dart';
+import '../content_list/content_list_screen.dart';
 import '../platform_utils.dart';
-import '../widgets.dart';
+import 'translation_delegate/translation_delegate_screen.dart';
 
 class InterrnationalizationListScreen extends StatelessWidget {
   @override

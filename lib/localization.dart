@@ -77,15 +77,6 @@ class Translations {
     return _localizedValues[key] ?? '_$key';
   }
 
-  /// Returns the text in the correct grammatical number.
-  /// This method uses textWithArgs so remember to add arguments in the [singular] and [plural] params.
-  String textWithCardinality(int length, String singular, String plural) {
-    return textWithArgs(
-      length == 1 ? singular : plural,
-      [length.toString()],
-    );
-  }
-
   static Future<Translations> load(
     Locale locale,
     TranslationsBundleLoader loader,
@@ -96,28 +87,4 @@ class Translations {
   }
 
   String get currentLanguage => locale.languageCode;
-
-  /// Used to translate a [key] but also to interpolate some arguments in the translation.
-  ///
-  /// Translation will have a set of markets identified by '$$s' which will then be replaced by the arguments.
-  /// i.e.
-  /// 'Welcome $$s, I see you are feeling $$s' with [textWithArgs('welcome', ['David', 'sad')]
-  /// would return 'Welcome David, I see you are feeling sad'
-  ///
-  /// Please note that the arguments will NOT be localized and will replace the markers as they are passed.
-  String textWithArgs(String key, List<String> args) {
-    String text = _localizedValues[key];
-    if (text == null) {
-      return '_$key';
-    }
-    var marker = '\$\$s';
-    int markerIndex = 0;
-    for (var arg in args) {
-      markerIndex = text.indexOf(marker);
-      if (markerIndex != -1) {
-        text = text.replaceFirst(marker, arg ?? '', markerIndex);
-      }
-    }
-    return text;
-  }
 }

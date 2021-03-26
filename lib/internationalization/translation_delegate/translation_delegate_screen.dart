@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:monarch_samples/localization.dart';
 import 'package:monarch_samples/provider/read_from_provider_screen.dart';
 
-import '../../localization.dart';
 import '../../platform_utils.dart';
 
 class TranslationDelegateExampleScreen extends StatelessWidget {
@@ -32,8 +32,7 @@ class TranslationDelegateExampleScreen extends StatelessWidget {
               SizedBox(
                 height: 16,
               ),
-              Text(translations.textWithArgs(
-                  'translations_example.content', [10.toString()])),
+              Text(translations.text('translations_example.content')),
             ]
                 .map((widget) => Padding(
                       padding: EdgeInsets.all(8),
