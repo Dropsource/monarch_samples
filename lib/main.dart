@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:monarch_samples/bloc/bloc_example_list.dart';
 import 'package:monarch_samples/content_list/content_list_screen.dart';
@@ -9,6 +10,7 @@ import 'package:provider/provider.dart';
 
 import 'bloc/list_complex/list_cubit.dart';
 import 'bloc/list_complex/repository.dart';
+import 'localization.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,6 +38,12 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.blue,
             ),
             navigatorKey: GlobalKey<NavigatorState>(),
+            locale: localizationDelegate.defaultLocale,
+            supportedLocales: localizationDelegate.supportedLocales,
+            localizationsDelegates: [
+              localizationDelegate,
+              ...GlobalMaterialLocalizations.delegates,
+            ],
             home: Main()),
       ),
     );
