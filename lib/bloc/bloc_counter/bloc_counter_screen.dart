@@ -42,16 +42,16 @@ class BlocCounterView extends StatelessWidget {
         children: <Widget>[
           FloatingActionButton(
             key: const Key('counterView_increment_floatingActionButton'),
-            heroTag: "counter_increment",
-            child: const Icon(Icons.add),
+            heroTag: 'counter_increment',
             onPressed: () => context.read<CounterCubit>().increment(),
+            child: const Icon(Icons.add),
           ),
           const SizedBox(height: 8),
           FloatingActionButton(
             key: const Key('counterView_decrement_floatingActionButton'),
-            heroTag: "counter_decrement",
-            child: const Icon(Icons.remove),
+            heroTag: 'counter_decrement',
             onPressed: () => context.read<CounterCubit>().decrement(),
+            child: const Icon(Icons.remove),
           ),
         ],
       ),

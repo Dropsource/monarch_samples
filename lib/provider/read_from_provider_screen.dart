@@ -46,7 +46,7 @@ class ReadFromProviderScreen extends StatelessWidget {
         ));
   }
 
-  String _getDate(BuildContext context) {
+  String? _getDate(BuildContext context) {
     return Provider.of<CurrentDateProvider>(context, listen: false)
         .currentDateAsString();
   }

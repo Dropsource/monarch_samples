@@ -6,8 +6,8 @@ import 'package:flutter/widgets.dart'
     show BuildContext, Locale, Localizations, LocalizationsDelegate;
 import 'package:monarch_annotations/monarch_annotations.dart';
 
-final Locale _english = Locale('en', 'US');
-final Locale _spanish = Locale('es', 'ES');
+const _english = Locale('en', 'US');
+const _spanish = Locale('es', 'ES');
 
 @MonarchLocalizations([MonarchLocale('en', 'US'), MonarchLocale('es', 'ES')])
 final SampleLocalizationsDelegate localizationDelegate =
@@ -25,8 +25,8 @@ class SampleLocalizationsDelegate
 
   const SampleLocalizationsDelegate(
     this.bundleLoader, {
-    this.supportedLocales = const [Locale('en', 'US')],
-    this.defaultLocale,
+    this.supportedLocales = const [_english, _spanish],
+    required this.defaultLocale,
   });
 
   List<String> get supportedLanguages =>
@@ -49,13 +49,12 @@ class SampleLocalizations {
 
   static Map<String, dynamic> _localizedValues = <String, dynamic>{};
 
-  static SampleLocalizations of(BuildContext context) {
+  static SampleLocalizations? of(BuildContext context) {
     return Localizations.of<SampleLocalizations>(context, SampleLocalizations);
   }
 
   SampleLocalizations(this.locale);
 
-  /// Used to translate a [key] in the current dictionary.
   String text(String key) {
     return _localizedValues[key] ?? '_$key';
   }
@@ -64,7 +63,7 @@ class SampleLocalizations {
     Locale locale,
     TranslationsBundleLoader loader,
   ) async {
-    SampleLocalizations translations = SampleLocalizations(locale);
+    var translations = SampleLocalizations(locale);
     _localizedValues = await loader.loadTranslationsDictionary(locale);
     return translations;
   }
@@ -80,12 +79,12 @@ abstract class TranslationsBundleLoader {
 
 class FileTranslationsBundleLoader extends TranslationsBundleLoader {
   final String path;
-  final AssetBundle bundle; // Defaults to rootBundle if none provided
+  final AssetBundle? bundle;
   FileTranslationsBundleLoader(this.path, {this.bundle}) : super();
 
   @override
   Future<Map<String, dynamic>> loadTranslationsDictionary(Locale locale) async {
-    String jsonContent = await (bundle ?? rootBundle)
+    var jsonContent = await (bundle ?? rootBundle)
         .loadString('$path/i18n_${locale.languageCode}.json');
     return json.decode(jsonContent);
   }
