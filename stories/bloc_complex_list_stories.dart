@@ -1,20 +1,26 @@
+// ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../lib/bloc/list_complex/item.dart';
-import '../lib/bloc/list_complex/list_complex_screen.dart';
-import '../lib/bloc/list_complex/list_cubit.dart';
-import '../lib/bloc/list_complex/list_state.dart';
+import 'package:monarch_samples/bloc/list_complex/item.dart';
+import 'package:monarch_samples/bloc/list_complex/list_complex_screen.dart';
+import 'package:monarch_samples/bloc/list_complex/list_cubit.dart';
+import 'package:monarch_samples/bloc/list_complex/list_state.dart';
 
-import 'mocked_implementations.dart';
+import 'mocked_repository.dart';
 
-// ignore_for_file: non_constant_identifier_names
-Widget complex_list_loading() => BlocProvider.value(
+Widget loading() => BlocProvider.value(
     value: ListCubit(
         repository: MockedRepository(),
         defaultState: const ListState.loading()),
     child: ListComplexScreen());
 
-Widget complex_list_loaded() => BlocProvider.value(
+Widget fetch() {
+  final listCubit = ListCubit(repository: MockedRepository());
+  listCubit.fetchList();
+  return BlocProvider.value(value: listCubit, child: ListComplexScreen());
+}
+
+Widget success() => BlocProvider.value(
     value: ListCubit(
         repository: MockedRepository(),
         defaultState: const ListState.success([
@@ -25,7 +31,7 @@ Widget complex_list_loaded() => BlocProvider.value(
         ])),
     child: ListComplexScreen());
 
-Widget complex_list_first_item_deleting() => BlocProvider.value(
+Widget deleting() => BlocProvider.value(
     value: ListCubit(
         repository: MockedRepository(),
         defaultState: const ListState.success([
@@ -36,7 +42,7 @@ Widget complex_list_first_item_deleting() => BlocProvider.value(
         ])),
     child: ListComplexScreen());
 
-Widget complex_list_failure() => BlocProvider.value(
+Widget failure() => BlocProvider.value(
     value: ListCubit(
         repository: MockedRepository(),
         defaultState: const ListState.failure()),
