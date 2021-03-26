@@ -1,44 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:monarch_annotations/monarch_annotations.dart';
 
-const Color teal = Color(0xFF00CFD4);
-const Color darkTeal = Color(0xFF00B7BA);
-
-const Color orange = Color(0xFFFE9609);
-
-const Color lightGrey = Color(0xFFEFF2F5);
-const Color secondaryGrey = Color(0xFF9FA7B0);
-const Color darkGrey = Color(0xFFA7B0C3);
-
-const Color lightTeal = Color(0xFFEFF2F5);
-
-const Color black = Color(0xFF1F1F1F);
-const Color blackSemiTransparent = Color(0xAA1F1F1F);
-const Color dark = Color(0xff313131);
-const Color lightBlack = Color(0xff4A4A4A);
-
-const Color secondaryTabColor = Color(0xFFEFF2F5);
-const Color secondaryTabLabelColor = Color(0xFFCACACA);
-
-const Color red = Color(0xFFEB3520);
-
-const Color green = Color(0xFFA0C360);
-const Color successColor = Color(0xFF76C043);
-const Color failureColor = Color((0xFFEB3520));
-
-const Color inputBorderColor = Color(0xFFCACACA);
-const Color inputHintColor = Color(0xFFCACACA);
-
-const Color gray = Color(0xFFCACACA);
-const BorderRadius inputBorderRadius = BorderRadius.all(Radius.circular(30.0));
-
-const settingsBackground = Color(0xFF00B7BA);
-
-const tertiary = Color(0xFF76C043);
-const tertiaryFaded = Color(0xFFBADFA0);
 
 @MonarchTheme('Custom Theme', isDefault: false)
-final ThemeData theme = ThemeData(
+final ThemeData customTheme = ThemeData(
   primarySwatch: Colors.orange,
   primaryColor: teal,
   accentColor: darkTeal,
@@ -105,3 +70,41 @@ final ThemeData theme = ThemeData(
     iconTheme: IconThemeData(color: black),
   ),
 );
+
+
+const Color teal = Color(0xFF00CFD4);
+const Color darkTeal = Color(0xFF00B7BA);
+
+const Color orange = Color(0xFFFE9609);
+
+const Color lightGrey = Color(0xFFEFF2F5);
+const Color secondaryGrey = Color(0xFF9FA7B0);
+const Color darkGrey = Color(0xFFA7B0C3);
+
+const Color lightTeal = Color(0xFFEFF2F5);
+
+const Color black = Color(0xFF1F1F1F);
+const Color blackSemiTransparent = Color(0xAA1F1F1F);
+const Color dark = Color(0xff313131);
+const Color lightBlack = Color(0xff4A4A4A);
+
+const Color secondaryTabColor = Color(0xFFEFF2F5);
+const Color secondaryTabLabelColor = Color(0xFFCACACA);
+
+const Color red = Color(0xFFEB3520);
+
+const Color green = Color(0xFFA0C360);
+const Color successColor = Color(0xFF76C043);
+const Color failureColor = Color((0xFFEB3520));
+
+const Color inputBorderColor = Color(0xFFCACACA);
+const Color inputHintColor = Color(0xFFCACACA);
+
+const Color gray = Color(0xFFCACACA);
+const BorderRadius inputBorderRadius = BorderRadius.all(Radius.circular(30.0));
+
+const settingsBackground = Color(0xFF00B7BA);
+
+const tertiary = Color(0xFF76C043);
+const tertiaryFaded = Color(0xFFBADFA0);
+

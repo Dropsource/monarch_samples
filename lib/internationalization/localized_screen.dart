@@ -1,24 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../platform_route.dart';
+import 'localizations.dart';
 
-class ThemedScreen extends StatelessWidget {
-  static String tag = 'themed-screen';
-
-  static Route route(BuildContext context) => platformRoute(
-        context,
-        builder: (_) => ThemedScreen(),
-        settings: RouteSettings(name: tag),
-      );
+class LocalizedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = SampleLocalizations.of(context);
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Themed screen',
-          ),
+          title: Text(localizations.text('sample.title')),
         ),
         body: Container(
           padding: EdgeInsets.all(16),
@@ -26,13 +18,12 @@ class ThemedScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('This is headline 5!',
-                  style: Theme.of(context).textTheme.headline5),
+              Text(localizations.text('sample.headline')),
+              Text(localizations.text('sample.subheader')),
               SizedBox(
                 height: 16,
               ),
-              Text('And this is text body 1',
-                  style: Theme.of(context).textTheme.bodyText1),
+              Text(localizations.text('sample.content')),
             ]
                 .map((widget) => Padding(
                       padding: EdgeInsets.all(8),

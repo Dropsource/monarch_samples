@@ -1,8 +1,6 @@
 import 'dart:collection';
-
+import 'package:intl/intl.dart';
 import 'package:flutter/widgets.dart';
-
-import '../extensions.dart';
 
 class ShoppingCart extends ChangeNotifier {
   final List<Product> _products;
@@ -41,4 +39,11 @@ class Product {
   Product({this.name, this.price});
 
   String get formattedPrice => price.formattedPrice;
+}
+
+
+final formatCurrency = NumberFormat.simpleCurrency();
+
+extension StringUtils on double {
+  String get formattedPrice => formatCurrency.format(this);
 }
