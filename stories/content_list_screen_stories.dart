@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monarch_samples/content_list/content_list_screen.dart';
+import '../lib/content_list/content_list_screen.dart';
 
 final defaultTitle = 'Browse usage categories';
 
