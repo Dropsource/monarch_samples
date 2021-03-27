@@ -323,7 +323,7 @@ packages:
       name: monarch
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0"
+    version: "0.2.1"
   monarch_annotations:
     dependency: transitive
     description:
