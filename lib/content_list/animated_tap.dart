@@ -3,9 +3,9 @@ import 'package:flutter/services.dart';
 
 class AnimatedTap extends StatefulWidget {
   AnimatedTap({
-    Key key,
-    @required this.child,
-    @required this.onPressed,
+    Key? key,
+    required this.child,
+    this.onPressed,
     this.start = 0.0,
     this.end = 0.04,
     this.duration = const Duration(milliseconds: 70),
@@ -13,7 +13,7 @@ class AnimatedTap extends StatefulWidget {
     this.behavior = HitTestBehavior.opaque,
   }) : super(key: key);
   final Widget child;
-  final Function(BuildContext) onPressed;
+  final Function(BuildContext)? onPressed;
   final double start, end;
   final Duration duration;
   final bool giveHapticFeedback;
@@ -45,8 +45,8 @@ class _AnimatedTapState extends State<AnimatedTap> {
     return TweenAnimationBuilder(
       tween: Tween<double>(begin: widget.start, end: _end),
       duration: widget.duration,
-      builder: (BuildContext context, double size, Widget child) {
-        double _transformScale = 1 - size;
+      builder: (BuildContext context, double size, Widget? child) {
+        var _transformScale = 1 - size;
 
         return GestureDetector(
           behavior: widget.behavior,
@@ -70,17 +70,17 @@ class _AnimatedTapState extends State<AnimatedTap> {
           ),
         );
       },
-      child: widget.child,
       onEnd: () {
         // Animation is done and was not cancelled
         if (_end == 0 && !_cancelled) {
-          if (widget.onPressed != null) {
-            widget.onPressed(context);
+          if (hasHandler) {
+            widget.onPressed!(context);
           }
         } else if (_end == widget.end && _released) {
           setState(() => _end = 0);
         }
       },
+      child: widget.child,
     );
   }
 }

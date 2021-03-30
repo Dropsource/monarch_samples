@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:monarch_samples/provider/shopping_cart_change_notifier.dart';
 import 'package:provider/provider.dart';
 
-import '../platform_utils.dart';
+import '../provider/shopping_cart_change_notifier.dart';
+import '../platform_route.dart';
 
 class ChangeNotifierScreen extends StatelessWidget {
   static String tag = 'change-notification-screen';

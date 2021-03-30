@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:monarch_samples/content_list/content_list_screen.dart';
-import 'package:monarch_samples/provider/read_from_provider_screen.dart';
 
-import '../platform_utils.dart';
+import '../content_list/content_list_screen.dart';
+import '../provider/read_from_provider_screen.dart';
+import '../platform_route.dart';
 import 'change_notifier_screen.dart';
 
 class ProviderExampleListScreen extends StatelessWidget {

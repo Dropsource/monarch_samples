@@ -6,7 +6,7 @@ import 'repository.dart';
 
 class ListCubit extends Cubit<ListState> {
   ListCubit(
-      {this.repository, ListState defaultState = const ListState.loading()})
+      {required this.repository, ListState defaultState = const ListState.loading()})
       : super(defaultState);
 
   final Repository repository;

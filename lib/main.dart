@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
-import 'package:monarch_samples/bloc/bloc_example_list.dart';
-import 'package:monarch_samples/content_list/content_list_screen.dart';
-import 'package:monarch_samples/provider/current_date_provider.dart';
-import 'package:monarch_samples/provider/provider_example_list.dart';
 import 'package:provider/provider.dart';
 
+import 'bloc/bloc_example_list.dart';
 import 'bloc/list_complex/list_cubit.dart';
 import 'bloc/list_complex/repository.dart';
-import 'localization.dart';
+import 'content_list/content_list_screen.dart';
+import 'internationalization/localizations.dart';
+import 'provider/current_date_provider.dart';
+import 'provider/provider_example_list.dart';
 
 void main() {
   runApp(MyApp());

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../platform_utils.dart';
+import '../platform_route.dart';
 
 class ThemedScreen extends StatelessWidget {
   static String tag = 'themed-screen';
@@ -26,13 +26,17 @@ class ThemedScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('This is headline 5!',
+              Text('This is headline 5',
                   style: Theme.of(context).textTheme.headline5),
+              Text('Here is headline 6',
+                  style: Theme.of(context).textTheme.headline6),
               SizedBox(
                 height: 16,
               ),
-              Text('And this is text body 1',
+              Text('This is text body 1',
                   style: Theme.of(context).textTheme.bodyText1),
+              Text('And this is text body 2',
+                  style: Theme.of(context).textTheme.bodyText2),
             ]
                 .map((widget) => Padding(
                       padding: EdgeInsets.all(8),
