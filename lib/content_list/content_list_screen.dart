@@ -6,7 +6,8 @@ class ContentListScreen extends StatelessWidget {
   final List<Category> categories;
   final String title;
 
-  const ContentListScreen({Key? key, required this.categories, required this.title})
+  const ContentListScreen(
+      {Key? key, required this.categories, required this.title})
       : super(key: key);
 
   @override

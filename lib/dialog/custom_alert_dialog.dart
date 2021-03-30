@@ -5,56 +5,57 @@ import '../keys.dart';
 
 class _CustomAlertDialog extends StatelessWidget {
   _CustomAlertDialog(
-      {this.title,
-      this.content,
-      this.positiveText = 'Yes',
-      this.posititiveOnPressed,
-      this.negativeText = 'No',
+      {required this.title,
+      required this.content,
+      this.positiveText,
+      this.positiveOnPressed,
+      this.negativeText,
       this.negativeOnPressed,
-      this.textColor,
-      this.buttonTextColor,
+      this.titleColor,
+      this.buttonTextColor = Colors.deepOrangeAccent,
       this.contentColor});
 
   final String title;
   final Widget content;
-  final String positiveText;
-  final VoidCallback posititiveOnPressed;
-  final String negativeText;
-  final VoidCallback negativeOnPressed;
-  final Color textColor;
-  final Color buttonTextColor;
-  final Color contentColor;
+  final String? positiveText;
+  final VoidCallback? positiveOnPressed;
+  final String? negativeText;
+  final VoidCallback? negativeOnPressed;
+  final Color? titleColor;
+  final Color? buttonTextColor;
+  final Color? contentColor;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return AlertDialog(
       titlePadding: const EdgeInsets.all(15.0),
       contentPadding: const EdgeInsets.all(15.0),
+      backgroundColor: theme.dialogBackgroundColor,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(15.0))),
       title: Text(title,
-          style: TextStyle(
-              color: textColor, fontWeight: FontWeight.w100, fontSize: 15)),
+          style: TextStyle(fontWeight: FontWeight.w100, fontSize: 15)),
       content: content,
       actions: <Widget>[
         if (negativeText != null) ...[
           TextButton(
-            child: Text(negativeText,
+            key: Key(Keys.customDialogNegativeButtonKey),
+            onPressed: negativeOnPressed,
+            child: Text(negativeText!,
                 style: TextStyle(
                   color: buttonTextColor,
                 )),
-            key: Key(Keys.customDialogNegativeButtonKey),
-            onPressed: negativeOnPressed,
           )
         ],
         if (positiveText != null) ...[
           TextButton(
-            child: Text(positiveText,
+            key: Key(Keys.customDialogNegativeButtonKey),
+            onPressed: positiveOnPressed,
+            child: Text(positiveText!,
                 style: TextStyle(
                   color: buttonTextColor,
                 )),
-            key: Key(Keys.customDialogNegativeButtonKey),
-            onPressed: posititiveOnPressed,
           )
         ]
       ],
@@ -64,24 +65,22 @@ class _CustomAlertDialog extends StatelessWidget {
 
 class CustomAlertDialog extends _CustomAlertDialog {
   CustomAlertDialog(
-      {String title,
-      String content,
-      String positiveText,
-      VoidCallback posititiveOnPressed,
-      String negativeText,
-      VoidCallback negativeOnPressed,
-      Color contentColor,
-      Color buttonTextColor})
+      {required String title,
+      String? content,
+      String? positiveText,
+      VoidCallback? positiveOnPressed,
+      String? negativeText,
+      VoidCallback? negativeOnPressed,
+      Color? contentColor,
+      Color? buttonTextColor})
       : super(
             title: title,
             content: content != null
-                ? Text(
-                    content,
-                    style: TextStyle(fontSize: 13, color: contentColor),
-                  )
-                : null,
+                ? Text(content,
+                    style: TextStyle(fontSize: 13, color: contentColor))
+                : SizedBox.shrink(),
             positiveText: positiveText,
-            posititiveOnPressed: posititiveOnPressed,
+            positiveOnPressed: positiveOnPressed,
             negativeText: negativeText,
             negativeOnPressed: negativeOnPressed,
             buttonTextColor: buttonTextColor);

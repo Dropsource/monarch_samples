@@ -5,7 +5,7 @@ import 'package:monarch_samples/dialog/custom_alert_dialog.dart';
 Widget positive_only_alert() => showAlert(
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title: 'Integer a semper mauris.',
-    contentColor: Colors.black,
+    // contentColor: Colors.black,
     positiveAction: () => {},
     positiveText: 'Let\'s go!',
     buttonTextColor: Colors.green);
@@ -24,7 +24,6 @@ Widget positive_and_negative_alert() => showAlert(
         ' tellus orci dictum nisl, porta cursus lorem eros non velit.'
         ' Etiam ullamcorper eget mi in vestibulum.',
     title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    contentColor: Colors.black54,
     positiveAction: () => {},
     positiveText: 'Got it',
     negativeText: 'Nope',
@@ -32,20 +31,20 @@ Widget positive_and_negative_alert() => showAlert(
     buttonTextColor: Colors.orange);
 
 CustomAlertDialog showAlert(
-        {String title,
-        String content,
-        Color contentColor,
-        String positiveText,
-        VoidCallback positiveAction,
-        String negativeText,
-        VoidCallback negativeAction,
-        Color buttonTextColor}) =>
+        {required String title,
+        String? content,
+        Color? contentColor,
+        String? positiveText,
+        VoidCallback? positiveAction,
+        String? negativeText,
+        VoidCallback? negativeAction,
+        Color? buttonTextColor}) =>
     CustomAlertDialog(
       title: title,
       content: content,
       contentColor: contentColor,
       positiveText: positiveText,
-      posititiveOnPressed: positiveAction,
+      positiveOnPressed: positiveAction,
       negativeText: negativeText,
       negativeOnPressed: negativeAction,
       buttonTextColor: buttonTextColor,
