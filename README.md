@@ -12,6 +12,7 @@ This repo provides examples of using Monarch with the following patterns:
 - provider
 - change notifier
 - themes
+- dialogs
 
 ## Running the sample stories
 
