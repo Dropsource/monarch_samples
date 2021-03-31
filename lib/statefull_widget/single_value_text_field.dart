@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+class SingleValueTextfield extends TextFormField {
+  SingleValueTextfield({
+    Key? key,
+    String? value,
+    String? hint,
+    FocusNode? focusNode,
+    ValueChanged<String>? onChanged,
+    ValueChanged<String?>? onSaved,
+    ValueChanged<String>? onFieldSubmitted,
+    VoidCallback? onEditingComplete,
+    VoidCallback? onTap,
+    FormFieldValidator<String>? validator,
+    bool autofocus = true,
+    bool obscureText = false,
+    TextInputAction textInputAction = TextInputAction.next,
+    TextInputType? keyboardType,
+    TextCapitalization textCapitalization = TextCapitalization.none,
+    int? maxLength,
+    int maxLines = 1,
+    List<TextInputFormatter>? inputFormatters,
+    bool autocorrect = false,
+    bool enabled = true,
+    TextEditingController? controller,
+    Widget? suffix,
+  }) : super(
+          key: key,
+          initialValue: value,
+          autofocus: autofocus,
+          focusNode: focusNode,
+          obscureText: obscureText,
+          controller: controller,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+          decoration: InputDecoration(
+            hintText: hint,
+            filled: true,
+            labelText: (value ?? '').isNotEmpty ? hint : null,
+            suffixIcon: suffix,
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(),
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(),
+            ),
+          ),
+          onChanged: onChanged,
+          onSaved: onSaved,
+          onTap: onTap,
+          onEditingComplete: onEditingComplete,
+          onFieldSubmitted: onFieldSubmitted,
+          textInputAction: textInputAction,
+          validator: validator,
+          keyboardType: keyboardType,
+          maxLength: maxLength,
+          maxLines: maxLines,
+          inputFormatters: inputFormatters,
+          textCapitalization: textCapitalization,
+          autocorrect: autocorrect,
+          enabled: enabled,
+        );
+}
