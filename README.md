@@ -36,23 +36,26 @@ Call the function returning your widget from the test.
 Then you can search your widget for visible components using [Finders](https://flutter.dev/docs/cookbook/testing/widget/introduction#5-search-for-our-widget-using-a-finder) and verify its state by using [matchers](https://flutter.dev/docs/cookbook/testing/widget/introduction#6-verify-the-widget-using-a-matcher)
 Testing FAQ:
 
-##how to run tests?
- Type 
+### how to run tests?
+ Type: 
 
-    `flutter test test/obscured_single_value_text_field_test.dart.dart` 
+    flutter test test/obscured_single_value_text_field_test.dart.dart
     
-into terminal or run tests from IDE
+into terminal or run test file or run it from IDE of your choice:
 
-###Android Studio
+### Android Studio
+
 ![](docs/run_test_android_studio.png)
     
-###Visual Studio Code
+### Visual Studio Code
+
 ![](docs/run_test_vscode.png)
+
     
-##I got a "No Material widget found." error from running tests
+## I got a "No Material widget found." error from running tests
 Some widgets require material widget ancestors to run. If your story has TextField or other Material Widget,
- you have to wrap it with 
+ you have to wrap it with: 
  
-    `MaterialApp(home: Scaffold(body: YourWidget())) `
+    MaterialApp(home: Scaffold(body: YourWidget()))
     
 see stories/statefull_widget_obscured_text_input_stories.dart file
