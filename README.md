@@ -33,24 +33,24 @@ Once the Monarch UI launches, you can start exploring and playing with the sampl
 
 You can import stories into widget tests and verify expected behavior.
 Call the function returning your widget from the test.
-Then you can search your widget for visible components using [Finders](## Running the sample stories) and verify its state by using [matchers](https://flutter.dev/docs/cookbook/testing/widget/introduction#6-verify-the-widget-using-a-matcher)
+Then you can search your widget for visible components using [Finders](https://flutter.dev/docs/cookbook/testing/widget/introduction#5-search-for-our-widget-using-a-finder) and verify its state by using [matchers](https://flutter.dev/docs/cookbook/testing/widget/introduction#6-verify-the-widget-using-a-matcher)
 Testing FAQ:
 
-#-how to run tests?
-- Type 
+##how to run tests?
+ Type 
 
     `flutter test test/obscured_single_value_text_field_test.dart.dart` 
     
-    into terminal or run tests from IDE
+into terminal or run tests from IDE
 
-    Android Studio
-    ![](docs/run_test_android_studio.png)
+###Android Studio
+![](docs/run_test_android_studio.png)
     
-    Visual Studio Code
-    ![](docs/run_test_vscode.png)
+###Visual Studio Code
+![](docs/run_test_vscode.png)
     
-#-I got a "No Material widget found." error from running tests
-- Some widgets require material widget ancestors to run. If your story has TextField or other Material Widget,
+##I got a "No Material widget found." error from running tests
+Some widgets require material widget ancestors to run. If your story has TextField or other Material Widget,
  you have to wrap it with 
  
     `MaterialApp(home: Scaffold(body: YourWidget())) `
