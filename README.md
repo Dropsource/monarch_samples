@@ -13,6 +13,7 @@ This repo provides examples of using Monarch with the following patterns:
 - change notifier
 - themes
 - dialogs
+- widget tests
 
 ## Running the sample stories
 
@@ -29,4 +30,6 @@ Once the Monarch UI launches, you can start exploring and playing with the sampl
 
 ![](docs/themed-screen.png)
     
-    
+## Running the sample tests
+The sample code for how to call stories from tests is under the test directory. 
+To run the tests use `flutter test` or run it directly from your IDE.
