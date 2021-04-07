@@ -13,6 +13,7 @@ This repo provides examples of using Monarch with the following patterns:
 - change notifier
 - themes
 - dialogs
+- widget tests
 
 ## Running the sample stories
 
@@ -29,34 +30,6 @@ Once the Monarch UI launches, you can start exploring and playing with the sampl
 
 ![](docs/themed-screen.png)
     
-## importing stories into widget tests
-
-You can import stories into widget tests and verify expected behavior.
-Call the function returning your widget from the test.
-Then you can search your widget for visible components using [Finders](https://flutter.dev/docs/cookbook/testing/widget/introduction#5-search-for-our-widget-using-a-finder) and verify its state by using [matchers](https://flutter.dev/docs/cookbook/testing/widget/introduction#6-verify-the-widget-using-a-matcher)
-
-## Testing FAQ:
-
-### how to run tests?
- Type: 
-
-    flutter test test/obscured_single_value_text_field_test.dart.dart
-    
-into terminal or run test file or run it from IDE of your choice:
-
-### Android Studio
-
-![](docs/run_test_android_studio.png)
-    
-### Visual Studio Code
-
-![](docs/run_test_vscode.png)
-
-    
-## I got a "No Material widget found." error from running tests
-Some widgets require material widget ancestors to run. If your story has TextField or other Material Widget,
- you have to wrap it with: 
- 
-    MaterialApp(home: Scaffold(body: YourWidget()))
-    
-see stories/statefull_widget_obscured_text_input_stories.dart file
+## Running the sample tests
+The sample code for how to call stories from tests is under the test directory. 
+To run the tests use `flutter test` or run it directly from your IDE.
