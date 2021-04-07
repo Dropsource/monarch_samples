@@ -34,6 +34,7 @@ flutter:
     - locale/i18n_en.json
     - locale/i18n_es.json
     - assets/LottieLogo1.json
+    - assets/monarch_m.png
 
   uses-material-design: true
 
