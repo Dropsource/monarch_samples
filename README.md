@@ -14,6 +14,7 @@ This repo provides examples of using Monarch with the following patterns:
 - themes
 - dialogs
 - widget tests
+- animations
 
 ## Running the sample stories
 
