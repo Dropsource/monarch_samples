@@ -10,12 +10,12 @@ You can see the sample implementation in [lib/easy_localizations_delegate.dart](
 
 This `LocalizationsDelegate` definition is only for Monarch. Your easy_localization app won't need it.
 
-To run the stories:
+To run the easy_localization sample stories:
 ```
 `monarch run`
 ```
 
-To run the demo app:
+To run the easy_localization demo app:
 ```
 flutter run
 ```
