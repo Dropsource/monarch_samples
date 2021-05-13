@@ -1,16 +1,23 @@
-# easy_localization_sample
+# monarch_easy_localization_sample
 
-A new Flutter project.
+Monarch sample code and stories using the [easy_localization](https://github.com/aissat/easy_localization) package.
 
-## Getting Started
+_Monarch is a tool for Flutter developers. It makes building beautiful widgets a more pleasant and faster experience. Find out more at https://monarchapp.io_
 
-This project is a starting point for a Flutter application.
+To use easy_localization with Monarch you have to define your own `LocalizationsDelegate`. You can then annotate an instance of that delegate with the `MonarchLocalizations` annotation.
 
-A few resources to get you started if this is your first Flutter project:
+You can see the sample implementation in [lib/easy_localizations_delegate.dart](lib/easy_localizations_delegate.dart).
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+This `LocalizationsDelegate` definition is only for Monarch. Your easy_localization app won't need it.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To run the stories:
+```
+`monarch run`
+```
+
+To run the demo app:
+```
+flutter run
+```
+
+If you need more details, here are the [Monarch internationalization docs](https://monarchapp.io/docs/internationalization).
