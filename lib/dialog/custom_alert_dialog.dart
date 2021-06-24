@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../keys.dart';
-
 class _CustomAlertDialog extends StatelessWidget {
   _CustomAlertDialog(
       {required this.title,
@@ -40,7 +38,7 @@ class _CustomAlertDialog extends StatelessWidget {
       actions: <Widget>[
         if (negativeText != null) ...[
           TextButton(
-            key: Key(Keys.customDialogNegativeButtonKey),
+            key: Key('custom-dialog-negative-button-key'),
             onPressed: negativeOnPressed,
             child: Text(negativeText!,
                 style: TextStyle(
@@ -50,7 +48,7 @@ class _CustomAlertDialog extends StatelessWidget {
         ],
         if (positiveText != null) ...[
           TextButton(
-            key: Key(Keys.customDialogNegativeButtonKey),
+            key: Key('custom-dialog-positive-button-key'),
             onPressed: positiveOnPressed,
             child: Text(positiveText!,
                 style: TextStyle(
