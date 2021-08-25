@@ -47,6 +47,7 @@ app.*.map.json
 
 .monarch/flutter_assets/
 
-#android and ios folder ignored for sample project
+# Platform folders ignored on sample project
 /android/*
 /ios/*
+/macos/*

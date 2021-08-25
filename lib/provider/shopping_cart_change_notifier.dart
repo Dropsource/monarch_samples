@@ -2,17 +2,17 @@ import 'dart:collection';
 import 'package:intl/intl.dart';
 import 'package:flutter/widgets.dart';
 
-class ShoppingCart extends ChangeNotifier {
+class ShoppingCartChangeNotifier extends ChangeNotifier {
   final List<Product> _products;
 
-  ShoppingCart({required List<Product> products}) : _products = products;
+  ShoppingCartChangeNotifier({required List<Product> products}) : _products = products;
 
-  factory ShoppingCart.empty() {
-    return ShoppingCart(products: []);
+  factory ShoppingCartChangeNotifier.empty() {
+    return ShoppingCartChangeNotifier(products: []);
   }
 
-  factory ShoppingCart.prefilled(List<Product> products) {
-    return ShoppingCart(products: products);
+  factory ShoppingCartChangeNotifier.prefilled(List<Product> products) {
+    return ShoppingCartChangeNotifier(products: products);
   }
 
   UnmodifiableListView<Product> get items => UnmodifiableListView(_products);

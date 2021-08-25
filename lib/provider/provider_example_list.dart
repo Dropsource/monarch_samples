@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../content_list/content_list_screen.dart';
-import '../provider/read_from_provider_screen.dart';
+import 'provider_screen.dart';
 import '../platform_route.dart';
 import 'change_notifier_screen.dart';
 
@@ -12,12 +12,12 @@ class ProviderExampleListScreen extends StatelessWidget {
       title: 'Provider examples',
       categories: [
         Category(
-            label: 'Read from provider',
+            label: 'Using Provider',
             onClick: () {
-              Navigator.of(context).push(ReadFromProviderScreen.route(context));
+              Navigator.of(context).push(ProviderScreen.route(context));
             }),
         Category(
-            label: 'Change Notifier',
+            label: 'Using Change Notifier Provider',
             onClick: () {
               Navigator.of(context).push(ChangeNotifierScreen.route(context));
             })

@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/current_date_provider.dart';
+import 'current_date.dart';
 import '../platform_route.dart';
 
-class ReadFromProviderScreen extends StatelessWidget {
+class ProviderScreen extends StatelessWidget {
   static String tag = 'read-from-provider-screen';
 
   static Route route(BuildContext context) => platformRoute(
         context,
-        builder: (_) => ReadFromProviderScreen(),
+        builder: (_) => ProviderScreen(),
         settings: RouteSettings(name: tag),
       );
 
@@ -18,7 +18,7 @@ class ReadFromProviderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Reading value from provider'),
+          title: Text('Using Provider'),
         ),
         body: Container(
           padding: EdgeInsets.all(16),
@@ -32,7 +32,7 @@ class ReadFromProviderScreen extends StatelessWidget {
                 height: 16,
               ),
               Text('I got this value using Consumer'),
-              Consumer<CurrentDateProvider>(
+              Consumer<CurrentDate>(
                 builder: (context, model, child) =>
                     Text('Today is ${model.currentDateAsString()}'),
               )
@@ -47,7 +47,7 @@ class ReadFromProviderScreen extends StatelessWidget {
   }
 
   String? _getDate(BuildContext context) {
-    return Provider.of<CurrentDateProvider>(context, listen: false)
+    return Provider.of<CurrentDate>(context, listen: false)
         .currentDateAsString();
   }
 }

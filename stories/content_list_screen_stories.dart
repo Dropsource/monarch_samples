@@ -2,17 +2,18 @@
 import 'package:flutter/material.dart';
 import 'package:monarch_samples/content_list/content_list_screen.dart';
 
-final defaultTitle = 'Browse usage categories';
+final defaultTitle = 'Browse groceries categories';
 
 Widget empty_list() => ContentListScreen(
       categories: [],
       title: defaultTitle,
     );
 
-Widget example_list() => ContentListScreen(
+Widget populated_list() => ContentListScreen(
       categories: [
-        Category(label: 'Provider'),
-        Category(label: 'Bloc'),
+        Category(label: 'Produce'),
+        Category(label: 'Bakery'),
+        Category(label: 'Canned Goods'),
       ],
       title: defaultTitle,
     );
