@@ -1,9 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../platform_route.dart';
 import 'localizations.dart';
 
 class LocalizedScreen extends StatelessWidget {
+  static String tag = 'localized-screen';
+
+  static Route route(BuildContext context) => platformRoute(
+        context,
+        builder: (_) => LocalizedScreen(),
+        settings: RouteSettings(name: tag),
+      );
 
   @override
   Widget build(BuildContext context) {

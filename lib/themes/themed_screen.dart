@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../platform_route.dart';
+import 'custom_theme.dart';
 
 class ThemedScreen extends StatelessWidget {
   static String tag = 'themed-screen';
@@ -45,5 +46,20 @@ class ThemedScreen extends StatelessWidget {
                 .toList(),
           ),
         ));
+  }
+}
+
+class MonarchThemedScreen extends StatelessWidget {
+  static String tag = 'monarch-themed-screen';
+
+  static Route route(BuildContext context) => platformRoute(
+        context,
+        builder: (_) => MonarchThemedScreen(),
+        settings: RouteSettings(name: tag),
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(data: monarchTheme, child: ThemedScreen());
   }
 }
