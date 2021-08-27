@@ -327,9 +327,9 @@ packages:
   monarch:
     dependency: "direct dev"
     description:
-      path: "/Users/fertrig/development/monarch_product/monarch/monarch"
-      relative: false
-    source: path
+      name: monarch
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "1.0.0"
   monarch_annotations:
     dependency: transitive
