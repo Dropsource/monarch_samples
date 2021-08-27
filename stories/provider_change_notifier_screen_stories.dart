@@ -5,10 +5,10 @@ import 'package:monarch_samples/provider/shopping_cart_change_notifier.dart';
 import 'package:provider/provider.dart';
 
 Widget empty_cart() => ChangeNotifierProvider.value(
-    value: ShoppingCart.empty(), child: ChangeNotifierScreen());
+    value: ShoppingCartChangeNotifier.empty(), child: ChangeNotifierScreen());
 
 Widget sample_cart() => ChangeNotifierProvider.value(
-    value: ShoppingCart.prefilled([
+    value: ShoppingCartChangeNotifier.prefilled([
       Product(name: 'Flutter by example - Ebook', price: 19.99),
       Product(name: 'Flutter in action - Ebook', price: 17.99),
       Product(name: 'Mastering Flutter - Ebook', price: 14.99),
@@ -16,7 +16,7 @@ Widget sample_cart() => ChangeNotifierProvider.value(
     child: ChangeNotifierScreen());
 
 Widget really_long_product_names_cart() => ChangeNotifierProvider.value(
-    value: ShoppingCart.prefilled([
+    value: ShoppingCartChangeNotifier.prefilled([
       Product(
           name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
           price: 19.99),
@@ -32,7 +32,7 @@ Widget really_long_product_names_cart() => ChangeNotifierProvider.value(
     child: ChangeNotifierScreen());
 
 Widget expensive_ebooks_cart() => ChangeNotifierProvider.value(
-    value: ShoppingCart.prefilled([
+    value: ShoppingCartChangeNotifier.prefilled([
       Product(name: 'Flutter by example - Ebook', price: 119000.99),
       Product(name: 'Flutter in action - Ebook', price: 175000.99),
       Product(name: 'Mastering Flutter - Ebook', price: 999999999.99),

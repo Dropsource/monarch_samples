@@ -1,7 +1,7 @@
-class CurrentDateProvider {
+class CurrentDate {
   final Function? currentDateFn;
 
-  CurrentDateProvider({this.currentDateFn});
+  CurrentDate({this.currentDateFn});
 
   String? currentDateAsString() {
     return currentDateFn!();

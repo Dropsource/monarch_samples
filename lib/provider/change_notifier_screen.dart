@@ -18,11 +18,11 @@ class ChangeNotifierScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Using change notifier'),
+          title: Text('Using Change Notifier Provider'),
         ),
         body: Container(
           padding: EdgeInsets.all(16),
-          child: Consumer<ShoppingCart>(
+          child: Consumer<ShoppingCartChangeNotifier>(
               builder: (context, cart, _) => Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,

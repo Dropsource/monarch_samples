@@ -27,7 +27,7 @@ dev_dependencies:
   build_runner: ^1.10.3
   flutter_test:
     sdk: flutter
-  monarch: ^0.2.5
+  monarch: ^1.0.0
 
 flutter:
   assets:
