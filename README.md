@@ -12,10 +12,11 @@ This repo provides examples of using Monarch with the following patterns:
 - provider
 - change notifier
 - themes
-- dialogs
+- dialogs, alerts, banners
 - widget tests
 - animations
 - easy_localization
+- navigation
 
 ## Running the sample stories
 
