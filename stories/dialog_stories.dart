@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:monarch_samples/dialog/custom_alert_dialog.dart';
+import 'package:monarch_samples/dialogs/alert_dialog.dart';
+import 'package:monarch_samples/dialogs/bottom_sheet.dart';
 
-// ignore_for_file: non_constant_identifier_names
-Widget positive_only_alert() => showAlert(
+Widget show_bottom_sheet() => BottomSheetButton();
+
+Widget show_modal_bottom_sheet() => ModalBottomSheetButton();
+
+Widget scaffold_bottom_sheet() => ScaffoldBottomSheet();
+
+Widget show_dialog() => Center(
+        child: Builder(
+      builder: (BuildContext context) => TextButton(
+        onPressed: () => showDialog(
+            context: context, builder: (_) => alert_dialog_one_button()),
+        child: Text('Show Dialog'),
+      ),
+    ));
+
+Widget alert_dialog_one_button() => CustomAlertDialog(
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     title: 'Integer a semper mauris.',
     // contentColor: Colors.black,
-    positiveAction: () => {},
-    positiveText: 'Let\'s go!',
+    button1OnPressed: () => {},
+    button1Text: 'Let\'s go!',
     buttonTextColor: Colors.green);
 
-Widget positive_and_negative_alert() => showAlert(
+Widget alert_dialog_two_buttons() => CustomAlertDialog(
     content:
         'Mauris sem neque, lobortis eget faucibus non, semper ut mi. Quisque '
         'laoreet lacus nibh, sit amet commodo ipsum feugiat in. Pellentesque'
@@ -24,28 +39,8 @@ Widget positive_and_negative_alert() => showAlert(
         ' tellus orci dictum nisl, porta cursus lorem eros non velit.'
         ' Etiam ullamcorper eget mi in vestibulum.',
     title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    positiveAction: () => {},
-    positiveText: 'Got it',
-    negativeText: 'Nope',
-    negativeAction: () => {},
+    button1OnPressed: () => {},
+    button1Text: 'Got it',
+    button2Text: 'Nope',
+    button2OnPressed: () => {},
     buttonTextColor: Colors.orange);
-
-CustomAlertDialog showAlert(
-        {required String title,
-        String? content,
-        Color? contentColor,
-        String? positiveText,
-        VoidCallback? positiveAction,
-        String? negativeText,
-        VoidCallback? negativeAction,
-        Color? buttonTextColor}) =>
-    CustomAlertDialog(
-      title: title,
-      content: content,
-      contentColor: contentColor,
-      positiveText: positiveText,
-      positiveOnPressed: positiveAction,
-      negativeText: negativeText,
-      negativeOnPressed: negativeAction,
-      buttonTextColor: buttonTextColor,
-    );

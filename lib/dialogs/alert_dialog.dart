@@ -5,20 +5,20 @@ class _CustomAlertDialog extends StatelessWidget {
   _CustomAlertDialog(
       {required this.title,
       required this.content,
-      this.positiveText,
-      this.positiveOnPressed,
-      this.negativeText,
-      this.negativeOnPressed,
+      this.button1Text,
+      this.button1OnPressed,
+      this.button2Text,
+      this.button2OnPressed,
       this.titleColor,
       this.buttonTextColor = Colors.deepOrangeAccent,
       this.contentColor});
 
   final String title;
   final Widget content;
-  final String? positiveText;
-  final VoidCallback? positiveOnPressed;
-  final String? negativeText;
-  final VoidCallback? negativeOnPressed;
+  final String? button1Text;
+  final VoidCallback? button1OnPressed;
+  final String? button2Text;
+  final VoidCallback? button2OnPressed;
   final Color? titleColor;
   final Color? buttonTextColor;
   final Color? contentColor;
@@ -36,21 +36,21 @@ class _CustomAlertDialog extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.w100, fontSize: 15)),
       content: content,
       actions: <Widget>[
-        if (negativeText != null) ...[
+        if (button2Text != null) ...[
           TextButton(
             key: Key('custom-dialog-negative-button-key'),
-            onPressed: negativeOnPressed,
-            child: Text(negativeText!,
+            onPressed: button2OnPressed,
+            child: Text(button2Text!,
                 style: TextStyle(
                   color: buttonTextColor,
                 )),
           )
         ],
-        if (positiveText != null) ...[
+        if (button1Text != null) ...[
           TextButton(
             key: Key('custom-dialog-positive-button-key'),
-            onPressed: positiveOnPressed,
-            child: Text(positiveText!,
+            onPressed: button1OnPressed,
+            child: Text(button1Text!,
                 style: TextStyle(
                   color: buttonTextColor,
                 )),
@@ -65,10 +65,10 @@ class CustomAlertDialog extends _CustomAlertDialog {
   CustomAlertDialog(
       {required String title,
       String? content,
-      String? positiveText,
-      VoidCallback? positiveOnPressed,
-      String? negativeText,
-      VoidCallback? negativeOnPressed,
+      String? button1Text,
+      VoidCallback? button1OnPressed,
+      String? button2Text,
+      VoidCallback? button2OnPressed,
       Color? contentColor,
       Color? buttonTextColor})
       : super(
@@ -77,9 +77,9 @@ class CustomAlertDialog extends _CustomAlertDialog {
                 ? Text(content,
                     style: TextStyle(fontSize: 13, color: contentColor))
                 : SizedBox.shrink(),
-            positiveText: positiveText,
-            positiveOnPressed: positiveOnPressed,
-            negativeText: negativeText,
-            negativeOnPressed: negativeOnPressed,
+            button1Text: button1Text,
+            button1OnPressed: button1OnPressed,
+            button2Text: button2Text,
+            button2OnPressed: button2OnPressed,
             buttonTextColor: buttonTextColor);
 }
