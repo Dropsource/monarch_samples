@@ -6,10 +6,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization/src/localization.dart';
 import 'package:easy_localization/src/translations.dart';
 
-
-/// To use easy_localization with Monarch you have to define your own 
-/// [LocalizationsDelegate]. In the [load] method you would then load your 
-/// translations, and then use those translations to load the 
+/// To use easy_localization with Monarch you have to define your own
+/// [LocalizationsDelegate]. In the [load] method you would then load your
+/// translations, and then use those translations to load the
 /// [Localization.instance] that easy_localization uses.
 class MyEasyLocalizationsDelegate extends LocalizationsDelegate<Localization> {
   const MyEasyLocalizationsDelegate();
@@ -35,7 +34,8 @@ class MyEasyLocalizationsDelegate extends LocalizationsDelegate<Localization> {
 
 @MonarchLocalizations([MonarchLocale('en', 'US'), MonarchLocale('es')])
 const myEasyLocalizationsDelegate = MyEasyLocalizationsDelegate();
+
 /// Once you have your delegate, you can create an instance of it
-/// and annotate it with the `MonarchLocalizations` annotation. 
+/// and annotate it with the `MonarchLocalizations` annotation.
 /// If you need more details, you can read the Monarch internationalization
 /// docs here: https://monarchapp.io/docs/internationalization

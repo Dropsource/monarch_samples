@@ -7,16 +7,14 @@ class ObscurableTextfield extends StatefulWidget {
   final String? value;
   final bool obscureText;
 
-  ObscurableTextfield(
-      {Key? key, this.value, this.obscureText = true})
+  ObscurableTextfield({Key? key, this.value, this.obscureText = true})
       : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _ObscurableTextFieldState();
 }
 
-class _ObscurableTextFieldState
-    extends State<ObscurableTextfield> {
+class _ObscurableTextFieldState extends State<ObscurableTextfield> {
   late bool _obscureText;
 
   @override

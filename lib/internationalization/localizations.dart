@@ -1,4 +1,4 @@
-/// Monarch Internationalization Documentation: 
+/// Monarch Internationalization Documentation:
 /// https://monarchapp.io/docs/internationalization
 
 import 'dart:convert';

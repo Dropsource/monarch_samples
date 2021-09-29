@@ -16,10 +16,11 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
-  build_runner: ^1.10.3
+  build_runner: ^2.1.2
   flutter_test:
     sdk: flutter
-  monarch: ^1.1.0-pre.2
+  lints: ^1.0.1
+  monarch: ^1.1.0-pre.3
 
 flutter:
   assets:

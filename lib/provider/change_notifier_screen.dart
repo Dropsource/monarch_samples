@@ -40,15 +40,15 @@ class ChangeNotifierScreen extends StatelessWidget {
                           ))
                       .cast<Widget>()
                       .toList()
-                        ..add(Padding(
-                          padding: const EdgeInsets.only(top: 16.0),
-                          child: Row(
-                            children: [
-                              Expanded(child: Text('Total order value: ')),
-                              Text(cart.totalPrice)
-                            ],
-                          ),
-                        )))),
+                    ..add(Padding(
+                      padding: const EdgeInsets.only(top: 16.0),
+                      child: Row(
+                        children: [
+                          Expanded(child: Text('Total order value: ')),
+                          Text(cart.totalPrice)
+                        ],
+                      ),
+                    )))),
         ));
   }
 }

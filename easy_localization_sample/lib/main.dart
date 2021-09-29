@@ -6,14 +6,14 @@ import 'localized_widgets.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  runApp(EasyLocalization(
-      supportedLocales: [Locale('en', 'US'), Locale('es')],
-      path: 'assets/translations',
-      fallbackLocale: Locale('es'),
-      startLocale: Locale('es'),
-      // startLocale: Locale('en','US'),
-      child: SampleApp()
-    ),
+  runApp(
+    EasyLocalization(
+        supportedLocales: [Locale('en', 'US'), Locale('es')],
+        path: 'assets/translations',
+        fallbackLocale: Locale('es'),
+        startLocale: Locale('es'),
+        // startLocale: Locale('en','US'),
+        child: SampleApp()),
   );
 }
 

@@ -5,7 +5,8 @@ import 'package:flutter/widgets.dart';
 class ShoppingCartChangeNotifier extends ChangeNotifier {
   final List<Product> _products;
 
-  ShoppingCartChangeNotifier({required List<Product> products}) : _products = products;
+  ShoppingCartChangeNotifier({required List<Product> products})
+      : _products = products;
 
   factory ShoppingCartChangeNotifier.empty() {
     return ShoppingCartChangeNotifier(products: []);
@@ -40,7 +41,6 @@ class Product {
 
   String get formattedPrice => price.formattedPrice;
 }
-
 
 final formatCurrency = NumberFormat.simpleCurrency();
 
