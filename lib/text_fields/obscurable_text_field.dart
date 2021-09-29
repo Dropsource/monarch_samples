@@ -40,7 +40,7 @@ class _ObscurableTextFieldState
   Widget _buildToggleableIconButton(BuildContext context) => IconButton(
         icon: Icon(
           _obscureText ? Icons.remove_red_eye_outlined : Icons.remove_red_eye,
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
         ),
         onPressed: () => setState(() => _obscureText = !_obscureText),
       );
