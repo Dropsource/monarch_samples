@@ -27,14 +27,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   lints: ^1.0.1
-  monarch: ^1.1.0-pre.3
+  monarch: ^2.0.0-pre.3
 
 flutter:
   assets:
     - locale/i18n_en.json
     - locale/i18n_es.json
-    - assets/LottieLogo1.json
-    - assets/monarch_m.png
+    - assets/
 
   uses-material-design: true
 
