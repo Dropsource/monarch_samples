@@ -27,7 +27,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   lints: ^1.0.1
-  monarch: ^2.0.0-pre.3
+  monarch: ^2.0.0-pre.4
 
 flutter:
   assets:
