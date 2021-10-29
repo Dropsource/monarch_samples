@@ -46,3 +46,15 @@ Widget failure() => BlocProvider.value(
         repository: MockedRepository(),
         defaultState: const ListState.failure()),
     child: ListComplexScreen());
+
+Widget long_list() {
+  var items = <Item>[];
+  for (var i = 0; i < 100; i++) {
+    items.add(Item(id: i.toString(), value: 'Item $i'));
+  }
+  return BlocProvider.value(
+      value: ListCubit(
+          repository: MockedRepository(),
+          defaultState: ListState.success(items)),
+      child: ListComplexScreen());
+}
