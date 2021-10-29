@@ -1,5 +1,5 @@
-import 'package:monarch_samples/bloc/list_complex/item.dart';
-import 'package:monarch_samples/bloc/list_complex/repository.dart';
+import 'package:monarch_samples_patterns/bloc/list_complex/item.dart';
+import 'package:monarch_samples_patterns/bloc/list_complex/repository.dart';
 
 class MockedRepository implements Repository {
   @override

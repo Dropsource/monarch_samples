@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:monarch_samples/themes/custom_theme.dart';
+import 'package:monarch_samples_patterns/themes/custom_theme.dart';
 
 class CollapsableBox extends StatefulWidget {
   @override

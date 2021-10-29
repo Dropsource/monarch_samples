@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:monarch_samples/bloc/list_complex/item.dart';
-import 'package:monarch_samples/bloc/list_complex/list_complex_screen.dart';
-import 'package:monarch_samples/bloc/list_complex/list_cubit.dart';
-import 'package:monarch_samples/bloc/list_complex/list_state.dart';
+import 'package:monarch_samples_patterns/bloc/list_complex/item.dart';
+import 'package:monarch_samples_patterns/bloc/list_complex/list_complex_screen.dart';
+import 'package:monarch_samples_patterns/bloc/list_complex/list_cubit.dart';
+import 'package:monarch_samples_patterns/bloc/list_complex/list_state.dart';
 
 import 'mocked_repository.dart';
 

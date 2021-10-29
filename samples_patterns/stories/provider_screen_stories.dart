@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
-import 'package:monarch_samples/provider/current_date.dart';
-import 'package:monarch_samples/provider/provider_screen.dart';
+import 'package:monarch_samples_patterns/provider/current_date.dart';
+import 'package:monarch_samples_patterns/provider/provider_screen.dart';
 import 'package:provider/provider.dart';
 
 Widget past_date() => Provider.value(

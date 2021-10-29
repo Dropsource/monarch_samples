@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:monarch_samples/bloc/list_complex/list_cubit.dart';
-import 'package:monarch_samples/bloc/list_complex/repository.dart';
-import 'package:monarch_samples/main.dart';
-import 'package:monarch_samples/provider/current_date.dart';
-import 'package:monarch_samples/provider/shopping_cart_change_notifier.dart';
+import 'package:monarch_samples_patterns/bloc/list_complex/list_cubit.dart';
+import 'package:monarch_samples_patterns/bloc/list_complex/repository.dart';
+import 'package:monarch_samples_patterns/main.dart';
+import 'package:monarch_samples_patterns/provider/current_date.dart';
+import 'package:monarch_samples_patterns/provider/shopping_cart_change_notifier.dart';
 import 'package:provider/provider.dart';
 
 Widget main_multi_providers_navigation() => MultiProvider(

@@ -1,6 +1,6 @@
 # monarch_samples_patterns
 
-Monarch sample code and stories.
+Monarch sample code and stories using several patterns.
 
 This repo provides examples of using Monarch with the following patterns:
 - bloc

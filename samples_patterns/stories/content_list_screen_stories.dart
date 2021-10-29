@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
-import 'package:monarch_samples/content_list/content_list_screen.dart';
+import 'package:monarch_samples_patterns/content_list/content_list_screen.dart';
 
 final defaultTitle = 'Browse groceries categories';
 

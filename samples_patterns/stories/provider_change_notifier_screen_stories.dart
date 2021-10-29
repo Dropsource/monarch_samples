@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:flutter/widgets.dart';
-import 'package:monarch_samples/provider/change_notifier_screen.dart';
-import 'package:monarch_samples/provider/shopping_cart_change_notifier.dart';
+import 'package:monarch_samples_patterns/provider/change_notifier_screen.dart';
+import 'package:monarch_samples_patterns/provider/shopping_cart_change_notifier.dart';
 import 'package:provider/provider.dart';
 
 Widget empty_cart() => ChangeNotifierProvider.value(

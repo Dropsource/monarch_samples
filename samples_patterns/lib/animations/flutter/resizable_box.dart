@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monarch_samples/themes/custom_theme.dart';
+import 'package:monarch_samples_patterns/themes/custom_theme.dart';
 
 class ResizableBox extends StatefulWidget {
   @override

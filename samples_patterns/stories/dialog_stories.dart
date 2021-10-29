@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:monarch_samples/dialogs/alert_dialog.dart';
-import 'package:monarch_samples/dialogs/bottom_sheet.dart';
+import 'package:monarch_samples_patterns/dialogs/alert_dialog.dart';
+import 'package:monarch_samples_patterns/dialogs/bottom_sheet.dart';
 
 Widget show_bottom_sheet() => BottomSheetButton();
 

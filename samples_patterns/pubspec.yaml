@@ -1,5 +1,5 @@
-name: monarch_samples
-description: Monarch sample code and stories
+name: monarch_samples_patterns
+description: Monarch sample code and stories using several patterns
 
 publish_to: 'none' 
 version: 1.0.0
