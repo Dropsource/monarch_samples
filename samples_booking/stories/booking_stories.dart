@@ -1,8 +1,8 @@
-import 'package:samples_booking/booking/booking_home_screen.dart';
-import 'package:samples_booking/booking/booking_list.dart';
-import 'package:samples_booking/booking/calendar_popup_view.dart';
-import 'package:samples_booking/booking/filters_screen.dart';
-import 'package:samples_booking/booking/model/booking_list_data.dart';
+import 'package:monarch_samples_booking/booking/booking_home_screen.dart';
+import 'package:monarch_samples_booking/booking/booking_list.dart';
+import 'package:monarch_samples_booking/booking/calendar_popup_view.dart';
+import 'package:monarch_samples_booking/booking/filters_screen.dart';
+import 'package:monarch_samples_booking/booking/model/booking_list_data.dart';
 import 'package:flutter/material.dart';
 
 Widget app_bar() => Column(children: const [BookingAppBar()]);

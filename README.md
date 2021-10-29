@@ -1,4 +1,4 @@
-# monarch_samples
+# monarch_samples_patterns
 
 Monarch sample code and stories.
 
