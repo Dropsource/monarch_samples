@@ -149,9 +149,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
                     ),
                   ),
                   CupertinoSwitch(
-                    activeColor: date.isSelected
-                        ? Theme.of(context).primaryColor
-                        : Colors.grey.withOpacity(0.6),
+                    activeColor: Theme.of(context).primaryColor,
+                    // activeColor: date.isSelected
+                    //     ? Theme.of(context).primaryColor
+                    //     : Colors.grey.withOpacity(0.6),
                     onChanged: (bool value) {
                       setState(() {
                         checkAppPosition(i);
@@ -298,7 +299,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                 : Icons.check_box_outline_blank,
                             color: date.isSelected
                                 ? Theme.of(context).primaryColor
-                                : Colors.grey.withOpacity(0.6),
+                                : Theme.of(context).textTheme.caption!.color!.withOpacity(0.5),
                           ),
                           const SizedBox(
                             width: 4,

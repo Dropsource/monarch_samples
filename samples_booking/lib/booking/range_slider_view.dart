@@ -76,15 +76,13 @@ class _RangeSliderViewState extends State<RangeSliderView> {
             ],
           ),
           SliderTheme(
-            data: SliderThemeData(
+            data: SliderTheme.of(context).copyWith(
               rangeThumbShape: CustomRangeThumbShape(),
             ),
             child: RangeSlider(
               values: _values!,
               min: 0.0,
               max: 1000.0,
-              activeColor: Theme.of(context).primaryColor,
-              inactiveColor: Colors.grey.withOpacity(0.4),
               divisions: 1000,
               onChanged: (RangeValues values) {
                 try {

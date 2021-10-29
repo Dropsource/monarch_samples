@@ -49,7 +49,7 @@ class _SliderViewState extends State<SliderView> {
             ],
           ),
           SliderTheme(
-            data: SliderThemeData(
+            data: SliderTheme.of(context).copyWith(
               thumbShape: CustomThumbShape(),
             ),
             child: Slider(
@@ -63,8 +63,6 @@ class _SliderViewState extends State<SliderView> {
               },
               min: 0,
               max: 100,
-              activeColor: Theme.of(context).primaryColor,
-              inactiveColor: Colors.grey.withOpacity(0.4),
               divisions: 100,
               value: distValue,
             ),
