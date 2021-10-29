@@ -27,11 +27,11 @@ This repo provides examples of using Monarch with the following patterns:
 
 Once the Monarch UI launches, you can start exploring and playing with the sample stories and code. You should see something like the screenshots below.
 
-![](docs/fetch-complex-list.png)
+![](images/fetch-complex-list.png)
 
-![](docs/localized-screen.png)
+![](images/localized-screen.png)
 
-![](docs/themed-screen.png)
+![](images/themed-screen.png)
     
 ## Running the sample tests
 The sample code for how to call stories from tests is under the test directory. 
