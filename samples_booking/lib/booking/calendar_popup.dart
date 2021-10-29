@@ -5,8 +5,8 @@ import 'package:intl/intl.dart';
 
 import 'custom_calendar.dart';
 
-class CalendarPopupView extends StatefulWidget {
-  const CalendarPopupView(
+class CalendarPopUp extends StatefulWidget {
+  const CalendarPopUp(
       {Key? key,
       this.initialStartDate,
       this.initialEndDate,
@@ -26,10 +26,10 @@ class CalendarPopupView extends StatefulWidget {
 
   final Function()? onCancelClick;
   @override
-  _CalendarPopupViewState createState() => _CalendarPopupViewState();
+  _CalendarPopUpState createState() => _CalendarPopUpState();
 }
 
-class _CalendarPopupViewState extends State<CalendarPopupView>
+class _CalendarPopUpState extends State<CalendarPopUp>
     with TickerProviderStateMixin {
   AnimationController? animationController;
   DateTime? startDate;

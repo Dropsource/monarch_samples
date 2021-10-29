@@ -38,6 +38,10 @@ class _RangeSliderViewState extends State<RangeSliderView> {
                     child: Text(
                       '\$${_values!.start.round()}',
                       textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2!
+                          .copyWith(fontSize: 18),
                     ),
                   ),
                   Expanded(
@@ -57,6 +61,10 @@ class _RangeSliderViewState extends State<RangeSliderView> {
                     child: Text(
                       '\$${_values!.end.round()}',
                       textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2!
+                          .copyWith(fontSize: 18),
                     ),
                   ),
                   Expanded(

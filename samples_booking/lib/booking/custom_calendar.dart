@@ -108,7 +108,7 @@ class _CustomCalendarViewState extends State<CustomCalendarView> {
                 Expanded(
                   child: Center(
                     child: Text(
-                      DateFormat('MMMM, yyyy').format(currentMonthDate),
+                      DateFormat('MMMM').format(currentMonthDate),
                       style: Theme.of(context).textTheme.headline6,
                     ),
                   ),
@@ -151,7 +151,7 @@ class _CustomCalendarViewState extends State<CustomCalendarView> {
           Padding(
             padding: const EdgeInsets.only(right: 8, left: 8, bottom: 8),
             child: Row(
-              children: getDaysNameUI(),
+              children: buildDaysOfWeek(),
             ),
           ),
           Padding(
@@ -165,10 +165,11 @@ class _CustomCalendarViewState extends State<CustomCalendarView> {
     );
   }
 
-  List<Widget> getDaysNameUI() {
-    final List<Widget> listUI = <Widget>[];
-    for (int i = 0; i < 7; i++) {
-      listUI.add(
+  List<Widget> buildDaysOfWeek() {
+    final List<Widget> days = <Widget>[];
+    const daysInWeek = 7;
+    for (int i = 0; i < daysInWeek; i++) {
+      days.add(
         Expanded(
           child: Center(
             child: Text(
@@ -182,7 +183,7 @@ class _CustomCalendarViewState extends State<CustomCalendarView> {
         ),
       );
     }
-    return listUI;
+    return days;
   }
 
   List<Widget> getDaysNoUI() {

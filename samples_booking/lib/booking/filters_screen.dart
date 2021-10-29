@@ -145,6 +145,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   Expanded(
                     child: Text(
                       date.titleTxt,
+                      style: listItemTextStyle(context)
                     ),
                   ),
                   CupertinoSwitch(
@@ -304,6 +305,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                           ),
                           Text(
                             date.titleTxt,
+                            style: listItemTextStyle(context)
                           ),
                         ],
                       ),
@@ -331,6 +333,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
     }
     return noList;
   }
+
+  TextStyle listItemTextStyle(BuildContext context) =>
+      Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16);
 
   Widget priceBarFilter() {
     return Column(
@@ -399,10 +404,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
             ),
             Expanded(
               child: Center(
-                child: Text(
-                  'Filters',
-                  style: Theme.of(context).textTheme.headline6
-                ),
+                child: Text('Filters',
+                    style: Theme.of(context).textTheme.headline6),
               ),
             ),
             Container(

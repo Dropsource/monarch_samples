@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'calendar_popup_view.dart';
+import 'calendar_popup.dart';
 import 'booking_list.dart';
 import 'model/booking_list_data.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +60,7 @@ class _BookingHomeScreenState extends State<BookingHomeScreen> {
                               return Column(
                                 children: <Widget>[
                                   BookingSearchBar(),
-                                  BookingDatesRoomsBar(
+                                  BookingChooseSection(
                                       startDate: DateTime.now(),
                                       endDate: DateTime.now()
                                           .add(const Duration(days: 5))),
@@ -191,11 +191,11 @@ class BookingFilterBar extends StatelessWidget {
   }
 }
 
-class BookingDatesRoomsBar extends StatelessWidget {
+class BookingChooseSection extends StatelessWidget {
   final DateTime startDate;
   final DateTime endDate;
 
-  BookingDatesRoomsBar({required this.startDate, required this.endDate});
+  BookingChooseSection({required this.startDate, required this.endDate});
 
   @override
   Widget build(BuildContext context) {
@@ -307,7 +307,7 @@ class BookingDatesRoomsBar extends StatelessWidget {
   void showDemoDialog(BuildContext context) {
     showDialog<dynamic>(
       context: context,
-      builder: (BuildContext context) => CalendarPopupView(
+      builder: (BuildContext context) => CalendarPopUp(
         barrierDismissible: true,
         minimumDate: DateTime.now(),
         //  maximumDate: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 10),
