@@ -218,7 +218,7 @@ class _BookingItem extends StatelessWidget {
                                             itemPadding:
                                                 EdgeInsets.zero,
                                             onRatingUpdate: (rating) {
-                                              print(rating);
+                                              // print(rating);
                                             },
                                           ),
                                           Text(

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'booking_app_theme.dart';
-
 class SliderView extends StatefulWidget {
   const SliderView({Key? key, this.onChangedistValue, this.distValue})
       : super(key: key);
@@ -92,7 +90,7 @@ class CustomThumbShape extends SliderComponentShape {
   @override
   void paint(
     PaintingContext context,
-    Offset thumbCenter, {
+    Offset center, {
     Animation<double>? activationAnimation,
     Animation<double>? enableAnimation,
     bool? isDiscrete,
@@ -112,8 +110,8 @@ class CustomThumbShape extends SliderComponentShape {
     canvas.drawPath(
         Path()
           ..addOval(Rect.fromPoints(
-              Offset(thumbCenter.dx + 12, thumbCenter.dy + 12),
-              Offset(thumbCenter.dx - 12, thumbCenter.dy - 12)))
+              Offset(center.dx + 12, center.dy + 12),
+              Offset(center.dx - 12, center.dy - 12)))
           ..fillType = PathFillType.evenOdd,
         Paint()
           ..color = Colors.black.withOpacity(0.5)
@@ -121,11 +119,11 @@ class CustomThumbShape extends SliderComponentShape {
               MaskFilter.blur(BlurStyle.normal, convertRadiusToSigma(8)));
 
     final Paint cPaint = Paint();
-    cPaint..color = Colors.white;
-    cPaint..strokeWidth = 14 / 2;
-    canvas.drawCircle(Offset(thumbCenter.dx, thumbCenter.dy), 12, cPaint);
-    cPaint..color = colorTween.evaluate(enableAnimation!)!;
-    canvas.drawCircle(Offset(thumbCenter.dx, thumbCenter.dy), 10, cPaint);
+    cPaint.color = Colors.white;
+    cPaint.strokeWidth = 14 / 2;
+    canvas.drawCircle(Offset(center.dx, center.dy), 12, cPaint);
+    cPaint.color = colorTween.evaluate(enableAnimation!)!;
+    canvas.drawCircle(Offset(center.dx, center.dy), 10, cPaint);
   }
 
   double convertRadiusToSigma(double radius) {

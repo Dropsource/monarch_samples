@@ -8,15 +8,12 @@ import 'package:flutter/material.dart';
 Widget app_bar() => Column(children: const [BookingAppBar()]);
 Widget search_bar() => Column(children: const [BookingSearchBar()]);
 Widget dates_room_bar() => Builder(
-    builder: (context) => Container(
-          // color: Colors.grey[200],
-          child: Column(children: [
-            BookingDatesRoomsBar(
-              startDate: DateTime.now(),
-              endDate: DateTime.now().add(const Duration(days: 3)),
-            )
-          ]),
-        ));
+    builder: (context) => Column(children: [
+          BookingDatesRoomsBar(
+            startDate: DateTime.now(),
+            endDate: DateTime.now().add(const Duration(days: 3)),
+          )
+        ]));
 Widget filter_bar() => Column(children: const [BookingFilterBar()]);
 
 Widget listing() => BookingListAnimated(list: [BookingListData.listings[0]]);
