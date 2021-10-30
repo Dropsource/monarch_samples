@@ -1,6 +1,19 @@
 {
-  "sample.title": "Ejemplo de traducción",
-  "sample.headline": "Título traducido",
-  "sample.subheader": "Esto es un subtítulo",
-  "sample.content": "Contenido de ejemplo"
+  "type-of-accommodation": "Tipo de hospedaje",
+  "distance-from-center": "Distancia del centro",
+  "popular-filters": "Filtros populares",
+  "price-1-night": "Precio (por 1 noche)",
+  "filters": "Filtros",
+  "free-breakfast": "Desayuno Gratis",
+  "free-parking": "Parqueo Gratis",
+  "free-wi-fi": "Wi-Fi Gratis",
+  "pool": "Piscina",
+  "pet-friendly": "Acepta mascotas",
+  "all": "Todos",
+  "apartment": "Departamento",
+  "home": "Hogar",
+  "hotel": "Hotel",
+  "resort": "Resort",
+  "villa": "Villa",
+  "less-than": "Menos de"
 }

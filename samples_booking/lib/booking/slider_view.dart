@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../localizations.dart';
 
 class SliderView extends StatefulWidget {
   const SliderView({Key? key, this.onChangedistValue, this.distValue})
@@ -22,6 +23,7 @@ class _SliderViewState extends State<SliderView> {
 
   @override
   Widget build(BuildContext context) {
+    var loc = SampleLocalizations.of(context)!;
     return Container(
       child: Column(
         children: <Widget>[
@@ -34,7 +36,7 @@ class _SliderViewState extends State<SliderView> {
               Container(
                 width: 170,
                 child: Text(
-                  'Less than ${(distValue / 10).toStringAsFixed(1)} Km',
+                  '${loc.text('less-than')} ${(distValue / 10).toStringAsFixed(1)} Km',
                   textAlign: TextAlign.center,
                   style: Theme.of(context)
                       .textTheme

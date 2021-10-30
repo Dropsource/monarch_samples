@@ -218,10 +218,7 @@ class BookingChooseSection extends StatelessWidget {
                     ),
                     onTap: () {
                       FocusScope.of(context).requestFocus(FocusNode());
-                      // setState(() {
-                      //   isDatePopupOpen = true;
-                      // });
-                      showDemoDialog(context);
+                      showCalendarDialog(context);
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(
@@ -281,7 +278,7 @@ class BookingChooseSection extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Number of Rooms',
+                            'Number of rooms',
                             style: Theme.of(context).textTheme.caption!.copyWith(fontSize: 16)
                           ),
                           const SizedBox(
@@ -304,22 +301,14 @@ class BookingChooseSection extends StatelessWidget {
     );
   }
 
-  void showDemoDialog(BuildContext context) {
+  void showCalendarDialog(BuildContext context) {
     showDialog<dynamic>(
       context: context,
       builder: (BuildContext context) => CalendarPopUp(
         barrierDismissible: true,
         minimumDate: DateTime.now(),
-        //  maximumDate: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 10),
         initialStartDate: startDate,
         initialEndDate: endDate,
-        // onApplyClick: (DateTime startData, DateTime endData) {
-        //   setState(() {
-        //     startDate = startData;
-        //     endDate = endData;
-        //   });
-        // },
-        // onCancelClick: () {},
       ),
     );
   }

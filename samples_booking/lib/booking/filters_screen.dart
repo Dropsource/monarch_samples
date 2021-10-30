@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'range_slider_view.dart';
 import 'slider_view.dart';
 import 'model/popular_filter_list.dart';
+import '../localizations.dart';
 
 class FiltersScreen extends StatefulWidget {
   @override
@@ -20,30 +21,31 @@ class _FiltersScreenState extends State<FiltersScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var loc = SampleLocalizations.of(context)!;
     return Container(
       color: Theme.of(context).dialogBackgroundColor,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(
           children: <Widget>[
-            getAppBarUI(),
+            getAppBarUI(loc),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
-                    priceBarFilter(),
+                    priceBarFilter(loc),
                     const Divider(
                       height: 1,
                     ),
-                    popularFilter(),
+                    popularFilter(loc),
                     const Divider(
                       height: 1,
                     ),
-                    distanceViewUI(),
+                    distanceViewUI(loc),
                     const Divider(
                       height: 1,
                     ),
-                    allAccommodationUI()
+                    allAccommodationUI(loc)
                   ],
                 ),
               ),
@@ -94,7 +96,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
     );
   }
 
-  Widget allAccommodationUI() {
+  Widget allAccommodationUI(SampleLocalizations loc) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,7 +105,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
           padding:
               const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
           child: Text(
-            'Type of Accommodation',
+              loc.text('type-of-accommodation'),
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Theme.of(context).textTheme.caption!.color,
@@ -114,7 +116,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         Padding(
           padding: const EdgeInsets.only(right: 16, left: 16),
           child: Column(
-            children: getAccomodationListUI(),
+            children: getAccomodationListUI(loc),
           ),
         ),
         const SizedBox(
@@ -124,7 +126,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
     );
   }
 
-  List<Widget> getAccomodationListUI() {
+  List<Widget> getAccomodationListUI(SampleLocalizations loc) {
     final List<Widget> noList = <Widget>[];
     for (int i = 0; i < accomodationListData.length; i++) {
       final PopularFilterListData date = accomodationListData[i];
@@ -144,7 +146,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 children: <Widget>[
                   Expanded(
                     child: Text(
-                      date.titleTxt,
+                      loc.text(date.titleTxt),
                       style: listItemTextStyle(context)
                     ),
                   ),
@@ -208,7 +210,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
     }
   }
 
-  Widget distanceViewUI() {
+  Widget distanceViewUI(SampleLocalizations loc) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -217,7 +219,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
           padding:
               const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
           child: Text(
-            'Distance from city center',
+            loc.text('distance-from-center'),
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Theme.of(context).textTheme.caption!.color,
@@ -238,7 +240,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
     );
   }
 
-  Widget popularFilter() {
+  Widget popularFilter(SampleLocalizations loc) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -247,7 +249,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
           padding:
               const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
           child: Text(
-            'Popular filters',
+            loc.text('popular-filters'),
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Theme.of(context).textTheme.caption!.color,
@@ -258,7 +260,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         Padding(
           padding: const EdgeInsets.only(right: 16, left: 16),
           child: Column(
-            children: getPList(),
+            children: getPList(loc),
           ),
         ),
         const SizedBox(
@@ -268,7 +270,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
     );
   }
 
-  List<Widget> getPList() {
+  List<Widget> getPList(SampleLocalizations loc) {
     final List<Widget> noList = <Widget>[];
     int count = 0;
     const int columnCount = 2;
@@ -305,7 +307,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                             width: 4,
                           ),
                           Text(
-                            date.titleTxt,
+                            loc.text(date.titleTxt),
                             style: listItemTextStyle(context)
                           ),
                         ],
@@ -338,7 +340,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
   TextStyle listItemTextStyle(BuildContext context) =>
       Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16);
 
-  Widget priceBarFilter() {
+  Widget priceBarFilter(SampleLocalizations loc) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -346,12 +348,13 @@ class _FiltersScreenState extends State<FiltersScreen> {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            'Price (for 1 night)',
+            loc.text('price-1-night'),
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Theme.of(context).textTheme.caption!.color,
                 fontSize: MediaQuery.of(context).size.width > 360 ? 18 : 16,
                 fontWeight: FontWeight.normal),
+
           ),
         ),
         RangeSliderView(
@@ -367,7 +370,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
     );
   }
 
-  Widget getAppBarUI() {
+  Widget getAppBarUI(SampleLocalizations loc) {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).dialogBackgroundColor,
@@ -405,7 +408,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
             ),
             Expanded(
               child: Center(
-                child: Text('Filters',
+                child: Text(loc.text('filters'),
                     style: Theme.of(context).textTheme.headline6),
               ),
             ),
