@@ -5,22 +5,6 @@ import 'package:monarch_samples_booking/booking/filters_screen.dart';
 import 'package:monarch_samples_booking/booking/model/booking_list_data.dart';
 import 'package:flutter/material.dart';
 
-// Widget app_bar() => Column(children: const [BookingAppBar()]);
-
-// Widget search_and_choose() => Column(children: [
-//       BookingSearchBar(),
-//       BookingChooseSection(
-//         startDate: DateTime.now(),
-//         endDate: DateTime.now().add(const Duration(days: 3)),
-//       )
-//     ]);
-
-// Widget listing() => BookingListAnimated(list: [BookingListData.listings[0]]);
-
-// Widget screen() => BookingHomeScreen();
-
-
-
 Widget app_bar() => Column(children: const [BookingAppBar()]);
 Widget search_bar() => Column(children: const [BookingSearchBar()]);
 Widget search_and_choose() => Column(children: [
