@@ -13,7 +13,7 @@ const _english = Locale('en', 'US');
 const _spanish = Locale('es', 'US');
 
 @MonarchLocalizations([MonarchLocale('en', 'US'), MonarchLocale('es', 'US')])
-final SampleLocalizationsDelegate localizationDelegate =
+SampleLocalizationsDelegate get localizationDelegate =>
     SampleLocalizationsDelegate(
   FileTranslationsBundleLoader('locale'),
   supportedLocales: [_english, _spanish],
