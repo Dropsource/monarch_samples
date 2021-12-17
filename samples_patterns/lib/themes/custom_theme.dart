@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:monarch_annotations/monarch_annotations.dart';
 
 @MonarchTheme('Monarch Theme')
-final monarchTheme = ThemeData.dark().copyWith(
+ThemeData get monarchTheme => ThemeData.dark().copyWith(
     primaryColor: monarchPrimaryColor,
     colorScheme:
         ThemeData.dark().colorScheme.copyWith(secondary: monarchAccentColor),
