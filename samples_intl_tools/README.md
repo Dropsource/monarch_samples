@@ -20,5 +20,8 @@ To run the intl sample stories:
 1. `flutter pub get`
 2. Run the intl code generation: `flutter pub run build_runner build`
 3. Run monarch: `monarch run`
+4. Once the Monarch UI launches, select a story, then change the locale 
+   using the Locale dropdown, see how the story changes based on the locale
+   selected.
 
 If you need more details, here are the [Monarch internationalization docs](https://monarchapp.io/docs/internationalization).
