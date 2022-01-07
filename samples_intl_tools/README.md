@@ -8,7 +8,7 @@ _Monarch is a tool for Flutter developers. It makes building beautiful widgets a
 To use intl tools with Monarch you have to annotate the generated `LocalizationsDelegate` 
 with the `MonarchLocalizations` annotation. To annotate it, you will have to 
 create a new dart library in your lib directory, then import the generated 
-source file so you can annotate an instance of your LocalizationsDelegate. 
+source file so you can annotate an instance of your `LocalizationsDelegate`. 
 
 You can see the sample implementation in 
 [lib/intl_localizations_delegate.dart](lib/intl_localizations_delegate.dart)

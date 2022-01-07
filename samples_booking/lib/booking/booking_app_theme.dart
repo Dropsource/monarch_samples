@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:monarch_annotations/monarch_annotations.dart';
 
 @MonarchTheme('Booking Light')
-var bookingLightTheme = BookingAppTheme.buildLightTheme();
+ThemeData get bookingLightTheme => BookingAppTheme.buildLightTheme();
 
 @MonarchTheme('Booking Dark')
-var bookingDarkTheme = BookingAppTheme.buildDarkTheme();
+ThemeData get bookingDarkTheme => BookingAppTheme.buildDarkTheme();
 
 
 const monarchPrimaryColor = Color(0xff00b3b8);
