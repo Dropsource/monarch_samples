@@ -14,6 +14,7 @@ This project provides examples of using Monarch with the following patterns:
 - widget tests
 - animations
 - navigation
+- images
 
 ## Running the sample stories
 

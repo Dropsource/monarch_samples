@@ -1,13 +1,14 @@
 # Monarch Samples
 
-This repo is a collection of sample projects which show Monarch with 
+This repo is a collection of sample projects which show Monarch working with 
 various packages, patterns and tools.
 
 _Monarch is a tool for Flutter developers. It makes building beautiful widgets a more pleasant and faster experience. Find out more at https://monarchapp.io_
 
-### Samples projects
+### Sample projects
 
-- [samples_patterns](/samples_patterns) provides examples of using Monarch with the following patterns:
+- [samples_patterns](/samples_patterns) provides examples of using Monarch 
+  with the following patterns:
   - bloc
   - cubit
   - lists
@@ -19,5 +20,12 @@ _Monarch is a tool for Flutter developers. It makes building beautiful widgets a
   - widget tests
   - animations
   - navigation
-- [samples_booking](/samples_booking) foo
-
+  - images
+- [samples_booking](/samples_booking) uses a pretty booking theme. The [Monarch 
+  website](https://monarchapp.io/) showcases this project.
+- [samples_intl_tools](/samples_intl_tools) shows internationalization in Monarch 
+  using the [intl](https://github.com/dart-lang/intl) package and tools.
+- [samples_riverpod](/samples_riverpod) uses Monarch with the state-management library 
+  [Riverpod](https://riverpod.dev/).
+- [samples_easy_localization](/samples_easy_localization) shows internationalization 
+  in Monarch using the [easy_localization](https://github.com/aissat/easy_localization) package.
