@@ -1,6 +1,6 @@
 # Monarch Samples
 
-This repo is a collection of sample projects which show Monarch working with 
+This repo is a curated collection of sample projects which show Monarch working with 
 various packages, patterns and tools.
 
 _Monarch is a tool for Flutter developers. It makes building beautiful widgets a more pleasant and faster experience. Find out more at https://monarchapp.io_
