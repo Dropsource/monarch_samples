@@ -1,0 +1,19 @@
+{
+  "type-of-accommodation": "Type of accommodation",
+  "distance-from-center": "Distance from city center",
+  "popular-filters": "Popular filters",
+  "price-1-night": "Price (for 1 night)",
+  "filters": "Filters",
+  "free-breakfast": "Free Breakfast",
+  "free-parking": "Free Parking",
+  "free-wi-fi": "Free Wi-Fi",
+  "pool": "Pool",
+  "pet-friendly": "Pet Friendly",
+  "all": "All",
+  "apartment": "Apartment",
+  "home": "Home",
+  "hotel": "Hotel",
+  "resort": "Resort",
+  "villa": "Villa",
+  "less-than": "Less than"
+}
