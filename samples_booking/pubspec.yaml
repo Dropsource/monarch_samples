@@ -19,7 +19,7 @@ dependencies:
 
 dev_dependencies:
   build_runner: ^2.1.0
-  monarch: ^2.1.0-pre.2
+  monarch: ^2.1.0
   flutter_lints: ^1.0.0
 
 flutter:
