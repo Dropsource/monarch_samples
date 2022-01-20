@@ -1,9 +1,15 @@
+<p style="margin-bottom: 0; padding-bottom: 0">
+  <a href="https://monarchapp.io">
+    <img src="https://raw.githubusercontent.com/Dropsource/monarch/master/_assets/monarch_m_cropped.png" alt="Monarch" height="64" />
+  </a>
+</p>
+
 # Monarch Samples
 
 This repo is a curated collection of sample projects which show Monarch working with 
 various packages, patterns and tools.
 
-_Monarch is a tool for Flutter developers. It makes building beautiful widgets a more pleasant and faster experience. Find out more at https://monarchapp.io_
+_Monarch is a tool for building Flutter widgets in isolation. It makes building beautiful apps a simpler and faster experience. Find out more at https://monarchapp.io_
 
 ### Sample projects
 

@@ -2,7 +2,7 @@
 
 Monarch sample code and stories using [Riverpod](https://riverpod.dev/).
 
-_Monarch is a tool for Flutter developers. It makes building beautiful widgets a more pleasant and faster experience. Find out more at https://monarchapp.io_
+_Monarch is a tool for building Flutter widgets in isolation. It makes building beautiful apps a simpler and faster experience. Find out more at https://monarchapp.io_
 
 ## Running the sample stories
 

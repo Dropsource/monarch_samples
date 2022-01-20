@@ -2,6 +2,8 @@
 
 Monarch sample code and stories using several patterns.
 
+_Monarch is a tool for building Flutter widgets in isolation. It makes building beautiful apps a simpler and faster experience. Find out more at https://monarchapp.io_
+
 This project provides examples of using Monarch with the following patterns:
 - bloc
 - cubit
