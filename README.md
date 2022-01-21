@@ -9,7 +9,7 @@
 This repo is a curated collection of sample projects which show Monarch working with 
 various packages, patterns and tools.
 
-_Monarch is a tool for building Flutter widgets in isolation. It makes building beautiful apps a simpler and faster experience. Find out more at https://monarchapp.io_
+_Monarch is a tool for building Flutter widgets in isolation. It makes it easy to build, test and debug complex UIs. Find out more at https://monarchapp.io_
 
 ### Sample projects
 

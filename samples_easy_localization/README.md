@@ -2,7 +2,7 @@
 
 Monarch sample code and stories using the [easy_localization](https://github.com/aissat/easy_localization) package.
 
-_Monarch is a tool for building Flutter widgets in isolation. It makes building beautiful apps a simpler and faster experience. Find out more at https://monarchapp.io_
+_Monarch is a tool for building Flutter widgets in isolation. It makes it easy to build, test and debug complex UIs. Find out more at https://monarchapp.io_
 
 To use easy_localization with Monarch you have to define your own `LocalizationsDelegate`. You can then annotate an instance of that delegate with the `MonarchLocalizations` annotation.
 
