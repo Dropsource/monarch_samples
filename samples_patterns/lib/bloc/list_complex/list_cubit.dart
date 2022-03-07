@@ -1,5 +1,5 @@
+import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:pedantic/pedantic.dart';
 
 import 'list_state.dart';
 import 'repository.dart';
