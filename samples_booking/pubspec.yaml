@@ -18,8 +18,8 @@ dependencies:
   monarch_annotations: ^1.0.0
 
 dev_dependencies:
-  build_runner: ^2.1.0
-  monarch: ^2.2.0
+  monarch: ^3.0.0
+  build_runner: ^2.1.11
   flutter_lints: ^1.0.0
 
 flutter:

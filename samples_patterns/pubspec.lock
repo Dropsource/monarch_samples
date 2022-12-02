@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "47.0.0"
+    version: "50.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.7.0"
+    version: "5.2.0"
   archive:
     dependency: transitive
     description:
@@ -344,7 +344,7 @@ packages:
       name: monarch
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.4.0-pre.6"
+    version: "3.0.0"
   monarch_annotations:
     dependency: transitive
     description:
@@ -352,13 +352,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
-  monarch_channels:
+  monarch_definitions:
     dependency: transitive
     description:
-      name: monarch_channels
+      name: monarch_definitions
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.2.0"
   monarch_utils:
     dependency: transitive
     description:

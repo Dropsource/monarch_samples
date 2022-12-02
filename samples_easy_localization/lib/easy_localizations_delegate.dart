@@ -26,7 +26,7 @@ class MyEasyLocalizationsDelegate extends LocalizationsDelegate<Localization> {
   }
 
   @override
-  bool shouldReload(covariant LocalizationsDelegate<Localization> old) => false;
+  bool shouldReload(covariant LocalizationsDelegate<Localization> old) => true;
 
   @override
   bool isSupported(Locale locale) => ['en', 'es'].contains(locale.languageCode);

@@ -26,7 +26,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   lints: ^1.0.1
-  monarch: ^2.4.0-pre.6
+  monarch: ^3.0.0
   build_runner: ^2.1.11
 
 flutter:
