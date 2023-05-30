@@ -11,16 +11,16 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  font_awesome_flutter: ^9.0.0
+  font_awesome_flutter: ^10.4.0
   flutter_rating_bar: ^4.0.0
-  intl: ^0.17.0
+  intl: ^0.18.0
   animations: ^2.0.0
   monarch_annotations: ^1.0.0
 
 dev_dependencies:
   monarch: ^3.0.0
   build_runner: ^2.1.11
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.1
 
 flutter:
   uses-material-design: true
