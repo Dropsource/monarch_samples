@@ -1,22 +1,27 @@
 import 'package:test/test.dart';
-import 'package:test_process/test_process.dart';
-import 'package:path/path.dart' as p;
-
 import 'test_utils.dart';
 
 void main() async {
-  group('samples_booking', () {
+  testSampleProject('samples_booking');
+  testSampleProject('samples_easy_localization');
+  testSampleProject('samples_intl_tools');
+  testSampleProject('samples_patterns');
+  testSampleProject('samples_riverpod');
+}
+
+void testSampleProject(String projectName) {
+  group(projectName, () {
     setUp(() async {
-      var result = await runFlutterPubGet('samples_booking');
+      var result = await runFlutterPubGet(projectName);
       expect(result.exitCode, 0);
     });
 
     test('can run monarch', () async {
-      await runMonarchAndVerify('samples_booking');
+      await runMonarchAndVerify(projectName);
     });
 
     tearDown(() async {
-      await killMonarch('samples_booking');
+      await killMonarch(projectName);
     });
   });
 }
