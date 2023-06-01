@@ -1,0 +1,13 @@
+name: monarch_samples_test
+description: Integration tests for monarch_samples
+version: 1.0.0
+
+environment:
+  sdk: '>=2.16.1 <4.0.0'
+
+dev_dependencies:
+  test_process:
+  path:
+  async:
+  monarch_utils:
+  monarch_io_utils:
