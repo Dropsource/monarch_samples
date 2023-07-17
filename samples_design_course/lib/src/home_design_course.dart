@@ -32,7 +32,14 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                   child: Column(
                     children: <Widget>[
                       getSearchBarUI(),
-                      getCategoryUI(),
+                      CategoryUI(
+                          categoryType: categoryType,
+                          callBack: () => moveTo(),
+                          onTap: (CategoryType categoryTypeData) {
+                            setState(() {
+                              categoryType = categoryTypeData;
+                            });
+                          }),
                       Flexible(
                         child: getPopularCourseUI(),
                       ),
@@ -53,65 +60,6 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
       MaterialPageRoute<dynamic>(
         builder: (BuildContext context) => CourseInfoScreen(),
       ),
-    );
-  }
-}
-
-enum CategoryType {
-  ui,
-  coding,
-  basic,
-}
-
-
-  Widget getCategoryUI() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(top: 8.0, left: 18, right: 16),
-          child: Text(
-            'Category',
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 22,
-              letterSpacing: 0.27,
-              color: DesignCourseAppTheme.darkerText,
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16),
-          child: Row(
-            children: <Widget>[
-              getButtonUI(CategoryType.ui, categoryType == CategoryType.ui),
-              const SizedBox(
-                width: 16,
-              ),
-              getButtonUI(
-                  CategoryType.coding, categoryType == CategoryType.coding),
-              const SizedBox(
-                width: 16,
-              ),
-              getButtonUI(
-                  CategoryType.basic, categoryType == CategoryType.basic),
-            ],
-          ),
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        CategoryListView(
-          callBack: () {
-            moveTo();
-          },
-        ),
-      ],
     );
   }
 
@@ -140,57 +88,6 @@ enum CategoryType {
             ),
           )
         ],
-      ),
-    );
-  }
-
-  Widget getButtonUI(CategoryType categoryTypeData, bool isSelected) {
-    String txt = '';
-    if (CategoryType.ui == categoryTypeData) {
-      txt = 'Ui/Ux';
-    } else if (CategoryType.coding == categoryTypeData) {
-      txt = 'Coding';
-    } else if (CategoryType.basic == categoryTypeData) {
-      txt = 'Basic UI';
-    }
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-            color: isSelected
-                ? DesignCourseAppTheme.nearlyBlue
-                : DesignCourseAppTheme.nearlyWhite,
-            borderRadius: const BorderRadius.all(Radius.circular(24.0)),
-            border: Border.all(color: DesignCourseAppTheme.nearlyBlue)),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            splashColor: Colors.white24,
-            borderRadius: const BorderRadius.all(Radius.circular(24.0)),
-            onTap: () {
-              setState(() {
-                categoryType = categoryTypeData;
-              });
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 12, bottom: 12, left: 18, right: 18),
-              child: Center(
-                child: Text(
-                  txt,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
-                    letterSpacing: 0.27,
-                    color: isSelected
-                        ? DesignCourseAppTheme.nearlyWhite
-                        : DesignCourseAppTheme.nearlyBlue,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }
@@ -309,3 +206,135 @@ enum CategoryType {
       ),
     );
   }
+}
+
+enum CategoryType {
+  ui,
+  coding,
+  basic,
+}
+
+class CategoryUI extends StatelessWidget {
+  final CategoryType categoryType;
+  final Function() callBack;
+  final Function(CategoryType) onTap;
+
+  CategoryUI(
+      {required this.categoryType,
+      required this.callBack,
+      required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(top: 8.0, left: 18, right: 16),
+          child: Text(
+            'Category',
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 22,
+              letterSpacing: 0.27,
+              color: DesignCourseAppTheme.darkerText,
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 16, right: 16),
+          child: Row(
+            children: <Widget>[
+              ButtonUi(
+                  categoryTypeData: CategoryType.ui,
+                  isSelected: categoryType == CategoryType.ui,
+                  onTap: onTap),
+              const SizedBox(
+                width: 16,
+              ),
+              ButtonUi(
+                  categoryTypeData: CategoryType.coding,
+                  isSelected: categoryType == CategoryType.coding,
+                  onTap: onTap),
+              const SizedBox(
+                width: 16,
+              ),
+              ButtonUi(
+                  categoryTypeData: CategoryType.basic,
+                  isSelected: categoryType == CategoryType.basic,
+                  onTap: onTap),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        CategoryListView(callBack: callBack),
+      ],
+    );
+  }
+}
+
+class ButtonUi extends StatelessWidget {
+  final CategoryType categoryTypeData;
+  final bool isSelected;
+  final Function(CategoryType) onTap;
+
+  ButtonUi(
+      {required this.categoryTypeData,
+      required this.isSelected,
+      required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    String txt = '';
+    if (CategoryType.ui == categoryTypeData) {
+      txt = 'Ui/Ux';
+    } else if (CategoryType.coding == categoryTypeData) {
+      txt = 'Coding';
+    } else if (CategoryType.basic == categoryTypeData) {
+      txt = 'Basic UI';
+    }
+    return Expanded(
+      child: Container(
+        decoration: BoxDecoration(
+            color: isSelected
+                ? DesignCourseAppTheme.nearlyBlue
+                : DesignCourseAppTheme.nearlyWhite,
+            borderRadius: const BorderRadius.all(Radius.circular(24.0)),
+            border: Border.all(color: DesignCourseAppTheme.nearlyBlue)),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            splashColor: Colors.white24,
+            borderRadius: const BorderRadius.all(Radius.circular(24.0)),
+            onTap: () => onTap(categoryTypeData),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  top: 12, bottom: 12, left: 18, right: 18),
+              child: Center(
+                child: Text(
+                  txt,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12,
+                    letterSpacing: 0.27,
+                    color: isSelected
+                        ? DesignCourseAppTheme.nearlyWhite
+                        : DesignCourseAppTheme.nearlyBlue,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
