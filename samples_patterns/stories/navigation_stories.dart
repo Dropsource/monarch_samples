@@ -7,8 +7,8 @@ Widget simple_navigation() => Navigator(
     onGenerateRoute: (RouteSettings settings) =>
         MaterialPageRoute(builder: (_) => FirstRoute(), settings: settings));
 
-Widget named_routes() => Navigator(
-    initialRoute: '/',
+Navigator getNavigatorWithRoute(String routeName) => Navigator(
+    initialRoute: routeName,
     onGenerateRoute: (RouteSettings settings) {
       WidgetBuilder builder;
       switch (settings.name) {
@@ -23,3 +23,7 @@ Widget named_routes() => Navigator(
       }
       return MaterialPageRoute(builder: builder, settings: settings);
     });
+
+Widget initial_route() => getNavigatorWithRoute('/');
+Widget second_route() => getNavigatorWithRoute('/second');
+
