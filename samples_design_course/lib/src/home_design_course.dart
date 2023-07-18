@@ -58,7 +58,11 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     Navigator.push<dynamic>(
       context,
       MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) => CourseInfoScreen(),
+        builder: (BuildContext context) => CourseInfoScreen(
+          onBack: (BuildContext context_) {
+            Navigator.pop(context_);
+          },
+        ),
       ),
     );
   }
@@ -70,7 +74,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
+          const Text(
             'Popular Course',
             textAlign: TextAlign.left,
             style: TextStyle(

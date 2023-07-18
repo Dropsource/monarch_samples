@@ -1,5 +1,8 @@
+import 'package:provider/provider.dart';
+
 import 'design_course_app_theme.dart';
 import 'models/category.dart';
+import 'models/state.dart';
 import 'hex_color.dart';
 import 'package:flutter/material.dart';
 
@@ -22,8 +25,14 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
   }
 
   Future<bool> getData() async {
-    await Future<dynamic>.delayed(const Duration(milliseconds: 200));
+    await Future<dynamic>.delayed(const Duration(milliseconds: 1000));
     return true;
+  }
+
+  @override
+  void dispose() {
+    animationController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -34,16 +43,29 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
         future: getData(),
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           if (!snapshot.hasData) {
-            return const SizedBox();
+            return const SizedBox(
+                // height: 134,
+                child: Center(
+                    child: SizedBox(
+                        child: CircularProgressIndicator(
+                  value: null,
+                  color: DesignCourseAppTheme.nearlyBlue,
+                ))));
           } else {
             return GridView(
               padding: const EdgeInsets.all(8),
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.vertical,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 32.0,
+                crossAxisSpacing: 32.0,
+                childAspectRatio: 0.8,
+              ),
               children: List<Widget>.generate(
-                Category.popularCourseList.length,
+                Provider.of<MyAppState>(context).courseList.length,
                 (int index) {
-                  final int count = Category.popularCourseList.length;
+                  final int count = Provider.of<MyAppState>(context).courseList.length;
                   final Animation<double> animation =
                       Tween<double>(begin: 0.0, end: 1.0).animate(
                     CurvedAnimation(
@@ -55,17 +77,11 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
                   animationController?.forward();
                   return CategoryView(
                     callback: widget.callBack,
-                    category: Category.popularCourseList[index],
+                    category: Provider.of<MyAppState>(context).courseList[index],
                     animation: animation,
                     animationController: animationController,
                   );
                 },
-              ),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 32.0,
-                crossAxisSpacing: 32.0,
-                childAspectRatio: 0.8,
               ),
             );
           }

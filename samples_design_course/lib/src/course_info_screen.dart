@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'design_course_app_theme.dart';
 
 class CourseInfoScreen extends StatefulWidget {
+  final Function(BuildContext) onBack;
+  CourseInfoScreen({required this.onBack});
   @override
   _CourseInfoScreenState createState() => _CourseInfoScreenState();
 }
@@ -25,20 +27,32 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
     super.initState();
   }
 
+  @override
+  void dispose() {
+    animationController?.dispose();
+    super.dispose();
+  }
+
   Future<void> setData() async {
     animationController?.forward();
     await Future<dynamic>.delayed(const Duration(milliseconds: 200));
-    setState(() {
-      opacity1 = 1.0;
-    });
+    if (mounted) {
+      setState(() {
+        opacity1 = 1.0;
+      });
+    }
     await Future<dynamic>.delayed(const Duration(milliseconds: 200));
-    setState(() {
-      opacity2 = 1.0;
-    });
+    if (mounted) {
+      setState(() {
+        opacity2 = 1.0;
+      });
+    }
     await Future<dynamic>.delayed(const Duration(milliseconds: 200));
-    setState(() {
-      opacity3 = 1.0;
-    });
+    if (mounted) {
+      setState(() {
+        opacity3 = 1.0;
+      });
+    }
   }
 
   @override
@@ -302,7 +316,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                       color: DesignCourseAppTheme.nearlyBlack,
                     ),
                     onTap: () {
-                      Navigator.pop(context);
+                      widget.onBack(context);
                     },
                   ),
                 ),

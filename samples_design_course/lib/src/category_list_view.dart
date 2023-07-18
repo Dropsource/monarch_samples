@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'design_course_app_theme.dart';
+import 'models/state.dart';
 import 'models/category.dart';
 import 'hex_color.dart';
 
@@ -23,7 +25,7 @@ class _CategoryListViewState extends State<CategoryListView>
   }
 
   Future<bool> getData() async {
-    await Future<dynamic>.delayed(const Duration(milliseconds: 50));
+    await Future<dynamic>.delayed(const Duration(milliseconds: 1000));
     return true;
   }
 
@@ -36,46 +38,51 @@ class _CategoryListViewState extends State<CategoryListView>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 16, bottom: 16),
-      child: Container(
-        height: 134,
-        width: double.infinity,
+        padding: const EdgeInsets.only(top: 16, bottom: 16),
         child: FutureBuilder<bool>(
-          future: getData(),
-          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-            if (!snapshot.hasData) {
-              return const SizedBox();
-            } else {
-              return ListView.builder(
-                padding: const EdgeInsets.only(
-                    top: 0, bottom: 0, right: 16, left: 16),
-                itemCount: Category.categoryList.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) {
-                  final int count = Category.categoryList.length > 10
-                      ? 10
-                      : Category.categoryList.length;
-                  final Animation<double> animation =
-                      Tween<double>(begin: 0.0, end: 1.0).animate(
-                          CurvedAnimation(
-                              parent: animationController!,
-                              curve: Interval((1 / count) * index, 1.0,
-                                  curve: Curves.fastOutSlowIn)));
-                  animationController?.forward();
+            future: getData(),
+            builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+              if (!snapshot.hasData) {
+                return const SizedBox(
+                    height: 134,
+                    child: Center(
+                        child: SizedBox(
+                            child: CircularProgressIndicator(
+                              value: null,
+                              color: DesignCourseAppTheme.nearlyBlue,
+                            ))));
+              } else {
+                return Container(
+                    height: 134,
+                    width: double.infinity,
+                    child: ListView.builder(
+                      padding: const EdgeInsets.only(
+                          top: 0, bottom: 0, right: 16, left: 16),
+                      itemCount: Provider.of<MyAppState>(context).categoryList.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        final int count =
+                            Provider.of<MyAppState>(context).categoryList.length > 10
+                                ? 10
+                                : Provider.of<MyAppState>(context).categoryList.length;
+                        final Animation<double> animation =
+                            Tween<double>(begin: 0.0, end: 1.0).animate(
+                                CurvedAnimation(
+                                    parent: animationController!,
+                                    curve: Interval((1 / count) * index, 1.0,
+                                        curve: Curves.fastOutSlowIn)));
+                        animationController?.forward();
 
-                  return CategoryView(
-                    category: Category.categoryList[index],
-                    animation: animation,
-                    animationController: animationController,
-                    callback: widget.callBack,
-                  );
-                },
-              );
-            }
-          },
-        ),
-      ),
-    );
+                        return CategoryView(
+                          category: Provider.of<MyAppState>(context).categoryList[index],
+                          animation: animation,
+                          animationController: animationController,
+                          callback: widget.callBack,
+                        );
+                      },
+                    ));
+              }
+            }));
   }
 }
 
