@@ -3,8 +3,15 @@ import 'package:provider/provider.dart';
 import 'package:samples_design_course/src/models/state.dart';
 
 import 'src/home_design_course.dart';
+import 'src/models/course.dart';
+
+final MyAppState appState = MyAppState(categoryList: [], courseList: []);
 
 void main() {
+  Future.delayed(const Duration(seconds: 7), () {
+    appState.setCategoryList(Course.categoryList);
+    appState.setCourseList(Course.popularCourseList);
+  });
   runApp(const MyApp());
 }
 
@@ -21,8 +28,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Provider.value(
-          value: defaultAppState, child: DesignCourseHomeScreen()),
+      home: ChangeNotifierProvider.value(
+          value: appState, child: DesignCourseHomeScreen()),
     );
   }
 }

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'design_course_app_theme.dart';
 import 'models/state.dart';
-import 'models/category.dart';
+import 'models/course.dart';
 import 'hex_color.dart';
 
 class CategoryListView extends StatefulWidget {
   const CategoryListView({Key? key, this.callBack}) : super(key: key);
 
-  final Function()? callBack;
+  final Function(Course)? callBack;
   @override
   _CategoryListViewState createState() => _CategoryListViewState();
 }
@@ -24,11 +24,6 @@ class _CategoryListViewState extends State<CategoryListView>
     super.initState();
   }
 
-  Future<bool> getData() async {
-    await Future<dynamic>.delayed(const Duration(milliseconds: 1000));
-    return true;
-  }
-
   @override
   void dispose() {
     animationController?.dispose();
@@ -37,66 +32,69 @@ class _CategoryListViewState extends State<CategoryListView>
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.only(top: 16, bottom: 16),
-        child: FutureBuilder<bool>(
-            future: getData(),
-            builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-              if (!snapshot.hasData) {
-                return const SizedBox(
-                    height: 134,
-                    child: Center(
-                        child: SizedBox(
-                            child: CircularProgressIndicator(
-                              value: null,
-                              color: DesignCourseAppTheme.nearlyBlue,
-                            ))));
-              } else {
-                return Container(
-                    height: 134,
-                    width: double.infinity,
-                    child: ListView.builder(
-                      padding: const EdgeInsets.only(
-                          top: 0, bottom: 0, right: 16, left: 16),
-                      itemCount: Provider.of<MyAppState>(context).categoryList.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (BuildContext context, int index) {
-                        final int count =
-                            Provider.of<MyAppState>(context).categoryList.length > 10
-                                ? 10
-                                : Provider.of<MyAppState>(context).categoryList.length;
-                        final Animation<double> animation =
-                            Tween<double>(begin: 0.0, end: 1.0).animate(
-                                CurvedAnimation(
-                                    parent: animationController!,
-                                    curve: Interval((1 / count) * index, 1.0,
-                                        curve: Curves.fastOutSlowIn)));
-                        animationController?.forward();
+    return Consumer<MyAppState>(
+      builder: (context, appState, child) {
+        if (appState.isEmpty) {
+          return const Padding(
+              padding: EdgeInsets.only(top: 16, bottom: 16),
+              child: SizedBox(
+                  height: 134,
+                  child: Center(
+                      child: SizedBox(
+                          child: CircularProgressIndicator(
+                    value: null,
+                    color: DesignCourseAppTheme.nearlyBlue,
+                  )))));
+        } else {
+          return Padding(
+              padding: const EdgeInsets.only(top: 16, bottom: 16),
+              child: Container(
+                  height: 144,
+                  width: double.infinity,
+                  child: ListView.builder(
+                    padding: const EdgeInsets.only(
+                        top: 0, bottom: 0, right: 16, left: 16),
+                    itemCount: appState.categoryList.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      final int count = appState.categoryList.length > 10
+                          ? 10
+                          : appState.categoryList.length;
+                      final Animation<double> animation =
+                          Tween<double>(begin: 0.0, end: 1.0).animate(
+                              CurvedAnimation(
+                                  parent: animationController!,
+                                  curve: Interval((1 / count) * index, 1.0,
+                                      curve: Curves.fastOutSlowIn)));
+                      animationController?.forward();
 
-                        return CategoryView(
-                          category: Provider.of<MyAppState>(context).categoryList[index],
-                          animation: animation,
-                          animationController: animationController,
-                          callback: widget.callBack,
-                        );
-                      },
-                    ));
-              }
-            }));
+                      return CategoryView(
+                        course: appState.categoryList[index],
+                        animation: animation,
+                        animationController: animationController,
+                        callback: (course) {
+                          if (widget.callBack != null) widget.callBack!(course);
+                        },
+                      );
+                    },
+                  )));
+        }
+      },
+    );
   }
 }
 
 class CategoryView extends StatelessWidget {
   const CategoryView(
       {Key? key,
-      this.category,
+      required this.course,
       this.animationController,
       this.animation,
-      this.callback})
+      required this.callback})
       : super(key: key);
 
-  final VoidCallback? callback;
-  final Category? category;
+  final Function(Course) callback;
+  final Course course;
   final AnimationController? animationController;
   final Animation<double>? animation;
 
@@ -112,7 +110,7 @@ class CategoryView extends StatelessWidget {
                 100 * (1.0 - animation!.value), 0.0, 0.0),
             child: InkWell(
               splashColor: Colors.transparent,
-              onTap: callback,
+              onTap: () => callback(course),
               child: SizedBox(
                 width: 280,
                 child: Stack(
@@ -143,7 +141,7 @@ class CategoryView extends StatelessWidget {
                                             padding:
                                                 const EdgeInsets.only(top: 16),
                                             child: Text(
-                                              category!.title,
+                                              course.title,
                                               textAlign: TextAlign.left,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w600,
@@ -168,7 +166,7 @@ class CategoryView extends StatelessWidget {
                                                   CrossAxisAlignment.center,
                                               children: <Widget>[
                                                 Text(
-                                                  '${category!.lessonCount} lesson',
+                                                  '${course.lessonCount} lesson',
                                                   textAlign: TextAlign.left,
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w200,
@@ -182,7 +180,7 @@ class CategoryView extends StatelessWidget {
                                                   child: Row(
                                                     children: <Widget>[
                                                       Text(
-                                                        '${category!.rating}',
+                                                        '${course.rating}',
                                                         textAlign:
                                                             TextAlign.left,
                                                         style: TextStyle(
@@ -219,7 +217,7 @@ class CategoryView extends StatelessWidget {
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 Text(
-                                                  '\$${category!.money}',
+                                                  '\$${course.money}',
                                                   textAlign: TextAlign.left,
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w600,
@@ -275,7 +273,7 @@ class CategoryView extends StatelessWidget {
                                   const BorderRadius.all(Radius.circular(16.0)),
                               child: AspectRatio(
                                   aspectRatio: 1.0,
-                                  child: Image.asset(category!.imagePath)),
+                                  child: Image.asset(course!.imagePath)),
                             )
                           ],
                         ),

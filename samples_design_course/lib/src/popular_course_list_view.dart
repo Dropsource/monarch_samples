@@ -1,7 +1,7 @@
 import 'package:provider/provider.dart';
 
 import 'design_course_app_theme.dart';
-import 'models/category.dart';
+import 'models/course.dart';
 import 'models/state.dart';
 import 'hex_color.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 class PopularCourseListView extends StatefulWidget {
   const PopularCourseListView({Key? key, this.callBack}) : super(key: key);
 
-  final Function()? callBack;
+  final Function(Course)? callBack;
   @override
   _PopularCourseListViewState createState() => _PopularCourseListViewState();
 }
@@ -24,11 +24,6 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
     super.initState();
   }
 
-  Future<bool> getData() async {
-    await Future<dynamic>.delayed(const Duration(milliseconds: 1000));
-    return true;
-  }
-
   @override
   void dispose() {
     animationController?.dispose();
@@ -37,56 +32,55 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8),
-      child: FutureBuilder<bool>(
-        future: getData(),
-        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          if (!snapshot.hasData) {
-            return const SizedBox(
-                // height: 134,
-                child: Center(
-                    child: SizedBox(
-                        child: CircularProgressIndicator(
-                  value: null,
-                  color: DesignCourseAppTheme.nearlyBlue,
-                ))));
-          } else {
-            return GridView(
-              padding: const EdgeInsets.all(8),
-              physics: const BouncingScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 32.0,
-                crossAxisSpacing: 32.0,
-                childAspectRatio: 0.8,
-              ),
-              children: List<Widget>.generate(
-                Provider.of<MyAppState>(context).courseList.length,
-                (int index) {
-                  final int count = Provider.of<MyAppState>(context).courseList.length;
-                  final Animation<double> animation =
-                      Tween<double>(begin: 0.0, end: 1.0).animate(
-                    CurvedAnimation(
-                      parent: animationController!,
-                      curve: Interval((1 / count) * index, 1.0,
-                          curve: Curves.fastOutSlowIn),
-                    ),
-                  );
-                  animationController?.forward();
-                  return CategoryView(
-                    callback: widget.callBack,
-                    category: Provider.of<MyAppState>(context).courseList[index],
-                    animation: animation,
-                    animationController: animationController,
-                  );
-                },
-              ),
-            );
-          }
-        },
-      ),
+    return Consumer<MyAppState>(
+      builder: (context, appState, child) {
+        if (appState.isEmpty) {
+          return const SizedBox(
+              // height: 134,
+              child: Center(
+                  child: SizedBox(
+                      child: CircularProgressIndicator(
+            value: null,
+            color: DesignCourseAppTheme.nearlyBlue,
+          ))));
+        } else {
+          return GridView(
+            padding: const EdgeInsets.all(8),
+            physics: const BouncingScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 32.0,
+              crossAxisSpacing: 32.0,
+              childAspectRatio: 0.8,
+            ),
+            children: List<Widget>.generate(
+              appState.courseList.length,
+              (int index) {
+                final int count =
+                    appState.courseList.length;
+                final Animation<double> animation =
+                    Tween<double>(begin: 0.0, end: 1.0).animate(
+                  CurvedAnimation(
+                    parent: animationController!,
+                    curve: Interval((1 / count) * index, 1.0,
+                        curve: Curves.fastOutSlowIn),
+                  ),
+                );
+                animationController?.forward();
+                return CategoryView(
+                  callback: (course) {
+                          if (widget.callBack != null) widget.callBack!(course);
+                        },
+                  course: appState.courseList[index],
+                  animation: animation,
+                  animationController: animationController,
+                );
+              },
+            ),
+          );
+        }
+      },
     );
   }
 }
@@ -94,14 +88,14 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
 class CategoryView extends StatelessWidget {
   const CategoryView(
       {Key? key,
-      this.category,
+      required this.course,
       this.animationController,
       this.animation,
-      this.callback})
+      required this.callback})
       : super(key: key);
 
-  final VoidCallback? callback;
-  final Category? category;
+  final Function(Course) callback;
+  final Course course;
   final AnimationController? animationController;
   final Animation<double>? animation;
 
@@ -117,7 +111,7 @@ class CategoryView extends StatelessWidget {
                 0.0, 50 * (1.0 - animation!.value), 0.0),
             child: InkWell(
               splashColor: Colors.transparent,
-              onTap: callback,
+              onTap: () => callback(course),
               child: SizedBox(
                 height: 280,
                 child: Stack(
@@ -145,7 +139,7 @@ class CategoryView extends StatelessWidget {
                                             padding: const EdgeInsets.only(
                                                 top: 16, left: 16, right: 16),
                                             child: Text(
-                                              category!.title,
+                                              course.title,
                                               textAlign: TextAlign.left,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w600,
@@ -170,7 +164,7 @@ class CategoryView extends StatelessWidget {
                                                   CrossAxisAlignment.center,
                                               children: <Widget>[
                                                 Text(
-                                                  '${category!.lessonCount} lesson',
+                                                  '${course.lessonCount} lesson',
                                                   textAlign: TextAlign.left,
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w200,
@@ -184,7 +178,7 @@ class CategoryView extends StatelessWidget {
                                                   child: Row(
                                                     children: <Widget>[
                                                       Text(
-                                                        '${category!.rating}',
+                                                        '${course.rating}',
                                                         textAlign:
                                                             TextAlign.left,
                                                         style: TextStyle(
@@ -248,7 +242,7 @@ class CategoryView extends StatelessWidget {
                                 const BorderRadius.all(Radius.circular(16.0)),
                             child: AspectRatio(
                                 aspectRatio: 1.28,
-                                child: Image.asset(category!.imagePath)),
+                                child: Image.asset(course.imagePath)),
                           ),
                         ),
                       ),

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:samples_design_course/src/alert_dialog.dart';
 import 'design_course_app_theme.dart';
+import 'models/course.dart';
 
 class CourseInfoScreen extends StatefulWidget {
   final Function(BuildContext) onBack;
-  CourseInfoScreen({required this.onBack});
+  final Course course;
+  CourseInfoScreen({required this.course, required this.onBack});
   @override
   _CourseInfoScreenState createState() => _CourseInfoScreenState();
 }
@@ -70,7 +73,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
               children: <Widget>[
                 AspectRatio(
                   aspectRatio: 1.2,
-                  child: Image.asset('assets/design_course/webInterFace.png'),
+                  child: Image.asset(widget.course.imagePath),
                 ),
               ],
             ),
@@ -109,7 +112,9 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                             padding: const EdgeInsets.only(
                                 top: 32.0, left: 18, right: 16),
                             child: Text(
-                              'Web Design\nCourse',
+                              widget.course.isActive
+                                  ? widget.course.title
+                                  : '${widget.course.title} (Inactive)',
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
@@ -127,7 +132,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  '\$28.99',
+                                  '\$${widget.course.money}',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w200,
@@ -140,7 +145,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                   child: Row(
                                     children: <Widget>[
                                       Text(
-                                        '4.3',
+                                        widget.course.rating.toStringAsFixed(1),
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
                                           fontWeight: FontWeight.w200,
@@ -167,9 +172,11 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                               padding: const EdgeInsets.all(8),
                               child: Row(
                                 children: <Widget>[
-                                  getTimeBoxUI('24', 'Classe'),
-                                  getTimeBoxUI('2hours', 'Time'),
-                                  getTimeBoxUI('24', 'Seat'),
+                                  getTimeBoxUI(
+                                      widget.course.lessonCount.toString(),
+                                      'Lessons'),
+                                  getTimeBoxUI(
+                                      widget.course.seats.toString(), 'Seat'),
                                 ],
                               ),
                             ),
@@ -219,10 +226,19 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                             color: DesignCourseAppTheme.grey
                                                 .withOpacity(0.2)),
                                       ),
-                                      child: Icon(
-                                        Icons.add,
-                                        color: DesignCourseAppTheme.nearlyBlue,
-                                        size: 28,
+                                      child: IconButton(
+                                        icon: const Icon(Icons.add,
+                                            size: 28,
+                                            color: DesignCourseAppTheme
+                                                .nearlyBlue),
+                                        onPressed: () {
+                                          if (widget.course.isActive) {
+                                            showDialog(
+                                                context: context,
+                                                builder: (_) =>
+                                                    CourseAlertDialog());
+                                          }
+                                        },
                                       ),
                                     ),
                                   ),
@@ -233,31 +249,48 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                     child: Container(
                                       height: 48,
                                       decoration: BoxDecoration(
-                                        color: DesignCourseAppTheme.nearlyBlue,
+                                        color: widget.course.isActive
+                                            ? DesignCourseAppTheme.nearlyBlue
+                                            : DesignCourseAppTheme.grey,
                                         borderRadius: const BorderRadius.all(
                                           Radius.circular(16.0),
                                         ),
                                         boxShadow: <BoxShadow>[
                                           BoxShadow(
-                                              color: DesignCourseAppTheme
-                                                  .nearlyBlue
+                                              color: (widget.course.isActive
+                                                      ? DesignCourseAppTheme
+                                                          .nearlyBlue
+                                                      : DesignCourseAppTheme
+                                                          .grey)
                                                   .withOpacity(0.5),
                                               offset: const Offset(1.1, 1.1),
                                               blurRadius: 10.0),
                                         ],
                                       ),
                                       child: Center(
-                                        child: Text(
-                                          'Join Course',
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18,
-                                            letterSpacing: 0.0,
-                                            color: DesignCourseAppTheme
-                                                .nearlyWhite,
-                                          ),
-                                        ),
+                                        child: TextButton(
+                                            onPressed: () {
+                                              if (widget.course.isActive) {
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (_) =>
+                                                        CourseAlertDialog());
+                                              }
+                                            },
+                                            child: Text(
+                                              'Join Course',
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 18,
+                                                letterSpacing: 0.0,
+                                                color: widget.course.isActive
+                                                    ? DesignCourseAppTheme
+                                                        .nearlyWhite
+                                                    : DesignCourseAppTheme
+                                                        .deactivatedText,
+                                              ),
+                                            )),
                                       ),
                                     ),
                                   )

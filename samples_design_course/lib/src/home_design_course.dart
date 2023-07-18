@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'category_list_view.dart';
 import 'course_info_screen.dart';
+import 'models/course.dart';
 import 'popular_course_list_view.dart';
 import 'hex_color.dart';
 import 'design_course_app_theme.dart';
@@ -34,14 +35,14 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                       getSearchBarUI(),
                       CategoryUI(
                           categoryType: categoryType,
-                          callBack: () => moveTo(),
+                          callBack: (course) => moveTo(course),
                           onTap: (CategoryType categoryTypeData) {
                             setState(() {
                               categoryType = categoryTypeData;
                             });
                           }),
                       Flexible(
-                        child: getPopularCourseUI(),
+                        child: getPopularCourseUI(callback: (course) => moveTo(course)),
                       ),
                     ],
                   ),
@@ -54,11 +55,12 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     );
   }
 
-  void moveTo() {
+  void moveTo(Course course) {
     Navigator.push<dynamic>(
       context,
       MaterialPageRoute<dynamic>(
         builder: (BuildContext context) => CourseInfoScreen(
+          course: course,
           onBack: (BuildContext context_) {
             Navigator.pop(context_);
           },
@@ -67,7 +69,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     );
   }
 
-  Widget getPopularCourseUI() {
+  Widget getPopularCourseUI({required Function(Course) callback}) {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 18, right: 16),
       child: Column(
@@ -75,7 +77,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const Text(
-            'Popular Course',
+            'Popular Courses',
             textAlign: TextAlign.left,
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -86,9 +88,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
           ),
           Flexible(
             child: PopularCourseListView(
-              callBack: () {
-                moveTo();
-              },
+              callBack: callback
             ),
           )
         ],
@@ -220,7 +220,7 @@ enum CategoryType {
 
 class CategoryUI extends StatelessWidget {
   final CategoryType categoryType;
-  final Function() callBack;
+  final Function(Course) callBack;
   final Function(CategoryType) onTap;
 
   CategoryUI(
