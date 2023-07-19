@@ -3,12 +3,12 @@ import 'category_list_view.dart';
 import 'course_info_screen.dart';
 import 'models/course.dart';
 import 'popular_course_list_view.dart';
-import 'hex_color.dart';
 import 'design_course_app_theme.dart';
 
 class DesignCourseHomeScreen extends StatefulWidget {
+  const DesignCourseHomeScreen({super.key});
   @override
-  _DesignCourseHomeScreenState createState() => _DesignCourseHomeScreenState();
+  State<DesignCourseHomeScreen> createState() => _DesignCourseHomeScreenState();
 }
 
 class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
@@ -28,7 +28,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
             getAppBarUI(),
             Expanded(
               child: SingleChildScrollView(
-                child: Container(
+                child: SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: Column(
                     children: <Widget>[
@@ -87,9 +87,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
             ),
           ),
           Flexible(
-            child: PopularCourseListView(
-              callBack: callback
-            ),
+            child: PopularCourseListView(callBack: callback),
           )
         ],
       ),
@@ -103,15 +101,15 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width * 0.75,
             height: 64,
             child: Padding(
               padding: const EdgeInsets.only(top: 8, bottom: 8),
               child: Container(
-                decoration: BoxDecoration(
-                  color: HexColor('#F8FAFB'),
-                  borderRadius: const BorderRadius.only(
+                decoration: const BoxDecoration(
+                  color: Color(0xFFF8FAFB),
+                  borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(13.0),
                     bottomLeft: Radius.circular(13.0),
                     topLeft: Radius.circular(13.0),
@@ -124,36 +122,36 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                       child: Container(
                         padding: const EdgeInsets.only(left: 16, right: 16),
                         child: TextFormField(
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'WorkSans',
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                             color: DesignCourseAppTheme.nearlyBlue,
                           ),
                           keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Search for course',
                             border: InputBorder.none,
                             helperStyle: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
-                              color: HexColor('#B9BABC'),
+                              color: Color(0xFFB9BABC),
                             ),
                             labelStyle: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               letterSpacing: 0.2,
-                              color: HexColor('#B9BABC'),
+                              color: Color(0xFFB9BABC),
                             ),
                           ),
                           onEditingComplete: () {},
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 60,
                       height: 60,
-                      child: Icon(Icons.search, color: HexColor('#B9BABC')),
+                      child: Icon(Icons.search, color: Color(0xFFB9BABC)),
                     )
                   ],
                 ),
@@ -173,7 +171,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
       padding: const EdgeInsets.only(top: 8.0, left: 18, right: 18),
       child: Row(
         children: <Widget>[
-          Expanded(
+          const Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -201,7 +199,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
               ],
             ),
           ),
-          Container(
+          SizedBox(
             width: 60,
             height: 60,
             child: Image.asset('assets/design_course/userImage.png'),
@@ -223,19 +221,22 @@ class CategoryUI extends StatelessWidget {
   final Function(Course) callBack;
   final Function(CategoryType) onTap;
 
-  CategoryUI(
-      {required this.categoryType,
-      required this.callBack,
-      required this.onTap});
+  const CategoryUI({
+    super.key,
+    required this.categoryType,
+    required this.callBack,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
+    const spacer = SizedBox(width: 16);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(top: 8.0, left: 18, right: 16),
+        const Padding(
+          padding: EdgeInsets.only(top: 8.0, left: 18, right: 16),
           child: Text(
             'Category',
             textAlign: TextAlign.left,
@@ -247,38 +248,38 @@ class CategoryUI extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(
-          height: 16,
-        ),
+        const SizedBox(height: 16),
         Padding(
           padding: const EdgeInsets.only(left: 16, right: 16),
           child: Row(
             children: <Widget>[
               ButtonUi(
-                  categoryTypeData: CategoryType.ui,
-                  isSelected: categoryType == CategoryType.ui,
-                  onTap: onTap),
-              const SizedBox(
-                width: 16,
+                categoryTypeData: CategoryType.ui,
+                isSelected: categoryType == CategoryType.ui,
+                onTap: onTap,
               ),
+              spacer,
               ButtonUi(
-                  categoryTypeData: CategoryType.coding,
-                  isSelected: categoryType == CategoryType.coding,
-                  onTap: onTap),
-              const SizedBox(
-                width: 16,
+                categoryTypeData: CategoryType.coding,
+                isSelected: categoryType == CategoryType.coding,
+                onTap: onTap,
               ),
+              spacer,
               ButtonUi(
-                  categoryTypeData: CategoryType.basic,
-                  isSelected: categoryType == CategoryType.basic,
-                  onTap: onTap),
+                categoryTypeData: CategoryType.basic,
+                isSelected: categoryType == CategoryType.basic,
+                onTap: onTap,
+              ),
             ],
           ),
         ),
         const SizedBox(
           height: 16,
         ),
-        CategoryListView(callBack: callBack),
+        CategoryListView(
+          callBack: callBack,
+          categoryType: categoryType,
+        ),
       ],
     );
   }
@@ -289,16 +290,18 @@ class ButtonUi extends StatelessWidget {
   final bool isSelected;
   final Function(CategoryType) onTap;
 
-  ButtonUi(
-      {required this.categoryTypeData,
-      required this.isSelected,
-      required this.onTap});
+  const ButtonUi({
+    super.key,
+    required this.categoryTypeData,
+    required this.isSelected,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     String txt = '';
     if (CategoryType.ui == categoryTypeData) {
-      txt = 'Ui/Ux';
+      txt = 'UI/UX';
     } else if (CategoryType.coding == categoryTypeData) {
       txt = 'Coding';
     } else if (CategoryType.basic == categoryTypeData) {
@@ -307,11 +310,10 @@ class ButtonUi extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-            color: isSelected
-                ? DesignCourseAppTheme.nearlyBlue
-                : DesignCourseAppTheme.nearlyWhite,
-            borderRadius: const BorderRadius.all(Radius.circular(24.0)),
-            border: Border.all(color: DesignCourseAppTheme.nearlyBlue)),
+          color: isSelected ? DesignCourseAppTheme.nearlyBlue : DesignCourseAppTheme.nearlyWhite,
+          borderRadius: const BorderRadius.all(Radius.circular(24.0)),
+          border: Border.all(color: DesignCourseAppTheme.nearlyBlue),
+        ),
         child: Material(
           color: Colors.transparent,
           child: InkWell(
@@ -319,8 +321,7 @@ class ButtonUi extends StatelessWidget {
             borderRadius: const BorderRadius.all(Radius.circular(24.0)),
             onTap: () => onTap(categoryTypeData),
             child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 12, bottom: 12, left: 18, right: 18),
+              padding: const EdgeInsets.only(top: 12, bottom: 12, left: 18, right: 18),
               child: Center(
                 child: Text(
                   txt,
@@ -329,9 +330,7 @@ class ButtonUi extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 12,
                     letterSpacing: 0.27,
-                    color: isSelected
-                        ? DesignCourseAppTheme.nearlyWhite
-                        : DesignCourseAppTheme.nearlyBlue,
+                    color: isSelected ? DesignCourseAppTheme.nearlyWhite : DesignCourseAppTheme.nearlyBlue,
                   ),
                 ),
               ),

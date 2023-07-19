@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart' as f;
-import 'package:provider/provider.dart';
 
 import 'course.dart';
 

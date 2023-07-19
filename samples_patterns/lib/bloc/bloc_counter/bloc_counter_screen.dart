@@ -1,5 +1,3 @@
-import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,7 +30,7 @@ class BlocCounterView extends StatelessWidget {
       body: Center(
         child: BlocBuilder<CounterCubit, int>(
           builder: (context, state) {
-            return Text('$state', style: textTheme.headline2);
+            return Text('$state', style: textTheme.displayMedium);
           },
         ),
       ),

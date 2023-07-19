@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import '../localizations.dart';
 
 class SliderView extends StatefulWidget {
-  const SliderView({Key? key, this.onChangedistValue, this.distValue})
-      : super(key: key);
+  const SliderView({Key? key, this.onChangedistValue, this.distValue}) : super(key: key);
 
   final Function(double)? onChangedistValue;
   final double? distValue;
 
   @override
-  _SliderViewState createState() => _SliderViewState();
+  State<SliderView> createState() => _SliderViewState();
 }
 
 class _SliderViewState extends State<SliderView> {
@@ -24,53 +23,48 @@ class _SliderViewState extends State<SliderView> {
   @override
   Widget build(BuildContext context) {
     var loc = SampleLocalizations.of(context)!;
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Expanded(
-                flex: distValue.round(),
-                child: const SizedBox(),
-              ),
-              Container(
-                width: 170,
-                child: Text(
-                  '${loc.text('less-than')} ${(distValue / 10).toStringAsFixed(1)} Km',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2!
-                      .copyWith(fontSize: 16),
-                ),
-              ),
-              Expanded(
-                flex: 100 - distValue.round(),
-                child: const SizedBox(),
-              ),
-            ],
-          ),
-          SliderTheme(
-            data: SliderTheme.of(context).copyWith(
-              thumbShape: CustomThumbShape(),
+    return Column(
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Expanded(
+              flex: distValue.round(),
+              child: const SizedBox(),
             ),
-            child: Slider(
-              onChanged: (double value) {
-                setState(() {
-                  distValue = value;
-                });
-                try {
-                  widget.onChangedistValue!(distValue);
-                } catch (_) {}
-              },
-              min: 0,
-              max: 100,
-              divisions: 100,
-              value: distValue,
+            SizedBox(
+              width: 170,
+              child: Text(
+                '${loc.text('less-than')} ${(distValue / 10).toStringAsFixed(1)} Km',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16),
+              ),
             ),
+            Expanded(
+              flex: 100 - distValue.round(),
+              child: const SizedBox(),
+            ),
+          ],
+        ),
+        SliderTheme(
+          data: SliderTheme.of(context).copyWith(
+            thumbShape: CustomThumbShape(),
           ),
-        ],
-      ),
+          child: Slider(
+            onChanged: (double value) {
+              setState(() {
+                distValue = value;
+              });
+              try {
+                widget.onChangedistValue!(distValue);
+              } catch (_) {}
+            },
+            min: 0,
+            max: 100,
+            divisions: 100,
+            value: distValue,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -81,9 +75,7 @@ class CustomThumbShape extends SliderComponentShape {
 
   @override
   Size getPreferredSize(bool isEnabled, bool isDiscrete) {
-    return isEnabled
-        ? const Size.fromRadius(_thumbSize)
-        : const Size.fromRadius(_disabledThumbSize);
+    return isEnabled ? const Size.fromRadius(_thumbSize) : const Size.fromRadius(_disabledThumbSize);
   }
 
   static final Animatable<double> sizeTween = Tween<double>(
@@ -113,13 +105,11 @@ class CustomThumbShape extends SliderComponentShape {
     );
     canvas.drawPath(
         Path()
-          ..addOval(Rect.fromPoints(Offset(center.dx + 12, center.dy + 12),
-              Offset(center.dx - 12, center.dy - 12)))
+          ..addOval(Rect.fromPoints(Offset(center.dx + 12, center.dy + 12), Offset(center.dx - 12, center.dy - 12)))
           ..fillType = PathFillType.evenOdd,
         Paint()
           ..color = Colors.black.withOpacity(0.5)
-          ..maskFilter =
-              MaskFilter.blur(BlurStyle.normal, convertRadiusToSigma(8)));
+          ..maskFilter = MaskFilter.blur(BlurStyle.normal, convertRadiusToSigma(8)));
 
     final Paint cPaint = Paint();
     cPaint.color = Colors.white;

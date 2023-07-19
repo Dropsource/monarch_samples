@@ -13,10 +13,9 @@ class ProgressButton extends TextButton {
           key: key,
           onPressed: loading ? null : onPressed,
           style: TextButton.styleFrom(
-            primary: Colors.white,
+            foregroundColor: Colors.white,
             backgroundColor: Colors.teal,
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(5))),
+            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
           ),
           child: loading
               ? Padding(
@@ -24,9 +23,7 @@ class ProgressButton extends TextButton {
                   child: SizedBox(
                     width: 16,
                     height: 16,
-                    child: CircularProgressIndicator(
-                        valueColor:
-                            AlwaysStoppedAnimation<Color>(Colors.white)),
+                    child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
                   ))
               : Text(
                   text,

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:samples_design_course/src/design_course_app_theme.dart';
 
 class _CustomAlertDialog extends StatelessWidget {
-  _CustomAlertDialog(
-      {required this.title,
-      required this.content,
-      this.button1Text,
-      this.button1OnPressed,
-      this.button2Text,
-      this.button2OnPressed,
-      this.titleColor,
-      this.buttonTextColor = Colors.deepOrangeAccent,
-      this.contentColor});
+  const _CustomAlertDialog({
+    required this.title,
+    required this.content,
+    this.button1Text,
+    this.button1OnPressed,
+    this.button2Text,
+    this.button2OnPressed,
+    this.titleColor,
+    this.buttonTextColor = Colors.deepOrangeAccent,
+    this.contentColor,
+  });
 
   final String title;
   final Widget content;
@@ -31,15 +31,13 @@ class _CustomAlertDialog extends StatelessWidget {
       titlePadding: const EdgeInsets.all(15.0),
       contentPadding: const EdgeInsets.all(15.0),
       backgroundColor: theme.dialogBackgroundColor,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15.0))),
-      title: Text(title,
-          style: TextStyle(fontWeight: FontWeight.w100, fontSize: 15)),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.w100, fontSize: 15)),
       content: content,
       actions: <Widget>[
         if (button2Text != null) ...[
           TextButton(
-            key: Key('custom-dialog-negative-button-key'),
+            key: const Key('custom-dialog-negative-button-key'),
             onPressed: button2OnPressed,
             child: Text(button2Text!,
                 style: TextStyle(
@@ -49,7 +47,7 @@ class _CustomAlertDialog extends StatelessWidget {
         ],
         if (button1Text != null) ...[
           TextButton(
-            key: Key('custom-dialog-positive-button-key'),
+            key: const Key('custom-dialog-positive-button-key'),
             onPressed: button1OnPressed,
             child: Text(button1Text!,
                 style: TextStyle(
@@ -75,9 +73,8 @@ class CustomAlertDialog extends _CustomAlertDialog {
       : super(
             title: title,
             content: content != null
-                ? Text(content,
-                    style: TextStyle(fontSize: 13, color: contentColor))
-                : SizedBox.shrink(),
+                ? Text(content, style: TextStyle(fontSize: 13, color: contentColor))
+                : const SizedBox.shrink(),
             button1Text: button1Text,
             button1OnPressed: button1OnPressed,
             button2Text: button2Text,
@@ -88,8 +85,7 @@ class CustomAlertDialog extends _CustomAlertDialog {
 class CourseAlertDialog extends CustomAlertDialog {
   CourseAlertDialog()
       : super(
-            content:
-                'Mauris sem neque, lobortis eget faucibus non, semper ut mi. Quisque '
+            content: 'Mauris sem neque, lobortis eget faucibus non, semper ut mi. Quisque '
                 'laoreet lacus nibh, sit amet commodo ipsum feugiat in. Pellentesque'
                 ' id diam sed orci dapibus ornare vitae id diam. Nam sollicitudin '
                 'consectetur nibh, eget cursus massa porta sed. Sed malesuada fringilla'

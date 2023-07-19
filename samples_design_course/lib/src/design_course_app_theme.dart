@@ -8,7 +8,7 @@ class DesignCourseAppTheme {
   static const Color nearlyBlue = Color(0xFF00B6F0);
   static const Color nearlyBlack = Color(0xFF213333);
   static const Color grey = Color(0xFF3A5160);
-  static const Color dark_grey = Color(0xFF313A44);
+  static const Color darkGrey = Color(0xFF313A44);
 
   static const Color darkText = Color(0xFF253840);
   static const Color darkerText = Color(0xFF17262A);
@@ -19,13 +19,13 @@ class DesignCourseAppTheme {
   static const Color spacer = Color(0xFFF2F2F2);
 
   static const TextTheme textTheme = TextTheme(
-    headline4: display1,
-    headline5: headline,
-    headline6: title,
-    subtitle2: subtitle,
-    bodyText1: body2,
-    bodyText2: body1,
-    caption: caption,
+    headlineMedium: display1,
+    headlineSmall: headline,
+    titleLarge: title,
+    titleSmall: subtitle,
+    bodyLarge: body2,
+    bodyMedium: body1,
+    bodySmall: caption,
   );
 
   static const TextStyle display1 = TextStyle(

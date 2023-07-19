@@ -4,28 +4,24 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'model/booking_list_data.dart';
 
-import 'package:flutter/widgets.dart';
-
 class BookingListAnimated extends StatefulWidget {
   final List<BookingListData> list;
 
-  BookingListAnimated({required this.list});
+  const BookingListAnimated({super.key, required this.list});
   @override
   State<StatefulWidget> createState() {
     return _BookingListAnimatedState();
   }
 }
 
-class _BookingListAnimatedState extends State<BookingListAnimated>
-    with TickerProviderStateMixin {
+class _BookingListAnimatedState extends State<BookingListAnimated> with TickerProviderStateMixin {
   late AnimationController animationController;
   _BookingListAnimatedState();
 
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(
-        duration: const Duration(milliseconds: 1000), vsync: this);
+    animationController = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
   }
 
   @override
@@ -41,13 +37,9 @@ class _BookingListAnimatedState extends State<BookingListAnimated>
       padding: const EdgeInsets.only(top: 8),
       scrollDirection: Axis.vertical,
       itemBuilder: (BuildContext context, int index) {
-        final int count =
-            widget.list.length > 10 ? 10 : widget.list.length;
-        final Animation<double> animation = Tween<double>(begin: 0.0, end: 1.0)
-            .animate(CurvedAnimation(
-                parent: animationController,
-                curve: Interval((1 / count) * index, 1.0,
-                    curve: Curves.fastOutSlowIn)));
+        final int count = widget.list.length > 10 ? 10 : widget.list.length;
+        final Animation<double> animation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: animationController, curve: Interval((1 / count) * index, 1.0, curve: Curves.fastOutSlowIn)));
         animationController.forward();
         return BookingItemAnimated(
           callback: () {},
@@ -61,12 +53,7 @@ class _BookingListAnimatedState extends State<BookingListAnimated>
 }
 
 class BookingItemAnimated extends StatelessWidget {
-  const BookingItemAnimated(
-      {Key? key,
-      this.itemData,
-      this.animationController,
-      this.animation,
-      this.callback})
+  const BookingItemAnimated({Key? key, this.itemData, this.animationController, this.animation, this.callback})
       : super(key: key);
 
   final VoidCallback? callback;
@@ -82,8 +69,7 @@ class BookingItemAnimated extends StatelessWidget {
         return FadeTransition(
           opacity: animation!,
           child: Transform(
-            transform: Matrix4.translationValues(
-                0.0, 50 * (1.0 - animation!.value), 0.0),
+            transform: Matrix4.translationValues(0.0, 50 * (1.0 - animation!.value), 0.0),
             child: _BookingItem(callback: callback, itemData: itemData),
           ),
         );
@@ -105,8 +91,7 @@ class _BookingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-          left: 24, right: 24, top: 8, bottom: 16),
+      padding: const EdgeInsets.only(left: 24, right: 24, top: 8, bottom: 16),
       child: InkWell(
         splashColor: Colors.transparent,
         onTap: callback,
@@ -141,115 +126,90 @@ class _BookingItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Expanded(
-                            child: Container(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 16, top: 8, bottom: 8),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      itemData!.titleTxt,
-                                      textAlign: TextAlign.left,
-                                      style: Theme.of(context).textTheme.headline6
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(itemData!.titleTxt,
+                                      textAlign: TextAlign.left, style: Theme.of(context).textTheme.titleLarge),
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        itemData!.subTxt,
+                                        style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 13),
+                                      ),
+                                      const SizedBox(
+                                        width: 4,
+                                      ),
+                                      Icon(
+                                        FontAwesomeIcons.locationDot,
+                                        size: 12,
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          '${itemData!.dist.toStringAsFixed(1)} km to city',
+                                          overflow: TextOverflow.ellipsis,
+                                          style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 13),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 4),
+                                    child: Row(
                                       children: <Widget>[
-                                        Text(
-                                          itemData!.subTxt,
-                                          style: Theme.of(context).textTheme.caption!.copyWith(fontSize: 13),
-                                        ),
-                                        const SizedBox(
-                                          width: 4,
-                                        ),
-                                        Icon(
-                                          FontAwesomeIcons.mapMarkerAlt,
-                                          size: 12,
-                                          color: Theme.of(context)
-                                              .primaryColor,
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            '${itemData!.dist.toStringAsFixed(1)} km to city',
-                                            overflow:
-                                                TextOverflow.ellipsis,
-                                            style: Theme.of(context).textTheme.caption!.copyWith(fontSize: 13),
+                                        RatingBar(
+                                          initialRating: itemData!.rating,
+                                          direction: Axis.horizontal,
+                                          allowHalfRating: true,
+                                          itemCount: 5,
+                                          itemSize: 24,
+                                          ratingWidget: RatingWidget(
+                                            full: Icon(
+                                              Icons.star_rate_rounded,
+                                              color: Theme.of(context).primaryColor,
+                                            ),
+                                            half: Icon(
+                                              Icons.star_half_rounded,
+                                              color: Theme.of(context).primaryColor,
+                                            ),
+                                            empty: Icon(
+                                              Icons.star_border_rounded,
+                                              color: Theme.of(context).primaryColor,
+                                            ),
                                           ),
+                                          itemPadding: EdgeInsets.zero,
+                                          onRatingUpdate: (rating) {
+                                            // print(rating);
+                                          },
+                                        ),
+                                        Text(
+                                          ' ${itemData!.reviews} Reviews',
+                                          style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 13),
                                         ),
                                       ],
                                     ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(top: 4),
-                                      child: Row(
-                                        children: <Widget>[
-                                          RatingBar(
-                                            initialRating:
-                                                itemData!.rating,
-                                            direction: Axis.horizontal,
-                                            allowHalfRating: true,
-                                            itemCount: 5,
-                                            itemSize: 24,
-                                            ratingWidget: RatingWidget(
-                                              full: Icon(
-                                                Icons.star_rate_rounded,
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                              ),
-                                              half: Icon(
-                                                Icons.star_half_rounded,
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                              ),
-                                              empty: Icon(
-                                                Icons
-                                                    .star_border_rounded,
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                              ),
-                                            ),
-                                            itemPadding:
-                                                EdgeInsets.zero,
-                                            onRatingUpdate: (rating) {
-                                              // print(rating);
-                                            },
-                                          ),
-                                          Text(
-                                            ' ${itemData!.reviews} Reviews',
-                                            style: Theme.of(context).textTheme.caption!.copyWith(fontSize: 13),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(
-                                right: 16, top: 8),
+                            padding: const EdgeInsets.only(right: 16, top: 8),
                             child: Column(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.center,
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: <Widget>[
-                                Text(
-                                  '\$${itemData!.perNight}',
-                                  textAlign: TextAlign.left,
-                                  style: Theme.of(context).textTheme.headline6
-                                ),
+                                Text('\$${itemData!.perNight}',
+                                    textAlign: TextAlign.left, style: Theme.of(context).textTheme.titleLarge),
                                 Text(
                                   '/per night',
-                                  style: Theme.of(context).textTheme.caption!.copyWith(fontSize: 13),
+                                  style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 13),
                                 ),
                               ],
                             ),

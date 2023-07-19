@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -26,19 +24,17 @@ class CalendarPopUp extends StatefulWidget {
 
   final Function()? onCancelClick;
   @override
-  _CalendarPopUpState createState() => _CalendarPopUpState();
+  State<CalendarPopUp> createState() => _CalendarPopUpState();
 }
 
-class _CalendarPopUpState extends State<CalendarPopUp>
-    with TickerProviderStateMixin {
+class _CalendarPopUpState extends State<CalendarPopUp> with TickerProviderStateMixin {
   AnimationController? animationController;
   DateTime? startDate;
   DateTime? endDate;
 
   @override
   void initState() {
-    animationController = AnimationController(
-        duration: const Duration(milliseconds: 400), vsync: this);
+    animationController = AnimationController(duration: const Duration(milliseconds: 400), vsync: this);
     if (widget.initialStartDate != null) {
       startDate = widget.initialStartDate;
     }
@@ -82,20 +78,16 @@ class _CalendarPopUpState extends State<CalendarPopUp>
                     child: Container(
                       decoration: BoxDecoration(
                         color: Theme.of(context).dialogBackgroundColor,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(24.0)),
+                        borderRadius: const BorderRadius.all(Radius.circular(24.0)),
                         boxShadow: <BoxShadow>[
                           BoxShadow(
-                              color: Theme.of(context)
-                                  .shadowColor
-                                  .withOpacity(0.2),
+                              color: Theme.of(context).shadowColor.withOpacity(0.2),
                               offset: const Offset(4, 4),
                               blurRadius: 8.0),
                         ],
                       ),
                       child: InkWell(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(24.0)),
+                        borderRadius: const BorderRadius.all(Radius.circular(24.0)),
                         onTap: () {},
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -107,28 +99,22 @@ class _CalendarPopUpState extends State<CalendarPopUp>
                                 Expanded(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
                                     children: <Widget>[
-                                      Text('From',
-                                          textAlign: TextAlign.left,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2),
+                                      Text(
+                                        'From',
+                                        textAlign: TextAlign.left,
+                                        style: Theme.of(context).textTheme.bodyMedium,
+                                      ),
                                       const SizedBox(
                                         height: 4,
                                       ),
                                       Text(
-                                        startDate != null
-                                            ? DateFormat('EEE, dd MMM')
-                                                .format(startDate!)
-                                            : '--/-- ',
+                                        startDate != null ? DateFormat('EEE, dd MMM').format(startDate!) : '--/-- ',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyText1!
-                                            .copyWith(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
+                                            .bodyLarge!
+                                            .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   ),
@@ -141,27 +127,18 @@ class _CalendarPopUpState extends State<CalendarPopUp>
                                 Expanded(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
                                     children: <Widget>[
-                                      Text('To',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2),
+                                      Text('To', style: Theme.of(context).textTheme.bodyMedium),
                                       const SizedBox(
                                         height: 4,
                                       ),
                                       Text(
-                                        endDate != null
-                                            ? DateFormat('EEE, dd MMM')
-                                                .format(endDate!)
-                                            : '--/-- ',
+                                        endDate != null ? DateFormat('EEE, dd MMM').format(endDate!) : '--/-- ',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyText1!
-                                            .copyWith(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
+                                            .bodyLarge!
+                                            .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   ),
@@ -176,8 +153,7 @@ class _CalendarPopUpState extends State<CalendarPopUp>
                               maximumDate: widget.maximumDate,
                               initialEndDate: widget.initialEndDate,
                               initialStartDate: widget.initialStartDate,
-                              startEndDateChange: (DateTime startDateData,
-                                  DateTime endDateData) {
+                              startEndDateChange: (DateTime startDateData, DateTime endDateData) {
                                 setState(() {
                                   startDate = startDateData;
                                   endDate = endDateData;
@@ -185,14 +161,12 @@ class _CalendarPopUpState extends State<CalendarPopUp>
                               },
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 16, right: 16, bottom: 16, top: 8),
+                              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 8),
                               child: Container(
                                 height: 48,
                                 decoration: BoxDecoration(
                                   color: Theme.of(context).primaryColor,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(24.0)),
+                                  borderRadius: const BorderRadius.all(Radius.circular(24.0)),
                                   // boxShadow: <BoxShadow>[
                                   //   BoxShadow(
                                   //     color: Theme.of(context).shadowColor.withOpacity(0.6),
@@ -204,13 +178,11 @@ class _CalendarPopUpState extends State<CalendarPopUp>
                                 child: Material(
                                   color: Colors.transparent,
                                   child: InkWell(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(24.0)),
+                                    borderRadius: const BorderRadius.all(Radius.circular(24.0)),
                                     highlightColor: Colors.transparent,
                                     onTap: () {
                                       if (widget.onApplyClick != null) {
-                                        widget.onApplyClick!(
-                                            startDate!, endDate!);
+                                        widget.onApplyClick!(startDate!, endDate!);
                                       }
                                       Navigator.pop(context);
                                     },
@@ -219,10 +191,8 @@ class _CalendarPopUpState extends State<CalendarPopUp>
                                         'Apply',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .headline6!
-                                            .copyWith(
-                                                color: Theme.of(context)
-                                                    .cardColor),
+                                            .titleLarge!
+                                            .copyWith(color: Theme.of(context).cardColor),
                                       ),
                                     ),
                                   ),

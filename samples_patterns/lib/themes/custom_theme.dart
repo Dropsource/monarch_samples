@@ -11,17 +11,17 @@ ThemeData get monarchTheme => ThemeData.dark().copyWith(
         ThemeData.dark().colorScheme.copyWith(secondary: monarchAccentColor),
     scaffoldBackgroundColor: monarchBackgroundColor,
     textTheme: TextTheme(
-        headline5: TextStyle(
+        headlineSmall: TextStyle(
             color: monarchPrimaryColor,
             fontSize: 34.0,
             fontWeight: FontWeight.w600),
-        headline6: TextStyle(
+        titleLarge: TextStyle(
             color: monarchPrimaryColor,
             fontSize: 26,
             fontWeight: FontWeight.w600),
-        bodyText1: TextStyle(
+        bodyLarge: TextStyle(
             color: monarchTextColor, fontSize: 20, fontWeight: FontWeight.w600),
-        bodyText2: TextStyle(
+        bodyMedium: TextStyle(
             color: monarchTextColor,
             fontSize: 14,
             fontWeight: FontWeight.w500)));

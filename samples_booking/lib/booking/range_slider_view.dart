@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 class RangeSliderView extends StatefulWidget {
-  const RangeSliderView({Key? key, this.values, this.onChangeRangeValues})
-      : super(key: key);
+  const RangeSliderView({Key? key, this.values, this.onChangeRangeValues}) : super(key: key);
 
   final Function(RangeValues)? onChangeRangeValues;
   final RangeValues? values;
 
   @override
-  _RangeSliderViewState createState() => _RangeSliderViewState();
+  State<RangeSliderView> createState() => _RangeSliderViewState();
 }
 
 class _RangeSliderViewState extends State<RangeSliderView> {
@@ -22,80 +21,72 @@ class _RangeSliderViewState extends State<RangeSliderView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: _values!.start.round(),
-                    child: const SizedBox(),
+    return Column(
+      children: <Widget>[
+        Stack(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Expanded(
+                  flex: _values!.start.round(),
+                  child: const SizedBox(),
+                ),
+                SizedBox(
+                  width: 54,
+                  child: Text(
+                    '\$${_values!.start.round()}',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 18),
                   ),
-                  Container(
-                    width: 54,
-                    child: Text(
-                      '\$${_values!.start.round()}',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText2!
-                          .copyWith(fontSize: 18),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1000 - _values!.start.round(),
-                    child: const SizedBox(),
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: _values!.end.round(),
-                    child: const SizedBox(),
-                  ),
-                  Container(
-                    width: 54,
-                    child: Text(
-                      '\$${_values!.end.round()}',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText2!
-                          .copyWith(fontSize: 18),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1000 - _values!.end.round(),
-                    child: const SizedBox(),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          SliderTheme(
-            data: SliderTheme.of(context).copyWith(
-              rangeThumbShape: CustomRangeThumbShape(),
+                ),
+                Expanded(
+                  flex: 1000 - _values!.start.round(),
+                  child: const SizedBox(),
+                ),
+              ],
             ),
-            child: RangeSlider(
-              values: _values!,
-              min: 0.0,
-              max: 1000.0,
-              divisions: 1000,
-              onChanged: (RangeValues values) {
-                try {
-                  setState(() {
-                    _values = values;
-                  });
-                  widget.onChangeRangeValues!(_values!);
-                } catch (_) {}
-              },
+            Row(
+              children: <Widget>[
+                Expanded(
+                  flex: _values!.end.round(),
+                  child: const SizedBox(),
+                ),
+                SizedBox(
+                  width: 54,
+                  child: Text(
+                    '\$${_values!.end.round()}',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 18),
+                  ),
+                ),
+                Expanded(
+                  flex: 1000 - _values!.end.round(),
+                  child: const SizedBox(),
+                ),
+              ],
             ),
+          ],
+        ),
+        SliderTheme(
+          data: SliderTheme.of(context).copyWith(
+            rangeThumbShape: CustomRangeThumbShape(),
           ),
-        ],
-      ),
+          child: RangeSlider(
+            values: _values!,
+            min: 0.0,
+            max: 1000.0,
+            divisions: 1000,
+            onChanged: (RangeValues values) {
+              try {
+                setState(() {
+                  _values = values;
+                });
+                widget.onChangeRangeValues!(_values!);
+              } catch (_) {}
+            },
+          ),
+        ),
+      ],
     );
   }
 }
@@ -106,9 +97,7 @@ class CustomRangeThumbShape extends RangeSliderThumbShape {
 
   @override
   Size getPreferredSize(bool isEnabled, bool isDiscrete) {
-    return isEnabled
-        ? const Size.fromRadius(_thumbSize)
-        : const Size.fromRadius(_disabledThumbSize);
+    return isEnabled ? const Size.fromRadius(_thumbSize) : const Size.fromRadius(_disabledThumbSize);
   }
 
   static final Animatable<double> sizeTween = Tween<double>(
@@ -163,13 +152,11 @@ class CustomRangeThumbShape extends RangeSliderThumbShape {
 
     canvas.drawPath(
         Path()
-          ..addOval(Rect.fromPoints(Offset(center.dx + 12, center.dy + 12),
-              Offset(center.dx - 12, center.dy - 12)))
+          ..addOval(Rect.fromPoints(Offset(center.dx + 12, center.dy + 12), Offset(center.dx - 12, center.dy - 12)))
           ..fillType = PathFillType.evenOdd,
         Paint()
           ..color = Colors.black.withOpacity(0.5)
-          ..maskFilter =
-              MaskFilter.blur(BlurStyle.normal, convertRadiusToSigma(8)));
+          ..maskFilter = MaskFilter.blur(BlurStyle.normal, convertRadiusToSigma(8)));
 
     final Paint cPaint = Paint();
     cPaint.color = Colors.white;
@@ -194,6 +181,5 @@ class CustomRangeThumbShape extends RangeSliderThumbShape {
     return thumbPath;
   }
 
-  Path _leftTriangle(double size, Offset thumbCenter) =>
-      _rightTriangle(size, thumbCenter, invert: true);
+  Path _leftTriangle(double size, Offset thumbCenter) => _rightTriangle(size, thumbCenter, invert: true);
 }

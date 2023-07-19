@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'calendar_popup.dart';
 import 'booking_list.dart';
 import 'model/booking_list_data.dart';
@@ -8,8 +7,9 @@ import 'package:intl/intl.dart';
 import 'filters_screen.dart';
 
 class BookingHomeScreen extends StatefulWidget {
+  const BookingHomeScreen({super.key});
   @override
-  _BookingHomeScreenState createState() => _BookingHomeScreenState();
+  State<BookingHomeScreen> createState() => _BookingHomeScreenState();
 }
 
 class _BookingHomeScreenState extends State<BookingHomeScreen> {
@@ -33,70 +33,59 @@ class _BookingHomeScreenState extends State<BookingHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Scaffold(
-        body: Stack(
-          children: <Widget>[
-            InkWell(
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              onTap: () {
-                FocusScope.of(context).requestFocus(FocusNode());
-              },
-              child: Column(
-                children: <Widget>[
-                  BookingAppBar(),
-                  Expanded(
-                    child: NestedScrollView(
-                      controller: _scrollController,
-                      headerSliverBuilder:
-                          (BuildContext context, bool innerBoxIsScrolled) {
-                        return <Widget>[
-                          SliverList(
-                            delegate: SliverChildBuilderDelegate(
-                                (BuildContext context, int index) {
-                              return Column(
-                                children: <Widget>[
-                                  BookingSearchBar(),
-                                  BookingChooseSection(
-                                      startDate: DateTime.now(),
-                                      endDate: DateTime.now()
-                                          .add(const Duration(days: 5))),
-                                ],
-                              );
-                            }, childCount: 1),
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            onTap: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+            },
+            child: Column(
+              children: <Widget>[
+                BookingAppBar(),
+                Expanded(
+                  child: NestedScrollView(
+                    controller: _scrollController,
+                    headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+                      return <Widget>[
+                        SliverList(
+                          delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+                            return Column(
+                              children: <Widget>[
+                                BookingSearchBar(),
+                                BookingChooseSection(
+                                    startDate: DateTime.now(), endDate: DateTime.now().add(const Duration(days: 5))),
+                              ],
+                            );
+                          }, childCount: 1),
+                        ),
+                        SliverPersistentHeader(
+                          pinned: true,
+                          floating: true,
+                          delegate: ContestTabHeader(
+                            BookingFilterBar(),
                           ),
-                          SliverPersistentHeader(
-                            pinned: true,
-                            floating: true,
-                            delegate: ContestTabHeader(
-                              BookingFilterBar(),
-                            ),
-                          ),
-                        ];
-                      },
-                      body: Container(
-                        color: Theme.of(context).cardColor,
-                        child: BookingListAnimated(list: hotelList)
-                      ),
-                    ),
-                  )
-                ],
-              ),
+                        ),
+                      ];
+                    },
+                    body: Container(color: Theme.of(context).cardColor, child: BookingListAnimated(list: hotelList)),
+                  ),
+                )
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
 class BookingFilterBar extends StatelessWidget {
-  const BookingFilterBar({
-    Key? key
-  }) : super(key: key);
+  const BookingFilterBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -111,10 +100,7 @@ class BookingFilterBar extends StatelessWidget {
             decoration: BoxDecoration(
               color: Theme.of(context).cardColor,
               boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    offset: const Offset(0, -2),
-                    blurRadius: 8.0),
+                BoxShadow(color: Colors.grey.withOpacity(0.2), offset: const Offset(0, -2), blurRadius: 8.0),
               ],
             ),
           ),
@@ -122,17 +108,14 @@ class BookingFilterBar extends StatelessWidget {
         Container(
           color: Theme.of(context).cardColor,
           child: Padding(
-            padding:
-                const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 4),
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 4),
             child: Row(
               children: <Widget>[
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      '530 hotels found',
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16)
-                    ),
+                    child:
+                        Text('530 hotels found', style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16)),
                   ),
                 ),
                 Material(
@@ -150,9 +133,7 @@ class BookingFilterBar extends StatelessWidget {
                       Navigator.push<dynamic>(
                         context,
                         MaterialPageRoute<dynamic>(
-                            builder: (BuildContext _) => Theme(
-                                data: Theme.of(context),
-                                child: FiltersScreen()),
+                            builder: (BuildContext _) => Theme(data: Theme.of(context), child: FiltersScreen()),
                             fullscreenDialog: true),
                       );
                     },
@@ -160,14 +141,10 @@ class BookingFilterBar extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 8),
                       child: Row(
                         children: <Widget>[
-                          Text(
-                            'Filter',
-                            style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16)
-                          ),
+                          Text('Filter', style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Icon(Icons.sort,
-                                color: Theme.of(context).primaryColor),
+                            child: Icon(Icons.sort, color: Theme.of(context).primaryColor),
                           ),
                         ],
                       ),
@@ -195,7 +172,11 @@ class BookingChooseSection extends StatelessWidget {
   final DateTime startDate;
   final DateTime endDate;
 
-  BookingChooseSection({required this.startDate, required this.endDate});
+  const BookingChooseSection({
+    super.key,
+    required this.startDate,
+    required this.endDate,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -221,23 +202,17 @@ class BookingChooseSection extends StatelessWidget {
                       showCalendarDialog(context);
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 8, right: 8, top: 4, bottom: 4),
+                      padding: const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 4),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            'Choose date',
-                            style: Theme.of(context).textTheme.caption!.copyWith(fontSize: 16)
-                          ),
+                          Text('Choose date', style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 16)),
                           const SizedBox(
                             height: 8,
                           ),
-                          Text(
-                            '${DateFormat("dd, MMM").format(startDate)} - ${DateFormat("dd, MMM").format(endDate)}',
-                            style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16)
-                          ),
+                          Text('${DateFormat("dd, MMM").format(startDate)} - ${DateFormat("dd, MMM").format(endDate)}',
+                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16)),
                         ],
                       ),
                     ),
@@ -271,23 +246,17 @@ class BookingChooseSection extends StatelessWidget {
                       FocusScope.of(context).requestFocus(FocusNode());
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 8, right: 8, top: 4, bottom: 4),
+                      padding: const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 4),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            'Number of rooms',
-                            style: Theme.of(context).textTheme.caption!.copyWith(fontSize: 16)
-                          ),
+                          Text('Number of rooms', style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 16)),
                           const SizedBox(
                             height: 8,
                           ),
-                          Text(
-                            '1 Room - 2 Adults',
-                            style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16)
-                          ),
+                          Text('1 Room - 2 Adults',
+                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16)),
                         ],
                       ),
                     ),
@@ -340,11 +309,10 @@ class BookingSearchBar extends StatelessWidget {
                   ],
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 16, right: 16, top: 4, bottom: 4),
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
                   child: TextField(
                     onChanged: (String txt) {},
-                    style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 18),
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 18),
                     cursorColor: Theme.of(context).primaryColor,
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -378,10 +346,8 @@ class BookingSearchBar extends StatelessWidget {
                   FocusScope.of(context).requestFocus(FocusNode());
                 },
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Icon(FontAwesomeIcons.search,
-                      size: 20, color: Theme.of(context).cardColor)
-                ),
+                    padding: const EdgeInsets.all(16.0),
+                    child: Icon(FontAwesomeIcons.magnifyingGlass, size: 20, color: Theme.of(context).cardColor)),
               ),
             ),
           ),
@@ -402,15 +368,11 @@ class BookingAppBar extends StatelessWidget {
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: Theme.of(context).shadowColor.withOpacity(0.1),
-              offset: const Offset(0, 2),
-              blurRadius: 8.0),
+          BoxShadow(color: Theme.of(context).shadowColor.withOpacity(0.1), offset: const Offset(0, 2), blurRadius: 8.0),
         ],
       ),
       child: Padding(
-        padding: EdgeInsets.only(
-            top: MediaQuery.of(context).padding.top, left: 8, right: 8),
+        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top, left: 8, right: 8),
         child: Row(
           children: <Widget>[
             Container(
@@ -435,13 +397,10 @@ class BookingAppBar extends StatelessWidget {
             ),
             Expanded(
               child: Center(
-                child: Text(
-                  'Explore',
-                  style: Theme.of(context).textTheme.headline6
-                ),
+                child: Text('Explore', style: Theme.of(context).textTheme.titleLarge),
               ),
             ),
-            Container(
+            SizedBox(
               width: AppBar().preferredSize.height + 40,
               height: AppBar().preferredSize.height,
               child: Row(
@@ -470,7 +429,7 @@ class BookingAppBar extends StatelessWidget {
                       onTap: () {},
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(FontAwesomeIcons.mapMarkerAlt),
+                        child: Icon(FontAwesomeIcons.locationDot),
                       ),
                     ),
                   ),
@@ -491,8 +450,7 @@ class ContestTabHeader extends SliverPersistentHeaderDelegate {
   final Widget searchUI;
 
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return searchUI;
   }
 

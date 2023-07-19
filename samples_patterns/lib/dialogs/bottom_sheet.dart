@@ -15,12 +15,12 @@ class BottomSheetButton extends StatelessWidget {
                 builder: (ctx) => Container(
                     height: 200,
                     child: Center(
-                      child: Text('Bottom sheet',
-                          style: Theme.of(context).textTheme.headline6),
+                      child: Text('Bottom sheet', style: Theme.of(context).textTheme.titleLarge),
                     ))),
             style: TextButton.styleFrom(
-                primary: Theme.of(context).primaryColor,
-                backgroundColor: Theme.of(context).backgroundColor),
+              foregroundColor: Theme.of(context).primaryColor,
+              backgroundColor: Theme.of(context).colorScheme.background,
+            ),
             child: Text('Show bottom sheet')));
   }
 }
@@ -40,12 +40,11 @@ class ModalBottomSheetButton extends StatelessWidget {
                 builder: (ctx) => Container(
                     height: 200,
                     child: Center(
-                      child: Text('Modal bottom sheet',
-                          style: Theme.of(context).textTheme.headline6),
+                      child: Text('Modal bottom sheet', style: Theme.of(context).textTheme.titleLarge),
                     ))),
             style: TextButton.styleFrom(
-                primary: Theme.of(context).primaryColor,
-                backgroundColor: Theme.of(context).backgroundColor),
+                foregroundColor: Theme.of(context).primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.background),
             child: Text('Show modal bottom sheet')));
   }
 }
@@ -54,15 +53,12 @@ class ScaffoldBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child:
-              Text('Scaffold', style: Theme.of(context).textTheme.headline5)),
+      body: Center(child: Text('Scaffold', style: Theme.of(context).textTheme.headlineSmall)),
       bottomSheet: Container(
           height: 200,
           color: Theme.of(context).dialogBackgroundColor,
           child: Center(
-            child: Text('Scaffold bottom sheet',
-                style: Theme.of(context).textTheme.headline6),
+            child: Text('Scaffold bottom sheet', style: Theme.of(context).textTheme.titleLarge),
           )),
     );
   }

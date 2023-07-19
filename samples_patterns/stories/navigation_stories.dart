@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:monarch_samples_patterns/navigation/named_routes.dart';
 import 'package:monarch_samples_patterns/navigation/simple_navigation.dart';
 

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:monarch_samples_patterns/themes/custom_theme.dart';
 
@@ -101,7 +100,7 @@ class _CollapsableBoxState extends State<CollapsableBox>
           color: monarchPrimaryColor,
         ),
         Text('Monarch is awesome',
-            style: Theme.of(context).textTheme.headline5),
+            style: Theme.of(context).textTheme.headlineSmall),
         SizedBox(
           height: 80,
         )

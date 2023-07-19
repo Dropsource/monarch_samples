@@ -9,40 +9,41 @@ import 'package:samples_design_course/src/popular_course_list_view.dart';
 import 'package:samples_design_course/src/models/state.dart';
 import 'package:samples_design_course/src/models/course.dart';
 
-MyAppState get emptyAppState => MyAppState(categoryList: [], courseList: []);
+MyAppState get emptyAppState => MyAppState(
+      categoryList: [],
+      courseList: [],
+    );
 
 MyAppState get defaultAppState => MyAppState(
-    categoryList: Course.categoryList, courseList: Course.popularCourseList);
+      categoryList: Course.categoryList,
+      courseList: Course.popularCourseList,
+    );
 
-ChangeNotifierProvider<MyAppState> _provider(
-        {required MyAppState appState, required Widget child}) =>
-    ChangeNotifierProvider.value(value: appState, child: child);
+extension on Widget {
+  Widget story(MyAppState appState) => ChangeNotifierProvider.value(
+        value: appState,
+        child: this,
+      );
+}
 
-Widget home_loading() =>
-    _provider(appState: emptyAppState, child: DesignCourseHomeScreen());
-Widget home_loaded() =>
-    _provider(appState: defaultAppState, child: DesignCourseHomeScreen());
+Widget home_loading() => const DesignCourseHomeScreen().story(emptyAppState);
 
-Widget categories_loading() =>
-    _provider(appState: emptyAppState, child: CategoryListView());
-Widget categories_loaded() =>
-    _provider(appState: defaultAppState, child: CategoryListView());
+Widget home_loaded() => const DesignCourseHomeScreen().story(defaultAppState);
 
-Widget popular_courses_loading() => _provider(
-    appState: emptyAppState,
-    child: PopularCourseListView(callBack: (_) => null));
-Widget popular_courses_loaded() => _provider(
-    appState: defaultAppState,
-    child: PopularCourseListView(callBack: (_) => null));
+Widget categories_loading() => const CategoryListView().story(emptyAppState);
 
-Widget category_section() => _provider(
-    appState: defaultAppState,
-    child: CategoryUI(
-        categoryType: CategoryType.coding,
-        callBack: (_) => null,
-        onTap: (CategoryType categoryTypeData) {
-          return null;
-        }));
+Widget categories_loaded() => const CategoryListView().story(defaultAppState);
+
+Widget popular_courses_loading() => PopularCourseListView(callBack: (_) => null).story(emptyAppState);
+Widget popular_courses_loaded() => PopularCourseListView(callBack: (_) => null).story(defaultAppState);
+
+Widget category_section() => CategoryUI(
+      categoryType: CategoryType.coding,
+      callBack: (_) => null,
+      onTap: (CategoryType categoryTypeData) {
+        return null;
+      },
+    ).story(defaultAppState);
 
 Widget course_details_active() => CourseInfoScreen(
       course: Course(
@@ -52,6 +53,7 @@ Widget course_details_active() => CourseInfoScreen(
         money: 250,
         rating: 4.8,
         isActive: true,
+        categoryType: CategoryType.coding,
       ),
       onBack: (p0) => null,
     );
@@ -64,6 +66,7 @@ Widget course_details_inactive() => CourseInfoScreen(
         money: 250,
         rating: 4.8,
         isActive: false,
+        categoryType: CategoryType.coding,
       ),
       onBack: (p0) => null,
     );

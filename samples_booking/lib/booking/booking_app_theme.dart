@@ -7,7 +7,6 @@ ThemeData get bookingLightTheme => BookingAppTheme.buildLightTheme();
 @MonarchTheme('Booking Dark')
 ThemeData get bookingDarkTheme => BookingAppTheme.buildDarkTheme();
 
-
 const monarchPrimaryColor = Color(0xff00b3b8);
 const monarchAccentColor = Color(0xff00c5ca);
 
@@ -18,19 +17,19 @@ class BookingAppTheme {
   static TextTheme _buildTextTheme(TextTheme base) {
     const String fontName = 'WorkSans';
     return base.copyWith(
-      headline1: base.headline1?.copyWith(fontFamily: fontName),
-      headline2: base.headline2?.copyWith(fontFamily: fontName),
-      headline3: base.headline3?.copyWith(fontFamily: fontName),
-      headline4: base.headline4?.copyWith(fontFamily: fontName),
-      headline5: base.headline5?.copyWith(fontFamily: fontName),
-      headline6: base.headline6?.copyWith(fontFamily: fontName),
-      button: base.button?.copyWith(fontFamily: fontName),
-      caption: base.caption?.copyWith(fontFamily: fontName),
-      bodyText1: base.bodyText1?.copyWith(fontFamily: fontName),
-      bodyText2: base.bodyText2?.copyWith(fontFamily: fontName),
-      subtitle1: base.subtitle1?.copyWith(fontFamily: fontName),
-      subtitle2: base.subtitle2?.copyWith(fontFamily: fontName),
-      overline: base.overline?.copyWith(fontFamily: fontName),
+      displayLarge: base.displayLarge?.copyWith(fontFamily: fontName),
+      displayMedium: base.displayMedium?.copyWith(fontFamily: fontName),
+      displaySmall: base.displaySmall?.copyWith(fontFamily: fontName),
+      headlineMedium: base.headlineMedium?.copyWith(fontFamily: fontName),
+      headlineSmall: base.headlineSmall?.copyWith(fontFamily: fontName),
+      titleLarge: base.titleLarge?.copyWith(fontFamily: fontName),
+      labelLarge: base.labelLarge?.copyWith(fontFamily: fontName),
+      bodySmall: base.bodySmall?.copyWith(fontFamily: fontName),
+      bodyLarge: base.bodyLarge?.copyWith(fontFamily: fontName),
+      bodyMedium: base.bodyMedium?.copyWith(fontFamily: fontName),
+      titleMedium: base.titleMedium?.copyWith(fontFamily: fontName),
+      titleSmall: base.titleSmall?.copyWith(fontFamily: fontName),
+      labelSmall: base.labelSmall?.copyWith(fontFamily: fontName),
     );
   }
 
@@ -42,7 +41,7 @@ class BookingAppTheme {
     return _buildTheme(colorScheme, base, Colors.grey);
   }
 
-  static ThemeData buildDarkTheme() { 
+  static ThemeData buildDarkTheme() {
     final ColorScheme colorScheme = const ColorScheme.dark().copyWith(
       primary: primaryColor,
     );

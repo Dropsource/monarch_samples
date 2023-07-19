@@ -29,7 +29,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: ChangeNotifierProvider.value(
-          value: appState, child: DesignCourseHomeScreen()),
+        value: appState,
+        child: const DesignCourseHomeScreen(),
+      ),
     );
   }
 }
