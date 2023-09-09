@@ -1,0 +1,57 @@
+name: monarch_samples_pretty
+description: Monarch pretty sample code using Best-Flutter-UI-Templates
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.3 <4.0.0'
+
+dependencies:
+  flutter:
+      sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  font_awesome_flutter: ^10.1.0
+  flutter_rating_bar: ^4.0.1
+  intl: ^0.18.0
+  animations: ^2.0.3
+  provider: ^6.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+  monarch: ^3.0.0
+  build_runner: ^2.1.11
+
+flutter:
+
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/design_course/
+    - assets/fitness_app/
+    - assets/introduction_animation/
+    # - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+
+  fonts:
+      - family: WorkSans
+        fonts:
+            - asset: assets/fonts/WorkSans-Regular.ttf
+            - asset: assets/fonts/WorkSans-Medium.ttf
+              weight: 500
+            - asset: assets/fonts/WorkSans-SemiBold.ttf
+              weight: 600
+            - asset: assets/fonts/WorkSans-Bold.ttf
+              weight: 700
+      - family: Roboto
+        fonts:
+            - asset: assets/fonts/Roboto-Bold.ttf
+            - asset: assets/fonts/Roboto-Regular.ttf
+            - asset: assets/fonts/Roboto-Medium.ttf
+              weight: 400
