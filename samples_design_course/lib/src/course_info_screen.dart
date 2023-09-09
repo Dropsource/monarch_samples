@@ -15,7 +15,8 @@ class CourseInfoScreen extends StatefulWidget {
   State<CourseInfoScreen> createState() => _CourseInfoScreenState();
 }
 
-class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProviderStateMixin {
+class _CourseInfoScreenState extends State<CourseInfoScreen>
+    with TickerProviderStateMixin {
   final double infoHeight = 364.0;
   AnimationController? animationController;
   Animation<double>? animation;
@@ -24,9 +25,11 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
   double opacity3 = 0.0;
   @override
   void initState() {
-    animationController = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
-    animation = Tween<double>(begin: 0.0, end: 1.0).animate(
-        CurvedAnimation(parent: animationController!, curve: const Interval(0, 1.0, curve: Curves.fastOutSlowIn)));
+    animationController = AnimationController(
+        duration: const Duration(milliseconds: 1000), vsync: this);
+    animation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+        parent: animationController!,
+        curve: const Interval(0, 1.0, curve: Curves.fastOutSlowIn)));
     setData();
     super.initState();
   }
@@ -61,7 +64,9 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
 
   @override
   Widget build(BuildContext context) {
-    final double tempHeight = MediaQuery.of(context).size.height - (MediaQuery.of(context).size.width / 1.2) + 24.0;
+    final double tempHeight = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).size.width / 1.2) +
+        24.0;
     return Container(
       color: DesignCourseAppTheme.nearlyWhite,
       child: Scaffold(
@@ -84,8 +89,9 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
               child: Container(
                 decoration: BoxDecoration(
                   color: DesignCourseAppTheme.nearlyWhite,
-                  borderRadius:
-                      const BorderRadius.only(topLeft: Radius.circular(32.0), topRight: Radius.circular(32.0)),
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(32.0),
+                      topRight: Radius.circular(32.0)),
                   boxShadow: <BoxShadow>[
                     BoxShadow(
                         color: DesignCourseAppTheme.grey.withOpacity(0.2),
@@ -98,15 +104,21 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
                   child: SingleChildScrollView(
                     child: Container(
                       constraints: BoxConstraints(
-                          minHeight: infoHeight, maxHeight: tempHeight > infoHeight ? tempHeight : infoHeight),
+                          minHeight: infoHeight,
+                          maxHeight: tempHeight > infoHeight
+                              ? tempHeight
+                              : infoHeight),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(top: 32.0, left: 18, right: 16),
+                            padding: const EdgeInsets.only(
+                                top: 32.0, left: 18, right: 16),
                             child: Text(
-                              widget.course.isActive ? widget.course.title : '${widget.course.title} (Inactive)',
+                              widget.course.isActive
+                                  ? widget.course.title
+                                  : '${widget.course.title} (Inactive)',
                               textAlign: TextAlign.left,
                               style: const TextStyle(
                                 fontWeight: FontWeight.w600,
@@ -117,7 +129,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8, top: 16),
+                            padding: const EdgeInsets.only(
+                                left: 16, right: 16, bottom: 8, top: 16),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -161,8 +174,11 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
                               padding: const EdgeInsets.all(8),
                               child: Row(
                                 children: <Widget>[
-                                  getTimeBoxUI(widget.course.lessonCount.toString(), 'Lessons'),
-                                  getTimeBoxUI(widget.course.seats.toString(), 'Seat'),
+                                  getTimeBoxUI(
+                                      widget.course.lessonCount.toString(),
+                                      'Lessons'),
+                                  getTimeBoxUI(
+                                      widget.course.seats.toString(), 'Seat'),
                                 ],
                               ),
                             ),
@@ -172,7 +188,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
                               duration: const Duration(milliseconds: 500),
                               opacity: opacity2,
                               child: const Padding(
-                                padding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
+                                padding: EdgeInsets.only(
+                                    left: 16, right: 16, top: 8, bottom: 8),
                                 child: Text(
                                   'Lorem ipsum is simply dummy text of printing & typesetting industry, Lorem ipsum is simply dummy text of printing & typesetting industry.',
                                   textAlign: TextAlign.justify,
@@ -192,7 +209,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
                             duration: const Duration(milliseconds: 500),
                             opacity: opacity3,
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
+                              padding: const EdgeInsets.only(
+                                  left: 16, bottom: 16, right: 16),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -206,13 +224,21 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
                                         borderRadius: const BorderRadius.all(
                                           Radius.circular(16.0),
                                         ),
-                                        border: Border.all(color: DesignCourseAppTheme.grey.withOpacity(0.2)),
+                                        border: Border.all(
+                                            color: DesignCourseAppTheme.grey
+                                                .withOpacity(0.2)),
                                       ),
                                       child: IconButton(
-                                        icon: const Icon(Icons.add, size: 28, color: DesignCourseAppTheme.nearlyBlue),
+                                        icon: const Icon(Icons.add,
+                                            size: 28,
+                                            color: DesignCourseAppTheme
+                                                .nearlyBlue),
                                         onPressed: () {
                                           if (widget.course.isActive) {
-                                            showDialog(context: context, builder: (_) => CourseAlertDialog());
+                                            showDialog(
+                                                context: context,
+                                                builder: (_) =>
+                                                    CourseAlertDialog());
                                           }
                                         },
                                       ),
@@ -234,8 +260,10 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
                                         boxShadow: <BoxShadow>[
                                           BoxShadow(
                                               color: (widget.course.isActive
-                                                      ? DesignCourseAppTheme.nearlyBlue
-                                                      : DesignCourseAppTheme.grey)
+                                                      ? DesignCourseAppTheme
+                                                          .nearlyBlue
+                                                      : DesignCourseAppTheme
+                                                          .grey)
                                                   .withOpacity(0.5),
                                               offset: const Offset(1.1, 1.1),
                                               blurRadius: 10.0),
@@ -245,7 +273,10 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
                                         child: TextButton(
                                             onPressed: () {
                                               if (widget.course.isActive) {
-                                                showDialog(context: context, builder: (_) => CourseAlertDialog());
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (_) =>
+                                                        CourseAlertDialog());
                                               }
                                             },
                                             child: Text(
@@ -256,8 +287,10 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
                                                 fontSize: 18,
                                                 letterSpacing: 0.0,
                                                 color: widget.course.isActive
-                                                    ? DesignCourseAppTheme.nearlyWhite
-                                                    : DesignCourseAppTheme.deactivatedText,
+                                                    ? DesignCourseAppTheme
+                                                        .nearlyWhite
+                                                    : DesignCourseAppTheme
+                                                        .deactivatedText,
                                               ),
                                             )),
                                       ),
@@ -277,30 +310,10 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
                 ),
               ),
             ),
-            Positioned(
-              top: (MediaQuery.of(context).size.width / 1.2) - 24.0 - 35,
-              right: 35,
-              child: ScaleTransition(
-                alignment: Alignment.center,
-                scale: CurvedAnimation(parent: animationController!, curve: Curves.fastOutSlowIn),
-                child: Card(
-                  color: DesignCourseAppTheme.nearlyBlue,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
-                  elevation: 10.0,
-                  child: const SizedBox(
-                    width: 60,
-                    height: 60,
-                    child: Center(
-                      child: Icon(
-                        Icons.favorite,
-                        color: DesignCourseAppTheme.nearlyWhite,
-                        size: 30,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            FavoriteButton(
+                offset: 35,
+                animation: CurvedAnimation(
+                    parent: animationController!, curve: Curves.fastOutSlowIn)),
             Padding(
               padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
               child: SizedBox(
@@ -309,7 +322,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
                 child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    borderRadius: BorderRadius.circular(AppBar().preferredSize.height),
+                    borderRadius:
+                        BorderRadius.circular(AppBar().preferredSize.height),
                     child: const Icon(
                       Icons.arrow_back_ios,
                       color: DesignCourseAppTheme.nearlyBlack,
@@ -336,11 +350,14 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
           borderRadius: const BorderRadius.all(Radius.circular(16.0)),
           boxShadow: <BoxShadow>[
             BoxShadow(
-                color: DesignCourseAppTheme.grey.withOpacity(0.2), offset: const Offset(1.1, 1.1), blurRadius: 8.0),
+                color: DesignCourseAppTheme.grey.withOpacity(0.2),
+                offset: const Offset(1.1, 1.1),
+                blurRadius: 8.0),
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.only(left: 18.0, right: 18.0, top: 12.0, bottom: 12.0),
+          padding: const EdgeInsets.only(
+              left: 18.0, right: 18.0, top: 12.0, bottom: 12.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -366,6 +383,43 @@ class _CourseInfoScreenState extends State<CourseInfoScreen> with TickerProvider
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class FavoriteButton extends StatelessWidget {
+  final CurvedAnimation animation;
+  final int offset;
+
+  const FavoriteButton(
+      {super.key, required this.animation, required this.offset});
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: (MediaQuery.of(context).size.width / 1.2) - 24.0 - offset,
+      right: 35,
+      child: ScaleTransition(
+        alignment: Alignment.center,
+        scale: animation,
+        child: Card(
+          color: DesignCourseAppTheme.nearlyBlue,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+          elevation: 10.0,
+          child: const SizedBox(
+            width: 60,
+            height: 60,
+            child: Center(
+              child: Icon(
+                Icons.favorite,
+                color: DesignCourseAppTheme.nearlyWhite,
+                size: 30,
+              ),
+            ),
           ),
         ),
       ),

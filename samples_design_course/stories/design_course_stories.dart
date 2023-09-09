@@ -45,7 +45,7 @@ Widget category_section() => CategoryUI(
       },
     ).story(defaultAppState);
 
-Widget course_details_active() => CourseInfoScreen(
+Widget details_active() => CourseInfoScreen(
       course: Course(
         imagePath: 'assets/design_course/team.png',
         title: 'Flutter Programming',
@@ -58,7 +58,7 @@ Widget course_details_active() => CourseInfoScreen(
       onBack: (p0) => null,
     );
 
-Widget course_details_inactive() => CourseInfoScreen(
+Widget details_inactive() => CourseInfoScreen(
       course: Course(
         imagePath: 'assets/design_course/team.png',
         title: 'Flutter Programming',
@@ -71,4 +71,4 @@ Widget course_details_inactive() => CourseInfoScreen(
       onBack: (p0) => null,
     );
 
-Widget course_dialog() => CourseAlertDialog();
+Widget dialog() => CourseAlertDialog();

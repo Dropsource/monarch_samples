@@ -78,7 +78,7 @@ class Course {
           money: 250,
           rating: 4.8,
           seats: 10,
-          isActive: true,
+          isActive: false,
           categoryType: CategoryType.coding,
         ),
         Course(
