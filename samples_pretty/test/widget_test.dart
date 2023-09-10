@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:monarch_samples_pretty/main.dart';
+import 'package:monarch_samples_pretty/src/design_course/course_info_screen.dart';
+import 'package:monarch_samples_pretty/src/design_course/home_design_course.dart';
+import 'package:monarch_samples_pretty/src/design_course/models/course.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
@@ -26,5 +29,24 @@ void main() {
     // Verify that our counter has incremented.
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
+  });
+
+  testWidgets('Has Favorite button', (WidgetTester tester) async {
+    Widget screen = CourseDetailsScreen(
+      course: Course(
+        imagePath: 'assets/design_course/team.png',
+        title: 'Flutter Programming',
+        lessonCount: 12,
+        money: 250,
+        rating: 4.8,
+        isActive: true,
+        categoryType: CategoryType.coding,
+      ),
+      onBack: (p0) => null,
+    );
+
+    await tester.pumpWidget(screen);
+
+    expect(find.byIcon(Icons.favorite), findsOneWidget);
   });
 }
