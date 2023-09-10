@@ -327,6 +327,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
               FavoriteButton(
                   top: 35,
                   right: 35,
+                  size: 30,
                   animation: CurvedAnimation(
                       parent: animationController!,
                       curve: Curves.fastOutSlowIn)),
@@ -422,9 +423,10 @@ class FavoriteButton extends StatelessWidget {
   final CurvedAnimation animation;
   final int top;
   final double right;
+  final double size;
 
   const FavoriteButton(
-      {super.key, required this.animation, required this.top, required this.right});
+      {super.key, required this.animation, required this.top, required this.right, required this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -439,14 +441,14 @@ class FavoriteButton extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
           elevation: 10.0,
-          child: const SizedBox(
-            width: 60,
-            height: 60,
+          child: SizedBox(
+            width: size*2,
+            height: size*2,
             child: Center(
               child: Icon(
                 Icons.favorite,
                 color: DesignCourseAppTheme.nearlyWhite,
-                size: 30,
+                size: size,
               ),
             ),
           ),
