@@ -31,9 +31,10 @@ void main() {
     expect(find.text('1'), findsOneWidget);
   });
 
-  
+
 
   testWidgets('Has Favorite button', (WidgetTester tester) async {
+
     Widget screen = CourseDetailsScreen(
       course: Course(
         imagePath: 'assets/design_course/team.png',
@@ -50,6 +51,7 @@ void main() {
     await tester.pumpWidget(screen);
 
     expect(find.byIcon(Icons.favorite), findsOneWidget);
+    
   });
 
 
