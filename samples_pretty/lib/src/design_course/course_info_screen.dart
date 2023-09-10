@@ -3,19 +3,19 @@ import 'package:monarch_samples_pretty/src/design_course/alert_dialog.dart';
 import 'design_course_app_theme.dart';
 import 'models/course.dart';
 
-class CourseInfoScreen extends StatefulWidget {
+class CourseDetailsScreen extends StatefulWidget {
   final Function(BuildContext) onBack;
   final Course course;
-  const CourseInfoScreen({
+  const CourseDetailsScreen({
     super.key,
     required this.course,
     required this.onBack,
   });
   @override
-  State<CourseInfoScreen> createState() => _CourseInfoScreenState();
+  State<CourseDetailsScreen> createState() => _CourseDetailsScreenState();
 }
 
-class _CourseInfoScreenState extends State<CourseInfoScreen>
+class _CourseDetailsScreenState extends State<CourseDetailsScreen>
     with TickerProviderStateMixin {
   final double infoHeight = 364.0;
   AnimationController? animationController;
@@ -88,7 +88,9 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
               right: 0,
               child: Container(
                 decoration: BoxDecoration(
-                  color: DesignCourseAppTheme.nearlyWhite,
+                  color: widget.course.isActive
+                      ? DesignCourseAppTheme.nearlyWhite
+                      : DesignCourseAppTheme.lightGrey,
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(32.0),
                       topRight: Radius.circular(32.0)),
@@ -115,10 +117,10 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                           Padding(
                             padding: const EdgeInsets.only(
                                 top: 32.0, left: 18, right: 16),
-                            child: Text(
-                              widget.course.isActive
-                                  ? widget.course.title
-                                  : '${widget.course.title} (Inactive)',
+                            child: Text(widget.course.title,
+                              // widget.course.isActive
+                              //     ? widget.course.title
+                              //     : '${widget.course.title} (Inactive)',
                               textAlign: TextAlign.left,
                               style: const TextStyle(
                                 fontWeight: FontWeight.w600,
@@ -176,9 +178,10 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                 children: <Widget>[
                                   getTimeBoxUI(
                                       widget.course.lessonCount.toString(),
-                                      'Lessons'),
-                                  getTimeBoxUI(
-                                      widget.course.seats.toString(), 'Seat'),
+                                      'Lessons',
+                                      widget.course),
+                                  getTimeBoxUI(widget.course.seats.toString(),
+                                      'Seat', widget.course),
                                 ],
                               ),
                             ),
@@ -199,8 +202,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                     letterSpacing: 0.27,
                                     color: DesignCourseAppTheme.grey,
                                   ),
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
+                                  // maxLines: 3,
+                                  // overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ),
@@ -220,7 +223,9 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                     height: 48,
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: DesignCourseAppTheme.nearlyWhite,
+                                        color: widget.course.isActive
+                                            ? DesignCourseAppTheme.nearlyWhite
+                                            : DesignCourseAppTheme.lightGrey,
                                         borderRadius: const BorderRadius.all(
                                           Radius.circular(16.0),
                                         ),
@@ -253,7 +258,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                       decoration: BoxDecoration(
                                         color: widget.course.isActive
                                             ? DesignCourseAppTheme.nearlyBlue
-                                            : DesignCourseAppTheme.grey,
+                                            : DesignCourseAppTheme.lightGrey,
                                         borderRadius: const BorderRadius.all(
                                           Radius.circular(16.0),
                                         ),
@@ -290,7 +295,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                     ? DesignCourseAppTheme
                                                         .nearlyWhite
                                                     : DesignCourseAppTheme
-                                                        .deactivatedText,
+                                                        .grey,
                                               ),
                                             )),
                                       ),
@@ -310,10 +315,31 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                 ),
               ),
             ),
-            FavoriteButton(
-                offset: 35,
-                animation: CurvedAnimation(
-                    parent: animationController!, curve: Curves.fastOutSlowIn)),
+
+
+
+
+
+
+
+
+            if (widget.course.isActive)
+              FavoriteButton(
+                  top: 35,
+                  right: 35,
+                  animation: CurvedAnimation(
+                      parent: animationController!,
+                      curve: Curves.fastOutSlowIn)),
+
+
+
+
+
+
+
+
+
+
             Padding(
               padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
               child: SizedBox(
@@ -341,12 +367,14 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
     );
   }
 
-  Widget getTimeBoxUI(String text1, String txt2) {
+  Widget getTimeBoxUI(String text1, String txt2, Course course) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-          color: DesignCourseAppTheme.nearlyWhite,
+          color: course.isActive
+              ? DesignCourseAppTheme.nearlyWhite
+              : DesignCourseAppTheme.lightGrey,
           borderRadius: const BorderRadius.all(Radius.circular(16.0)),
           boxShadow: <BoxShadow>[
             BoxShadow(
@@ -392,16 +420,17 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
 
 class FavoriteButton extends StatelessWidget {
   final CurvedAnimation animation;
-  final int offset;
+  final int top;
+  final double right;
 
   const FavoriteButton(
-      {super.key, required this.animation, required this.offset});
+      {super.key, required this.animation, required this.top, required this.right});
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: (MediaQuery.of(context).size.width / 1.2) - 24.0 - offset,
-      right: 35,
+      top: (MediaQuery.of(context).size.width / 1.2) - 24.0 - top,
+      right: right,
       child: ScaleTransition(
         alignment: Alignment.center,
         scale: animation,

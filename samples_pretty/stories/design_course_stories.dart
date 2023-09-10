@@ -26,16 +26,16 @@ extension on Widget {
       );
 }
 
-Widget home_loading() => const DesignCourseHomeScreen().story(emptyAppState);
-
-Widget home_loaded() => const DesignCourseHomeScreen().story(defaultAppState);
+Widget home_loading() => const CourseHomeScreen().story(emptyAppState);
 
 Widget categories_loading() => const CategoryListView().story(emptyAppState);
 
 Widget categories_loaded() => const CategoryListView().story(defaultAppState);
 
-Widget popular_courses_loading() => PopularCourseListView(callBack: (_) => null).story(emptyAppState);
-Widget popular_courses_loaded() => PopularCourseListView(callBack: (_) => null).story(defaultAppState);
+Widget popular_courses_loading() =>
+    PopularCourseListView(callBack: (_) => null).story(emptyAppState);
+Widget popular_courses_loaded() =>
+    PopularCourseListView(callBack: (_) => null).story(defaultAppState);
 
 Widget category_section() => CategoryUI(
       categoryType: CategoryType.coding,
@@ -45,7 +45,9 @@ Widget category_section() => CategoryUI(
       },
     ).story(defaultAppState);
 
-Widget details_active() => CourseInfoScreen(
+Widget home_loaded() => const CourseHomeScreen().story(defaultAppState);
+
+Widget details_active() => CourseDetailsScreen(
       course: Course(
         imagePath: 'assets/design_course/team.png',
         title: 'Flutter Programming',
@@ -58,7 +60,7 @@ Widget details_active() => CourseInfoScreen(
       onBack: (p0) => null,
     );
 
-Widget details_inactive() => CourseInfoScreen(
+Widget details_inactive() => CourseDetailsScreen(
       course: Course(
         imagePath: 'assets/design_course/team.png',
         title: 'Flutter Programming',

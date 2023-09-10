@@ -5,13 +5,13 @@ import 'models/course.dart';
 import 'popular_course_list_view.dart';
 import 'design_course_app_theme.dart';
 
-class DesignCourseHomeScreen extends StatefulWidget {
-  const DesignCourseHomeScreen({super.key});
+class CourseHomeScreen extends StatefulWidget {
+  const CourseHomeScreen({super.key, dynamic appState});
   @override
-  State<DesignCourseHomeScreen> createState() => _DesignCourseHomeScreenState();
+  State<CourseHomeScreen> createState() => _CourseHomeScreenState();
 }
 
-class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
+class _CourseHomeScreenState extends State<CourseHomeScreen> {
   CategoryType categoryType = CategoryType.ui;
 
   @override
@@ -59,7 +59,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     Navigator.push<dynamic>(
       context,
       MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) => CourseInfoScreen(
+        builder: (BuildContext context) => CourseDetailsScreen(
           course: course,
           onBack: (BuildContext context_) {
             Navigator.pop(context_);
@@ -232,7 +232,7 @@ class CategoryUI extends StatelessWidget {
   Widget build(BuildContext context) {
     const spacer = SizedBox(width: 16);
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const Padding(

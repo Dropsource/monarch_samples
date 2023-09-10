@@ -4,7 +4,7 @@ import 'package:monarch_samples_pretty/src/design_course/course_info_screen.dart
 import 'package:monarch_samples_pretty/src/design_course/home_design_course.dart';
 import 'package:monarch_samples_pretty/src/design_course/models/course.dart';
 
-Widget details_active() => CourseInfoScreen(
+Widget details_active() => CourseDetailsScreen(
       course: Course(
         imagePath: 'assets/design_course/team.png',
         title: 'Flutter Programming',

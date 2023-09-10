@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       ),
       home: ChangeNotifierProvider.value(
         value: appState,
-        child: const DesignCourseHomeScreen(),
+        child: const CourseHomeScreen(),
       ),
     );
   }
