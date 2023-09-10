@@ -31,6 +31,8 @@ void main() {
     expect(find.text('1'), findsOneWidget);
   });
 
+  
+
   testWidgets('Has Favorite button', (WidgetTester tester) async {
     Widget screen = CourseDetailsScreen(
       course: Course(
@@ -49,4 +51,10 @@ void main() {
 
     expect(find.byIcon(Icons.favorite), findsOneWidget);
   });
+
+
+
+
+
+
 }
