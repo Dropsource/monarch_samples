@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'range_slider_view.dart';
 import 'slider_view.dart';
 import 'model/popular_filter_list.dart';
-import '../localizations.dart';
+import 'localizations.dart';
 
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({super.key});

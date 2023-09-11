@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../localizations.dart';
+import 'localizations.dart';
 
 class SliderView extends StatefulWidget {
   const SliderView({Key? key, this.onChangedistValue, this.distValue}) : super(key: key);
