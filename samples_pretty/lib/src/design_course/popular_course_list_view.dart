@@ -13,11 +13,13 @@ class PopularCourseListView extends StatefulWidget {
   State<PopularCourseListView> createState() => _PopularCourseListViewState();
 }
 
-class _PopularCourseListViewState extends State<PopularCourseListView> with TickerProviderStateMixin {
+class _PopularCourseListViewState extends State<PopularCourseListView>
+    with TickerProviderStateMixin {
   AnimationController? animationController;
   @override
   void initState() {
-    animationController = AnimationController(duration: const Duration(milliseconds: 2000), vsync: this);
+    animationController = AnimationController(
+        duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
   }
 
@@ -35,11 +37,16 @@ class _PopularCourseListViewState extends State<PopularCourseListView> with Tick
           return const SizedBox(
               // height: 134,
               child: Center(
-                  child: SizedBox(
-                      child: CircularProgressIndicator(
-            value: null,
-            color: DesignCourseAppTheme.nearlyBlue,
-          ))));
+                  child: Column(children: [
+            SizedBox(
+              height: 70,
+            ),
+            SizedBox(
+                child: CircularProgressIndicator(
+              value: null,
+              color: DesignCourseAppTheme.nearlyBlue,
+            ))
+          ])));
         } else {
           return GridView(
             padding: const EdgeInsets.all(8),
@@ -55,10 +62,12 @@ class _PopularCourseListViewState extends State<PopularCourseListView> with Tick
               appState.courseList.length,
               (int index) {
                 final int count = appState.courseList.length;
-                final Animation<double> animation = Tween<double>(begin: 0.0, end: 1.0).animate(
+                final Animation<double> animation =
+                    Tween<double>(begin: 0.0, end: 1.0).animate(
                   CurvedAnimation(
                     parent: animationController!,
-                    curve: Interval((1 / count) * index, 1.0, curve: Curves.fastOutSlowIn),
+                    curve: Interval((1 / count) * index, 1.0,
+                        curve: Curves.fastOutSlowIn),
                   ),
                 );
                 animationController?.forward();
@@ -80,7 +89,12 @@ class _PopularCourseListViewState extends State<PopularCourseListView> with Tick
 }
 
 class CategoryView extends StatelessWidget {
-  const CategoryView({Key? key, required this.course, this.animationController, this.animation, required this.callback})
+  const CategoryView(
+      {Key? key,
+      required this.course,
+      this.animationController,
+      this.animation,
+      required this.callback})
       : super(key: key);
 
   final Function(Course) callback;
@@ -96,7 +110,8 @@ class CategoryView extends StatelessWidget {
         return FadeTransition(
           opacity: animation!,
           child: Transform(
-            transform: Matrix4.translationValues(0.0, 50 * (1.0 - animation!.value), 0.0),
+            transform: Matrix4.translationValues(
+                0.0, 50 * (1.0 - animation!.value), 0.0),
             child: InkWell(
               splashColor: Colors.transparent,
               onTap: () => callback(course),
@@ -111,7 +126,8 @@ class CategoryView extends StatelessWidget {
                           child: DecoratedBox(
                             decoration: const BoxDecoration(
                               color: Color(0xFFF8FAFB),
-                              borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16.0)),
                               // border: new Border.all(
                               //     color: DesignCourseAppTheme.notWhite),
                             ),
@@ -121,7 +137,8 @@ class CategoryView extends StatelessWidget {
                                   child: Column(
                                     children: <Widget>[
                                       Padding(
-                                        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+                                        padding: const EdgeInsets.only(
+                                            top: 16, left: 16, right: 16),
                                         child: Text(
                                           course.title,
                                           textAlign: TextAlign.left,
@@ -129,15 +146,22 @@ class CategoryView extends StatelessWidget {
                                             fontWeight: FontWeight.w600,
                                             fontSize: 16,
                                             letterSpacing: 0.27,
-                                            color: DesignCourseAppTheme.darkerText,
+                                            color:
+                                                DesignCourseAppTheme.darkerText,
                                           ),
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(top: 8, left: 16, right: 16, bottom: 8),
+                                        padding: const EdgeInsets.only(
+                                            top: 8,
+                                            left: 16,
+                                            right: 16,
+                                            bottom: 8),
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: <Widget>[
                                             Text(
                                               '${course.lessonCount} lesson',
@@ -146,7 +170,8 @@ class CategoryView extends StatelessWidget {
                                                 fontWeight: FontWeight.w200,
                                                 fontSize: 12,
                                                 letterSpacing: 0.27,
-                                                color: DesignCourseAppTheme.grey,
+                                                color:
+                                                    DesignCourseAppTheme.grey,
                                               ),
                                             ),
                                             Row(
@@ -158,12 +183,14 @@ class CategoryView extends StatelessWidget {
                                                     fontWeight: FontWeight.w200,
                                                     fontSize: 18,
                                                     letterSpacing: 0.27,
-                                                    color: DesignCourseAppTheme.grey,
+                                                    color: DesignCourseAppTheme
+                                                        .grey,
                                                   ),
                                                 ),
                                                 const Icon(
                                                   Icons.star,
-                                                  color: DesignCourseAppTheme.nearlyBlue,
+                                                  color: DesignCourseAppTheme
+                                                      .nearlyBlue,
                                                   size: 20,
                                                 ),
                                               ],
@@ -187,20 +214,26 @@ class CategoryView extends StatelessWidget {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 24, right: 16, left: 16),
+                      padding:
+                          const EdgeInsets.only(top: 24, right: 16, left: 16),
                       child: Container(
                         decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(16.0)),
                           boxShadow: <BoxShadow>[
                             BoxShadow(
-                                color: DesignCourseAppTheme.grey.withOpacity(0.2),
+                                color:
+                                    DesignCourseAppTheme.grey.withOpacity(0.2),
                                 offset: const Offset(0.0, 0.0),
                                 blurRadius: 6.0),
                           ],
                         ),
                         child: ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-                          child: AspectRatio(aspectRatio: 1.28, child: Image.asset(course.imagePath)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(16.0)),
+                          child: AspectRatio(
+                              aspectRatio: 1.28,
+                              child: Image.asset(course.imagePath)),
                         ),
                       ),
                     ),
