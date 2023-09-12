@@ -27,7 +27,7 @@ _Monarch is a tool for building Flutter widgets in isolation. It makes it easy t
   - animations
   - navigation
   - images
-- [samples_booking](/samples_booking) uses a pretty booking theme. The [Monarch 
+- [samples_pretty](/samples_pretty) shows Monarch using pretty user interfaces. The [Monarch 
   website](https://monarchapp.io/) showcases this project.
 - [samples_intl_tools](/samples_intl_tools) shows internationalization in Monarch 
   using the [intl](https://github.com/dart-lang/intl) package and tools.
