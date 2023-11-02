@@ -2,10 +2,10 @@ import 'package:test/test.dart';
 import 'test_utils.dart';
 
 void main() async {
-  testSampleProject('samples_booking');
   testSampleProject('samples_easy_localization');
   testSampleProject('samples_intl_tools');
   testSampleProject('samples_patterns');
+  testSampleProject('samples_pretty');
   testSampleProject('samples_riverpod');
 }
 
@@ -28,7 +28,7 @@ void testSampleProject(String projectName) {
 
 Future<void> runMonarchAndVerify(String projectName) async {
   var monarchRun = await startTestProcess(monarch_exe, ['run', '-v'],
-      workingDirectory: getWorkingDirectory('samples_booking'));
+      workingDirectory: getWorkingDirectory(projectName));
   var stdout_ = monarchRun.stdout;
   await expectLater(stdout_, emitsThrough('Starting Monarch.'));
   await expectLater(stdout_, emitsThrough('Preparing stories...'));
