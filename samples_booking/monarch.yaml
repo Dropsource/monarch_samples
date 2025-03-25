@@ -1,0 +1,19 @@
+devices:
+  - id: iphone-16-pro
+    name: iPhone 16 Pro
+    height: 874
+    width: 402
+    device_pixel_ratio: 3
+    platform: ios
+  - id: android-pixel-7
+    name: Google Pixel 7
+    height: 923
+    width: 415
+    device_pixel_ratio: 2.6
+    platform: android
+  - id: large-screen-01
+    name: Large Screen 01
+    height: 1080
+    width: 1920
+    device_pixel_ratio: 1
+    platform: macos

@@ -40,7 +40,7 @@ class _RangeSliderViewState extends State<RangeSliderView> {
                       textAlign: TextAlign.center,
                       style: Theme.of(context)
                           .textTheme
-                          .bodyText2!
+                          .bodyMedium!
                           .copyWith(fontSize: 18),
                     ),
                   ),
@@ -63,7 +63,7 @@ class _RangeSliderViewState extends State<RangeSliderView> {
                       textAlign: TextAlign.center,
                       style: Theme.of(context)
                           .textTheme
-                          .bodyText2!
+                          .bodyMedium!
                           .copyWith(fontSize: 18),
                     ),
                   ),

@@ -114,7 +114,7 @@ class _CalendarPopUpState extends State<CalendarPopUp>
                                           textAlign: TextAlign.left,
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodyText2),
+                                              .bodyMedium),
                                       const SizedBox(
                                         height: 4,
                                       ),
@@ -125,7 +125,7 @@ class _CalendarPopUpState extends State<CalendarPopUp>
                                             : '--/-- ',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyText1!
+                                            .bodyLarge!
                                             .copyWith(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold),
@@ -147,7 +147,7 @@ class _CalendarPopUpState extends State<CalendarPopUp>
                                       Text('To',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodyText2),
+                                              .bodyMedium),
                                       const SizedBox(
                                         height: 4,
                                       ),
@@ -158,7 +158,7 @@ class _CalendarPopUpState extends State<CalendarPopUp>
                                             : '--/-- ',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyText1!
+                                            .bodyLarge!
                                             .copyWith(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold),
@@ -219,7 +219,7 @@ class _CalendarPopUpState extends State<CalendarPopUp>
                                         'Apply',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .headline6!
+                                            .headlineSmall!
                                             .copyWith(
                                                 color: Theme.of(context)
                                                     .cardColor),
