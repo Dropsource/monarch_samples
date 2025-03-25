@@ -82,7 +82,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                         'Apply',
                         style: Theme.of(context)
                             .textTheme
-                            .headline6!
+                            .headlineSmall!
                             .copyWith(color: Theme.of(context).cardColor),
                       ),
                     ),
@@ -108,7 +108,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
               loc.text('type-of-accommodation'),
             textAlign: TextAlign.left,
             style: TextStyle(
-                color: Theme.of(context).textTheme.caption!.color,
+                color: Theme.of(context).textTheme.labelMedium!.color,
                 fontSize: MediaQuery.of(context).size.width > 360 ? 18 : 16,
                 fontWeight: FontWeight.normal),
           ),
@@ -222,7 +222,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
             loc.text('distance-from-center'),
             textAlign: TextAlign.left,
             style: TextStyle(
-                color: Theme.of(context).textTheme.caption!.color,
+                color: Theme.of(context).textTheme.labelMedium!.color,
                 fontSize: MediaQuery.of(context).size.width > 360 ? 18 : 16,
                 fontWeight: FontWeight.normal),
           ),
@@ -252,7 +252,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
             loc.text('popular-filters'),
             textAlign: TextAlign.left,
             style: TextStyle(
-                color: Theme.of(context).textTheme.caption!.color,
+                color: Theme.of(context).textTheme.labelMedium!.color,
                 fontSize: MediaQuery.of(context).size.width > 360 ? 18 : 16,
                 fontWeight: FontWeight.normal),
           ),
@@ -301,7 +301,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                 : Icons.check_box_outline_blank,
                             color: date.isSelected
                                 ? Theme.of(context).primaryColor
-                                : Theme.of(context).textTheme.caption!.color!.withOpacity(0.5),
+                                : Theme.of(context).textTheme.labelMedium!.color!.withOpacity(0.5),
                           ),
                           const SizedBox(
                             width: 4,
@@ -338,7 +338,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
   }
 
   TextStyle listItemTextStyle(BuildContext context) =>
-      Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16);
+      Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16);
 
   Widget priceBarFilter(SampleLocalizations loc) {
     return Column(
@@ -351,7 +351,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
             loc.text('price-1-night'),
             textAlign: TextAlign.left,
             style: TextStyle(
-                color: Theme.of(context).textTheme.caption!.color,
+                color: Theme.of(context).textTheme.labelMedium!.color,
                 fontSize: MediaQuery.of(context).size.width > 360 ? 18 : 16,
                 fontWeight: FontWeight.normal),
 
@@ -409,7 +409,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
             Expanded(
               child: Center(
                 child: Text(loc.text('filters'),
-                    style: Theme.of(context).textTheme.headline6),
+                    style: Theme.of(context).textTheme.headlineSmall),
               ),
             ),
             Container(

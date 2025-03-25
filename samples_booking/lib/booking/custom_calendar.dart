@@ -109,7 +109,7 @@ class _CustomCalendarViewState extends State<CustomCalendarView> {
                   child: Center(
                     child: Text(
                       DateFormat('MMMM').format(currentMonthDate),
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.headlineLarge,
                     ),
                   ),
                 ),
@@ -176,7 +176,7 @@ class _CustomCalendarViewState extends State<CustomCalendarView> {
               DateFormat('EEE').format(dateList[i]),
               style: Theme.of(context)
                   .textTheme
-                  .subtitle1!
+                  .titleLarge!
                   .copyWith(color: Theme.of(context).primaryColor),
             ),
           ),
@@ -299,7 +299,7 @@ class _CustomCalendarViewState extends State<CustomCalendarView> {
                               boxShadow: getIsItStartAndEndDate(date)
                                   ? <BoxShadow>[
                                       BoxShadow(
-                                          color: Colors.grey.withOpacity(0.6),
+                                          color: Colors.grey.withAlpha(153),
                                           blurRadius: 4,
                                           offset: const Offset(0, 0)),
                                     ]
@@ -312,8 +312,8 @@ class _CustomCalendarViewState extends State<CustomCalendarView> {
                                     color: getIsItStartAndEndDate(date)
                                         ? Colors.white
                                         : currentMonthDate.month == date.month
-                                            ? Theme.of(context).textTheme.bodyText1!.color
-                                            : Theme.of(context).textTheme.caption!.color!.withOpacity(0.4),
+                                            ? Theme.of(context).textTheme.bodyMedium!.color
+                                            : Theme.of(context).textTheme.labelMedium!.color!.withAlpha(102),
                                     fontSize:
                                         MediaQuery.of(context).size.width > 360
                                             ? 18

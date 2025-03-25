@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'calendar_popup.dart';
 import 'booking_list.dart';
 import 'model/booking_list_data.dart';
@@ -8,11 +7,13 @@ import 'package:intl/intl.dart';
 import 'filters_screen.dart';
 
 class BookingHomeScreen extends StatefulWidget {
+  const BookingHomeScreen({super.key});
+
   @override
-  _BookingHomeScreenState createState() => _BookingHomeScreenState();
+  BookingHomeScreenState createState() => BookingHomeScreenState();
 }
 
-class _BookingHomeScreenState extends State<BookingHomeScreen> {
+class BookingHomeScreenState extends State<BookingHomeScreen> {
   List<BookingListData> hotelList = BookingListData.listings;
   final ScrollController _scrollController = ScrollController();
 
@@ -51,19 +52,25 @@ class _BookingHomeScreenState extends State<BookingHomeScreen> {
                   Expanded(
                     child: NestedScrollView(
                       controller: _scrollController,
-                      headerSliverBuilder:
-                          (BuildContext context, bool innerBoxIsScrolled) {
+                      headerSliverBuilder: (
+                        BuildContext context,
+                        bool innerBoxIsScrolled,
+                      ) {
                         return <Widget>[
                           SliverList(
-                            delegate: SliverChildBuilderDelegate(
-                                (BuildContext context, int index) {
+                            delegate: SliverChildBuilderDelegate((
+                              BuildContext context,
+                              int index,
+                            ) {
                               return Column(
                                 children: <Widget>[
                                   BookingSearchBar(),
                                   BookingChooseSection(
-                                      startDate: DateTime.now(),
-                                      endDate: DateTime.now()
-                                          .add(const Duration(days: 5))),
+                                    startDate: DateTime.now(),
+                                    endDate: DateTime.now().add(
+                                      const Duration(days: 5),
+                                    ),
+                                  ),
                                 ],
                               );
                             }, childCount: 1),
@@ -71,18 +78,16 @@ class _BookingHomeScreenState extends State<BookingHomeScreen> {
                           SliverPersistentHeader(
                             pinned: true,
                             floating: true,
-                            delegate: ContestTabHeader(
-                              BookingFilterBar(),
-                            ),
+                            delegate: ContestTabHeader(BookingFilterBar()),
                           ),
                         ];
                       },
                       body: Container(
                         color: Theme.of(context).cardColor,
-                        child: BookingListAnimated(list: hotelList)
+                        child: BookingListAnimated(list: hotelList),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -94,9 +99,7 @@ class _BookingHomeScreenState extends State<BookingHomeScreen> {
 }
 
 class BookingFilterBar extends StatelessWidget {
-  const BookingFilterBar({
-    Key? key
-  }) : super(key: key);
+  const BookingFilterBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -112,9 +115,10 @@ class BookingFilterBar extends StatelessWidget {
               color: Theme.of(context).cardColor,
               boxShadow: <BoxShadow>[
                 BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    offset: const Offset(0, -2),
-                    blurRadius: 8.0),
+                  color: Colors.grey.withOpacity(0.2),
+                  offset: const Offset(0, -2),
+                  blurRadius: 8.0,
+                ),
               ],
             ),
           ),
@@ -122,8 +126,12 @@ class BookingFilterBar extends StatelessWidget {
         Container(
           color: Theme.of(context).cardColor,
           child: Padding(
-            padding:
-                const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 4),
+            padding: const EdgeInsets.only(
+              left: 16,
+              right: 16,
+              top: 8,
+              bottom: 4,
+            ),
             child: Row(
               children: <Widget>[
                 Expanded(
@@ -131,7 +139,9 @@ class BookingFilterBar extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       '530 hotels found',
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16)
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium!.copyWith(fontSize: 16),
                     ),
                   ),
                 ),
@@ -142,18 +152,19 @@ class BookingFilterBar extends StatelessWidget {
                     highlightColor: Colors.transparent,
                     hoverColor: Colors.transparent,
                     splashColor: Colors.grey.withOpacity(0.2),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(4.0),
-                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(4.0)),
                     onTap: () {
                       FocusScope.of(context).requestFocus(FocusNode());
                       Navigator.push<dynamic>(
                         context,
                         MaterialPageRoute<dynamic>(
-                            builder: (BuildContext _) => Theme(
+                          builder:
+                              (BuildContext _) => Theme(
                                 data: Theme.of(context),
-                                child: FiltersScreen()),
-                            fullscreenDialog: true),
+                                child: FiltersScreen(),
+                              ),
+                          fullscreenDialog: true,
+                        ),
                       );
                     },
                     child: Padding(
@@ -162,12 +173,16 @@ class BookingFilterBar extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             'Filter',
-                            style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16)
+                            style: Theme.of(
+                              context,
+                            ).textTheme.bodyMedium!.copyWith(fontSize: 16),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Icon(Icons.sort,
-                                color: Theme.of(context).primaryColor),
+                            child: Icon(
+                              Icons.sort,
+                              color: Theme.of(context).primaryColor,
+                            ),
                           ),
                         ],
                       ),
@@ -178,14 +193,7 @@ class BookingFilterBar extends StatelessWidget {
             ),
           ),
         ),
-        const Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          child: Divider(
-            height: 1,
-          ),
-        )
+        const Positioned(top: 0, left: 0, right: 0, child: Divider(height: 1)),
       ],
     );
   }
@@ -213,30 +221,34 @@ class BookingChooseSection extends StatelessWidget {
                     highlightColor: Colors.transparent,
                     hoverColor: Colors.transparent,
                     splashColor: Colors.grey.withOpacity(0.2),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(4.0),
-                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(4.0)),
                     onTap: () {
                       FocusScope.of(context).requestFocus(FocusNode());
                       showCalendarDialog(context);
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(
-                          left: 8, right: 8, top: 4, bottom: 4),
+                        left: 8,
+                        right: 8,
+                        top: 4,
+                        bottom: 4,
+                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
                             'Choose date',
-                            style: Theme.of(context).textTheme.caption!.copyWith(fontSize: 16)
+                            style: Theme.of(
+                              context,
+                            ).textTheme.labelMedium!.copyWith(fontSize: 16),
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
+                          const SizedBox(height: 8),
                           Text(
                             '${DateFormat("dd, MMM").format(startDate)} - ${DateFormat("dd, MMM").format(endDate)}',
-                            style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16)
+                            style: Theme.of(
+                              context,
+                            ).textTheme.bodyMedium!.copyWith(fontSize: 16),
                           ),
                         ],
                       ),
@@ -264,29 +276,33 @@ class BookingChooseSection extends StatelessWidget {
                     highlightColor: Colors.transparent,
                     hoverColor: Colors.transparent,
                     splashColor: Colors.grey.withOpacity(0.2),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(4.0),
-                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(4.0)),
                     onTap: () {
                       FocusScope.of(context).requestFocus(FocusNode());
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(
-                          left: 8, right: 8, top: 4, bottom: 4),
+                        left: 8,
+                        right: 8,
+                        top: 4,
+                        bottom: 4,
+                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
                             'Number of rooms',
-                            style: Theme.of(context).textTheme.caption!.copyWith(fontSize: 16)
+                            style: Theme.of(
+                              context,
+                            ).textTheme.labelMedium!.copyWith(fontSize: 16),
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
+                          const SizedBox(height: 8),
                           Text(
                             '1 Room - 2 Adults',
-                            style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16)
+                            style: Theme.of(
+                              context,
+                            ).textTheme.bodyMedium!.copyWith(fontSize: 16),
                           ),
                         ],
                       ),
@@ -304,12 +320,13 @@ class BookingChooseSection extends StatelessWidget {
   void showCalendarDialog(BuildContext context) {
     showDialog<dynamic>(
       context: context,
-      builder: (BuildContext context) => CalendarPopUp(
-        barrierDismissible: true,
-        minimumDate: DateTime.now(),
-        initialStartDate: startDate,
-        initialEndDate: endDate,
-      ),
+      builder:
+          (BuildContext context) => CalendarPopUp(
+            barrierDismissible: true,
+            minimumDate: DateTime.now(),
+            initialStartDate: startDate,
+            initialEndDate: endDate,
+          ),
     );
   }
 }
@@ -329,22 +346,27 @@ class BookingSearchBar extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).cardColor,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(38.0),
-                  ),
+                  borderRadius: const BorderRadius.all(Radius.circular(38.0)),
                   boxShadow: <BoxShadow>[
                     BoxShadow(
-                        color: Theme.of(context).shadowColor.withOpacity(0.2),
-                        offset: const Offset(0, 2),
-                        blurRadius: 8.0),
+                      color: Theme.of(context).shadowColor.withOpacity(0.2),
+                      offset: const Offset(0, 2),
+                      blurRadius: 8.0,
+                    ),
                   ],
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      left: 16, right: 16, top: 4, bottom: 4),
+                    left: 16,
+                    right: 16,
+                    top: 4,
+                    bottom: 4,
+                  ),
                   child: TextField(
                     onChanged: (String txt) {},
-                    style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 18),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium!.copyWith(fontSize: 18),
                     cursorColor: Theme.of(context).primaryColor,
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -358,9 +380,7 @@ class BookingSearchBar extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
-              borderRadius: const BorderRadius.all(
-                Radius.circular(38.0),
-              ),
+              borderRadius: const BorderRadius.all(Radius.circular(38.0)),
               // boxShadow: <BoxShadow>[
               //   BoxShadow(
               //       color: Theme.of(context).shadowColor, //.withOpacity(0.6),
@@ -371,16 +391,17 @@ class BookingSearchBar extends StatelessWidget {
             child: Material(
               color: Colors.transparent,
               child: InkWell(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(32.0),
-                ),
+                borderRadius: const BorderRadius.all(Radius.circular(32.0)),
                 onTap: () {
                   FocusScope.of(context).requestFocus(FocusNode());
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Icon(FontAwesomeIcons.search,
-                      size: 20, color: Theme.of(context).cardColor)
+                  child: Icon(
+                    FontAwesomeIcons.search,
+                    size: 20,
+                    color: Theme.of(context).cardColor,
+                  ),
                 ),
               ),
             ),
@@ -392,9 +413,7 @@ class BookingSearchBar extends StatelessWidget {
 }
 
 class BookingAppBar extends StatelessWidget {
-  const BookingAppBar({
-    Key? key,
-  }) : super(key: key);
+  const BookingAppBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -403,14 +422,18 @@ class BookingAppBar extends StatelessWidget {
         color: Theme.of(context).cardColor,
         boxShadow: <BoxShadow>[
           BoxShadow(
-              color: Theme.of(context).shadowColor.withOpacity(0.1),
-              offset: const Offset(0, 2),
-              blurRadius: 8.0),
+            color: Theme.of(context).shadowColor.withOpacity(0.1),
+            offset: const Offset(0, 2),
+            blurRadius: 8.0,
+          ),
         ],
       ),
       child: Padding(
         padding: EdgeInsets.only(
-            top: MediaQuery.of(context).padding.top, left: 8, right: 8),
+          top: MediaQuery.of(context).padding.top,
+          left: 8,
+          right: 8,
+        ),
         child: Row(
           children: <Widget>[
             Container(
@@ -420,9 +443,7 @@ class BookingAppBar extends StatelessWidget {
               child: Material(
                 color: Colors.transparent,
                 child: InkWell(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(32.0),
-                  ),
+                  borderRadius: const BorderRadius.all(Radius.circular(32.0)),
                   onTap: () {
                     Navigator.maybePop(context);
                   },
@@ -437,7 +458,7 @@ class BookingAppBar extends StatelessWidget {
               child: Center(
                 child: Text(
                   'Explore',
-                  style: Theme.of(context).textTheme.headline6
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ),
             ),
@@ -476,7 +497,7 @@ class BookingAppBar extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -485,14 +506,15 @@ class BookingAppBar extends StatelessWidget {
 }
 
 class ContestTabHeader extends SliverPersistentHeaderDelegate {
-  ContestTabHeader(
-    this.searchUI,
-  );
+  ContestTabHeader(this.searchUI);
   final Widget searchUI;
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return searchUI;
   }
 

@@ -40,7 +40,7 @@ class _SliderViewState extends State<SliderView> {
                   textAlign: TextAlign.center,
                   style: Theme.of(context)
                       .textTheme
-                      .bodyText2!
+                      .bodyMedium!
                       .copyWith(fontSize: 16),
                 ),
               ),

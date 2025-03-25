@@ -4,12 +4,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'model/booking_list_data.dart';
 
-import 'package:flutter/widgets.dart';
-
 class BookingListAnimated extends StatefulWidget {
   final List<BookingListData> list;
 
-  BookingListAnimated({required this.list});
+  const BookingListAnimated({super.key, required this.list});
   @override
   State<StatefulWidget> createState() {
     return _BookingListAnimatedState();
@@ -25,7 +23,9 @@ class _BookingListAnimatedState extends State<BookingListAnimated>
   void initState() {
     super.initState();
     animationController = AnimationController(
-        duration: const Duration(milliseconds: 1000), vsync: this);
+      duration: const Duration(milliseconds: 1000),
+      vsync: this,
+    );
   }
 
   @override
@@ -41,13 +41,20 @@ class _BookingListAnimatedState extends State<BookingListAnimated>
       padding: const EdgeInsets.only(top: 8),
       scrollDirection: Axis.vertical,
       itemBuilder: (BuildContext context, int index) {
-        final int count =
-            widget.list.length > 10 ? 10 : widget.list.length;
-        final Animation<double> animation = Tween<double>(begin: 0.0, end: 1.0)
-            .animate(CurvedAnimation(
-                parent: animationController,
-                curve: Interval((1 / count) * index, 1.0,
-                    curve: Curves.fastOutSlowIn)));
+        final int count = widget.list.length > 10 ? 10 : widget.list.length;
+        final Animation<double> animation = Tween<double>(
+          begin: 0.0,
+          end: 1.0,
+        ).animate(
+          CurvedAnimation(
+            parent: animationController,
+            curve: Interval(
+              (1 / count) * index,
+              1.0,
+              curve: Curves.fastOutSlowIn,
+            ),
+          ),
+        );
         animationController.forward();
         return BookingItemAnimated(
           callback: () {},
@@ -61,13 +68,13 @@ class _BookingListAnimatedState extends State<BookingListAnimated>
 }
 
 class BookingItemAnimated extends StatelessWidget {
-  const BookingItemAnimated(
-      {Key? key,
-      this.itemData,
-      this.animationController,
-      this.animation,
-      this.callback})
-      : super(key: key);
+  const BookingItemAnimated({
+    super.key,
+    this.itemData,
+    this.animationController,
+    this.animation,
+    this.callback,
+  });
 
   final VoidCallback? callback;
   final BookingListData? itemData;
@@ -83,8 +90,11 @@ class BookingItemAnimated extends StatelessWidget {
           opacity: animation!,
           child: Transform(
             transform: Matrix4.translationValues(
-                0.0, 50 * (1.0 - animation!.value), 0.0),
-            child: _BookingItem(callback: callback, itemData: itemData),
+              0.0,
+              50 * (1.0 - animation!.value),
+              0.0,
+            ),
+            child: BookingItem(callback: callback, itemData: itemData),
           ),
         );
       },
@@ -92,12 +102,8 @@ class BookingItemAnimated extends StatelessWidget {
   }
 }
 
-class _BookingItem extends StatelessWidget {
-  const _BookingItem({
-    Key? key,
-    this.callback,
-    required this.itemData,
-  }) : super(key: key);
+class BookingItem extends StatelessWidget {
+  const BookingItem({super.key, this.callback, required this.itemData});
 
   final VoidCallback? callback;
   final BookingListData? itemData;
@@ -105,8 +111,7 @@ class _BookingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-          left: 24, right: 24, top: 8, bottom: 16),
+      padding: const EdgeInsets.only(left: 24, right: 24, top: 8, bottom: 16),
       child: InkWell(
         splashColor: Colors.transparent,
         onTap: callback,
@@ -144,17 +149,21 @@ class _BookingItem extends StatelessWidget {
                             child: Container(
                               child: Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 16, top: 8, bottom: 8),
+                                  left: 16,
+                                  top: 8,
+                                  bottom: 8,
+                                ),
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
                                       itemData!.titleTxt,
                                       textAlign: TextAlign.left,
-                                      style: Theme.of(context).textTheme.headline6
+                                      style:
+                                          Theme.of(
+                                            context,
+                                          ).textTheme.headlineSmall,
                                     ),
                                     Row(
                                       crossAxisAlignment:
@@ -164,35 +173,35 @@ class _BookingItem extends StatelessWidget {
                                       children: <Widget>[
                                         Text(
                                           itemData!.subTxt,
-                                          style: Theme.of(context).textTheme.caption!.copyWith(fontSize: 13),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium!
+                                              .copyWith(fontSize: 13),
                                         ),
-                                        const SizedBox(
-                                          width: 4,
-                                        ),
+                                        const SizedBox(width: 4),
                                         Icon(
-                                          FontAwesomeIcons.mapMarkerAlt,
+                                          FontAwesomeIcons.locationDot,
                                           size: 12,
-                                          color: Theme.of(context)
-                                              .primaryColor,
+                                          color: Theme.of(context).primaryColor,
                                         ),
                                         Expanded(
                                           child: Text(
                                             '${itemData!.dist.toStringAsFixed(1)} km to city',
-                                            overflow:
-                                                TextOverflow.ellipsis,
-                                            style: Theme.of(context).textTheme.caption!.copyWith(fontSize: 13),
+                                            overflow: TextOverflow.ellipsis,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelMedium!
+                                                .copyWith(fontSize: 13),
                                           ),
                                         ),
                                       ],
                                     ),
                                     Padding(
-                                      padding:
-                                          const EdgeInsets.only(top: 4),
+                                      padding: const EdgeInsets.only(top: 4),
                                       child: Row(
                                         children: <Widget>[
                                           RatingBar(
-                                            initialRating:
-                                                itemData!.rating,
+                                            initialRating: itemData!.rating,
                                             direction: Axis.horizontal,
                                             allowHalfRating: true,
                                             itemCount: 5,
@@ -200,30 +209,37 @@ class _BookingItem extends StatelessWidget {
                                             ratingWidget: RatingWidget(
                                               full: Icon(
                                                 Icons.star_rate_rounded,
-                                                color: Theme.of(context)
-                                                    .primaryColor,
+                                                color:
+                                                    Theme.of(
+                                                      context,
+                                                    ).primaryColor,
                                               ),
                                               half: Icon(
                                                 Icons.star_half_rounded,
-                                                color: Theme.of(context)
-                                                    .primaryColor,
+                                                color:
+                                                    Theme.of(
+                                                      context,
+                                                    ).primaryColor,
                                               ),
                                               empty: Icon(
-                                                Icons
-                                                    .star_border_rounded,
-                                                color: Theme.of(context)
-                                                    .primaryColor,
+                                                Icons.star_border_rounded,
+                                                color:
+                                                    Theme.of(
+                                                      context,
+                                                    ).primaryColor,
                                               ),
                                             ),
-                                            itemPadding:
-                                                EdgeInsets.zero,
+                                            itemPadding: EdgeInsets.zero,
                                             onRatingUpdate: (rating) {
                                               // print(rating);
                                             },
                                           ),
                                           Text(
                                             ' ${itemData!.reviews} Reviews',
-                                            style: Theme.of(context).textTheme.caption!.copyWith(fontSize: 13),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelMedium!
+                                                .copyWith(fontSize: 13),
                                           ),
                                         ],
                                       ),
@@ -234,22 +250,23 @@ class _BookingItem extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(
-                                right: 16, top: 8),
+                            padding: const EdgeInsets.only(right: 16, top: 8),
                             child: Column(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.center,
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: <Widget>[
                                 Text(
                                   '\$${itemData!.perNight}',
                                   textAlign: TextAlign.left,
-                                  style: Theme.of(context).textTheme.headline6
+                                  style:
+                                      Theme.of(context).textTheme.headlineSmall,
                                 ),
                                 Text(
                                   '/per night',
-                                  style: Theme.of(context).textTheme.caption!.copyWith(fontSize: 13),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium!
+                                      .copyWith(fontSize: 13),
                                 ),
                               ],
                             ),
@@ -278,7 +295,7 @@ class _BookingItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
